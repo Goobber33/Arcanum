@@ -1,17 +1,31 @@
 import React, { useState } from 'react';
+import { Modal } from 'react-bootstrap'; // import Bootstrap Modal component
 import './css/AuthPage.css';
 import bgVideo from './background.mp4'; // Import the background video file
+import axios from 'axios';
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showModal, setShowModal] = useState(false); // New state for modal visibility
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Here you can distinguish between login and signup requests based on the isLogin state
-    // Then perform the appropriate request
+  
+    const endpoint = isLogin ? '/login' : '/signup';
+    
+    try {
+      const { data } = await axios.post(`http://localhost:4000/auth${endpoint}`, { username, password });
+      localStorage.setItem('jwt', data.token);
+      setShowModal(true); // Show the success modal
+    } catch (error) {
+      console.log(error);
+      // show error message
+    }
   };
+
+  const handleCloseModal = () => setShowModal(false); // New function to close the modal
 
   return (
     <div className="container d-flex justify-content-center align-items-center full-height">
@@ -51,6 +65,19 @@ const AuthPage = () => {
           </button>
         </form>
       </div>
+
+      {/* Success Modal */}
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Success!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Your account was successfully created!</Modal.Body>
+        <Modal.Footer>
+          <button className="btn btn-primary" onClick={handleCloseModal}>
+            OK
+          </button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
