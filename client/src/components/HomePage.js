@@ -27,9 +27,9 @@ const HomePage = ({ onLogout }) => {
     };
 
     const style = {
-        backgroundImage: `url(${mainImage})`, // Set the background image
-        backgroundSize: 'cover', // Cover the entire page
-        backgroundPosition: 'center', // Center the image
+        backgroundImage: `url(${mainImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center', 
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
@@ -40,14 +40,16 @@ const HomePage = ({ onLogout }) => {
     };
 
     const titleStyle = {
+        fontFamily: "'VT323', monospace",
+        fontSize: '4em',
         marginTop: '0',
         marginBottom: '20px',
         textAlign: 'center',
-        position: 'absolute',
-        top: '20px',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        width: '100%',
+        position: 'absolute', 
+        top: '20px', 
+        left: '50%', 
+        transform: 'translateX(-50%)', 
+        width: '100%', 
     };
 
     const containerStyle = {
@@ -61,7 +63,7 @@ const HomePage = ({ onLogout }) => {
 
     const logoutButtonStyle = {
         position: 'absolute',
-        top: '90px',
+        top: '100px',
         left: '50%',
         transform: 'translateX(-50%)'
     };
