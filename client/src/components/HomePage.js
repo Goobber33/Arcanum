@@ -1,50 +1,51 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const HomePage = () => {
+const HomePage = ({ onLogout }) => {
     const pageVariants = {
-      initial: {
-        y: "100%",
-        opacity: 0
-      },
-      animate: {
-        y: "0%",
-        opacity: 1
-      },
-      exit: {
-        y: "-100%",
-        opacity: 0
-      }
+        initial: {
+            y: "100%",
+            opacity: 0
+        },
+        animate: {
+            y: "0%",
+            opacity: 1
+        },
+        exit: {
+            y: "-100%",
+            opacity: 0
+        }
     };
-  
+
     const pageTransition = {
-      type: "tween",
-      ease: "anticipate",
-      duration: 0.5
+        type: "tween",
+        ease: "anticipate",
+        duration: 0.5
     };
-  
+
     const style = {
-      backgroundColor: '#f0f0f0',
-      minHeight: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center'
+        backgroundColor: '#f0f0f0',
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
     };
 
     return (
         <motion.div
-          initial="initial"
-          animate="animate"
-          exit="exit"
-          variants={pageVariants}
-          transition={pageTransition}
-          style={style}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            variants={pageVariants}
+            transition={pageTransition}
+            style={style}
         >
-      <h1>Welcome to the Homepage!</h1>
-      <p>This is a basic homepage component.</p>
-    </motion.div>
-  );
+            <h1>Welcome to the Homepage!</h1>
+            <p>This is a basic homepage component.</p>
+            <button onClick={onLogout}>Logout</button>
+        </motion.div>
+    );
 };
 
 export default HomePage;
