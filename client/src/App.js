@@ -1,8 +1,35 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
 import LoginPage from './components/LoginPage';
 import HomePage from './components/HomePage';
+
+const RouteAnimations = ({ isLoggedIn, onLogin }) => {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode='wait'>
+      <Routes key={location.key} location={location}>
+        <Route
+          path="/"
+          element={isLoggedIn
+            ? <Navigate to="/home" />
+            : <motion.div initial={{ y: "100vh", opacity: 0 }} animate={{ y: "0", opacity: 1 }} exit={{ y: "-100vh", opacity: 0 }} transition={{ type: "tween", ease: "anticipate", duration: 0.5 }}>
+                <LoginPage onLogin={onLogin} />
+              </motion.div>}
+        />
+        <Route
+          path="/home"
+          element={isLoggedIn
+            ? <motion.div initial={{ y: "100vh", opacity: 0 }} animate={{ y: "0", opacity: 1 }} exit={{ y: "-100vh", opacity: 0 }} transition={{ type: "tween", ease: "anticipate", duration: 0.5 }}>
+                <HomePage />
+              </motion.div>
+            : <Navigate to="/" />}
+        />
+      </Routes>
+    </AnimatePresence>
+  );
+}
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -11,45 +38,13 @@ const App = () => {
     setIsLoggedIn(true);
   };
 
-  const pageVariants = {
-    exit: {
-      y: "100vh",
-      opacity: 0
-    },
-    enter: {
-      y: "0",
-      opacity: 1
-    }
-  };
-  
-  const pageTransition = {
-    type: "tween",
-    ease: "anticipate",
-    duration: 0.5
-  };
-
   return (
     <Router>
       <div className="App">
-        <AnimatePresence mode='wait'>
-          <Routes>
-            <Route 
-              path="/" 
-              element={isLoggedIn 
-                ? <Navigate to="/home" /> 
-                : <LoginPage variants={pageVariants} transition={pageTransition} onLogin={handleLogin} />} 
-            />
-            <Route 
-              path="/home" 
-              element={isLoggedIn 
-                ? <HomePage variants={pageVariants} transition={pageTransition} /> 
-                : <Navigate to="/" />} 
-            />
-          </Routes>
-        </AnimatePresence>
+        <RouteAnimations isLoggedIn={isLoggedIn} onLogin={handleLogin} />
       </div>
     </Router>
   );
-}
+};
 
 export default App;
