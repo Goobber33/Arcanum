@@ -1,6 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+// Import the image
+import mainImage from './main.jpg';
+
 const HomePage = ({ onLogout }) => {
     const pageVariants = {
         initial: {
@@ -24,12 +27,43 @@ const HomePage = ({ onLogout }) => {
     };
 
     const style = {
-        backgroundColor: '#f0f0f0',
+        backgroundImage: `url(${mainImage})`, // Set the background image
+        backgroundSize: 'cover', // Cover the entire page
+        backgroundPosition: 'center', // Center the image
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        padding: '20px',
+        position: 'relative'
+    };
+
+    const titleStyle = {
+        marginTop: '0',
+        marginBottom: '20px',
+        textAlign: 'center',
+        position: 'absolute',
+        top: '20px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: '100%',
+    };
+
+    const containerStyle = {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        height: '100%'
+    };
+
+    const logoutButtonStyle = {
+        position: 'absolute',
+        top: '90px',
+        left: '50%',
+        transform: 'translateX(-50%)'
     };
 
     return (
@@ -41,9 +75,11 @@ const HomePage = ({ onLogout }) => {
             transition={pageTransition}
             style={style}
         >
-            <h1>Welcome to the Homepage!</h1>
-            <p>This is a basic homepage component.</p>
-            <button onClick={onLogout}>Logout</button>
+            <h1 style={titleStyle}>Welcome to the Game!</h1>
+            <button className="btn btn-primary" onClick={onLogout} style={logoutButtonStyle}>Logout</button>
+            <div style={containerStyle}>
+                <button className="btn btn-danger fs-4">START</button>
+            </div>
         </motion.div>
     );
 };
