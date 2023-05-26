@@ -16,17 +16,19 @@ function LoginPage({ onLogin }) {
         const endpoint = isLogin ? '/login' : '/signup';
         try {
             const { data } = await axios.post(`http://localhost:4000/auth${endpoint}`, { username, password });
-            localStorage.setItem('jwt', data.token);
-            if (!isLogin) {
-                setShowModal(true);  // Show modal only when signing up
+            if (isLogin) {
+                localStorage.setItem('jwt', data.token);
+                onLogin();
+                navigate('/home');
+            } else {
+                setShowModal(true); 
             }
-            onLogin();
-            navigate('/home');
         } catch (error) {
             console.log(error);
             // show error message
         }
     };
+
 
     const handleCloseModal = () => setShowModal(false);
 
