@@ -1,32 +1,32 @@
 import React, { useState } from 'react';
-import { Modal } from 'react-bootstrap'; // import Bootstrap Modal component
+import { Modal } from 'react-bootstrap';
 import './css/AuthPage.css';
-import bgVideo from './background.mp4'; // Import the background video file
+import bgVideo from './background.mp4';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const AuthPage = () => {
+const LoginPage = ({ onLogin }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [showModal, setShowModal] = useState(false); // New state for modal visibility
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-  
+  const handleLogin = async () => {
     const endpoint = isLogin ? '/login' : '/signup';
-    
     try {
       const { data } = await axios.post(`http://localhost:4000/auth${endpoint}`, { username, password });
       localStorage.setItem('jwt', data.token);
-      setShowModal(true); // Show the success modal
+      setShowModal(true);
+      onLogin();
+      navigate('/home');
     } catch (error) {
       console.log(error);
       // show error message
     }
   };
-
-  const handleCloseModal = () => setShowModal(false); // New function to close the modal
-
+  
+  const handleCloseModal = () => setShowModal(false);
   return (
     <div className="container d-flex justify-content-center align-items-center full-height">
       <video autoPlay loop muted className="bg-video">
@@ -37,7 +37,10 @@ const AuthPage = () => {
           Switch to {isLogin ? "Signup" : "Login"}
         </button>
         <h2 className="mb-4">{isLogin ? "Login" : "Signup"}</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(event) => {
+            event.preventDefault();
+            handleLogin();
+        }}>
           <div className="mb-3">
             <label className="form-label">
               Username:
@@ -67,6 +70,7 @@ const AuthPage = () => {
       </div>
 
       {/* Success Modal */}
+      
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
           <Modal.Title>Success!</Modal.Title>
@@ -78,8 +82,9 @@ const AuthPage = () => {
           </button>
         </Modal.Footer>
       </Modal>
+
     </div>
   );
 };
 
-export default AuthPage;
+export default LoginPage;
