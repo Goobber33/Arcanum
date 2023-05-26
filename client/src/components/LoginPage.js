@@ -4,12 +4,14 @@ import './css/AuthPage.css';
 import bgVideo from './background.mp4';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 
 function LoginPage({ onLogin }) {
     const [isLogin, setIsLogin] = useState(true);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [showModal, setShowModal] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
     const handleLogin = async () => {
@@ -21,14 +23,14 @@ function LoginPage({ onLogin }) {
                 onLogin();
                 navigate('/home');
             } else {
-                setShowModal(true); 
+                setShowModal(true);
             }
         } catch (error) {
             console.log(error);
-            // show error message
         }
     };
 
+   
 
     const handleCloseModal = () => setShowModal(false);
 
@@ -57,16 +59,25 @@ function LoginPage({ onLogin }) {
                             />
                         </label>
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-3 password-wrapper">
                         <label className="form-label">
                             Password:
-                            <input
-                                type="password"
-                                className="form-control"
-                                value={password}
-                                onChange={e => setPassword(e.target.value)}
-                            />
                         </label>
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            className="form-control password-input"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                        />
+                        <button
+                            type="button"
+                            className="btn btn-outline-secondary password-toggle-button border-0"
+                            onMouseDown={() => setShowPassword(true)}
+                            onMouseUp={() => setShowPassword(false)}
+                            onMouseLeave={() => setShowPassword(false)}
+                        >
+                            {showPassword ? <FiEyeOff /> : <FiEye />}
+                        </button>
                     </div>
                     <button type="submit" className="btn btn-primary">
                         {isLogin ? "Login" : "Signup"}

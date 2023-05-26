@@ -18,6 +18,23 @@
     z-index: -1;
   }
   
+  .password-wrapper {
+    position: relative;
+}
+
+.password-input {
+    padding-right: 40px;
+}
+
+.password-toggle-button {
+    position: absolute;
+    right: 10px;
+    top: 72%;
+    transform: translateY(-50%);
+    background: none;
+    color: #aaa;
+}
+
 
   
   

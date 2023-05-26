@@ -15,15 +15,15 @@ const RouteAnimations = ({ isLoggedIn, onLogin, onLogout }) => {
           element={isLoggedIn
             ? <Navigate to="/home" />
             : <motion.div initial={{ y: "100vh", opacity: 0 }} animate={{ y: "0", opacity: 1 }} exit={{ y: "-100vh", opacity: 0 }} transition={{ type: "tween", ease: "anticipate", duration: 0.5 }}>
-                <LoginPage onLogin={onLogin} />
-              </motion.div>}
+              <LoginPage onLogin={onLogin} />
+            </motion.div>}
         />
         <Route
           path="/home"
           element={isLoggedIn
             ? <motion.div initial={{ y: "100vh", opacity: 0 }} animate={{ y: "0", opacity: 1 }} exit={{ y: "-100vh", opacity: 0 }} transition={{ type: "tween", ease: "anticipate", duration: 0.5 }}>
-                <HomePage onLogout={onLogout} />
-              </motion.div>
+              <HomePage onLogout={onLogout} />
+            </motion.div>
             : <Navigate to="/" />}
         />
       </Routes>
