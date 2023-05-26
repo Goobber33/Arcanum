@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import LoginPage from './components/LoginPage';
 import HomePage from './components/HomePage';
 
-const RouteAnimations = ({ isLoggedIn, onLogin }) => {
+const RouteAnimations = ({ isLoggedIn, onLogin, onLogout }) => {
   const location = useLocation();
 
   return (
@@ -22,7 +22,7 @@ const RouteAnimations = ({ isLoggedIn, onLogin }) => {
           path="/home"
           element={isLoggedIn
             ? <motion.div initial={{ y: "100vh", opacity: 0 }} animate={{ y: "0", opacity: 1 }} exit={{ y: "-100vh", opacity: 0 }} transition={{ type: "tween", ease: "anticipate", duration: 0.5 }}>
-                <HomePage />
+                <HomePage onLogout={onLogout} />
               </motion.div>
             : <Navigate to="/" />}
         />
@@ -38,10 +38,14 @@ const App = () => {
     setIsLoggedIn(true);
   };
 
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
+
   return (
     <Router>
       <div className="App">
-        <RouteAnimations isLoggedIn={isLoggedIn} onLogin={handleLogin} />
+        <RouteAnimations isLoggedIn={isLoggedIn} onLogin={handleLogin} onLogout={handleLogout} />
       </div>
     </Router>
   );
