@@ -80,7 +80,10 @@ const HomePage = ({ onLogout }) => {
             <h1 style={titleStyle}>Welcome to the Game!</h1>
             <button className="btn btn-primary" onClick={onLogout} style={logoutButtonStyle}>Logout</button>
             <div style={containerStyle}>
-                <button className="btn btn-danger fs-4">START</button>
+                <div className="start-button">
+                    <span className="tooltip">Good Luck!</span>
+                    <span>START</span>
+                </div>
             </div>
         </motion.div>
     );
