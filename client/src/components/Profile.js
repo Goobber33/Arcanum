@@ -1,25 +1,26 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import mainImage from './test.png'
 
-import mainImage from './test.png';
-
-const HomePage = ({ onLogout }) => {
+const ProfilePage = () => {
     const navigate = useNavigate();
+
     const pageVariants = {
         initial: {
-            y: "100%",
+            x: "100%",
             opacity: 0
         },
         animate: {
-            y: "0%",
+            x: "0%",
             opacity: 1
         },
         exit: {
-            y: "-100%",
+            x: "-100%",
             opacity: 0
         }
     };
+    
 
     const pageTransition = {
         type: "tween",
@@ -37,7 +38,8 @@ const HomePage = ({ onLogout }) => {
         justifyContent: 'center',
         alignItems: 'center',
         padding: '20px',
-        position: 'relative'
+        position: 'relative',
+        color:'white'
     };
 
     const titleStyle = {
@@ -54,27 +56,11 @@ const HomePage = ({ onLogout }) => {
         color: 'white'
     };
 
-    const containerStyle = {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: 'relative',
-        height: '100%'
-    };
-
-    const logoutButtonStyle = {
-        position: 'absolute',
-        top: '100px',
-        left: 'calc(40% + 70px)', 
-        transform: 'translateX(-50%)'
-    };
-
-    const profileButtonStyle = {
+    const homeButtonStyle = {
         position: 'absolute',
         top: '100px',
         left: '50%',
-        transform: 'translateX(-50%)'
+        transform: 'translate(-50%)'
     };
 
     return (
@@ -86,17 +72,11 @@ const HomePage = ({ onLogout }) => {
             transition={pageTransition}
             style={style}
         >
-            <h1 style={titleStyle}>Welcome to the Game!</h1>
-            <button className="btn btn-primary" onClick={onLogout} style={logoutButtonStyle}>Logout</button>
-            <button className="btn btn-primary" onClick={() => navigate('/profile')} style={profileButtonStyle}>Profile</button>
-            <div style={containerStyle}>
-                <div className="start-button">
-                    <span className="tooltip">Good Luck!</span>
-                    <span>START</span>
-                </div>
-            </div>
+            <h1 style={titleStyle}>Profile Page</h1>
+            <button className="btn btn-primary" style={homeButtonStyle} onClick={() => navigate('/home')}>Home</button>
+            {/* Your Profile Page contents go here */}
         </motion.div>
     );
 };
 
-export default HomePage;
+export default ProfilePage;
