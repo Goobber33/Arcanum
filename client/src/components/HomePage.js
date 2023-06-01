@@ -7,6 +7,7 @@ import mainImage from './test.png';
 const HomePage = ({ onLogout }) => {
     const navigate = useNavigate();
     const [startClicked, setStartClicked] = useState(false);
+    const [isCreatingGame, setIsCreatingGame] = useState(false);
 
     const pageVariants = {
         initial: {
@@ -32,7 +33,7 @@ const HomePage = ({ onLogout }) => {
     const style = {
         backgroundImage: `url(${mainImage})`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center', 
+        backgroundPosition: 'center',
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
@@ -48,11 +49,11 @@ const HomePage = ({ onLogout }) => {
         marginTop: '0',
         marginBottom: '20px',
         textAlign: 'center',
-        position: 'absolute', 
-        top: '20px', 
-        left: '50%', 
-        transform: 'translateX(-50%)', 
-        width: '100%', 
+        position: 'absolute',
+        top: '20px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: '100%',
         color: 'white'
     };
 
@@ -68,7 +69,7 @@ const HomePage = ({ onLogout }) => {
     const logoutButtonStyle = {
         position: 'absolute',
         top: '100px',
-        left: 'calc(40% + 70px)', 
+        left: 'calc(40% + 70px)',
         transform: 'translateX(-50%)'
     };
 
@@ -87,6 +88,19 @@ const HomePage = ({ onLogout }) => {
         setStartClicked(false);
     }
 
+    const startCreatingGame = () => {
+        setIsCreatingGame(true);
+    }
+
+    const createGame = () => {
+        // Here you can handle the creation of the game.
+        // You will probably want to send a request to your server.
+    }
+
+    const cancelCreatingGame = () => {
+        setIsCreatingGame(false);
+    }
+
     const buttonVariants = {
         hidden: { opacity: 0, y: "-100%" },
         visible: { opacity: 1, y: 0 },
@@ -95,6 +109,40 @@ const HomePage = ({ onLogout }) => {
     const gameButtonStyle = {
         width: '150px',
         marginBottom: '10px'
+    };
+
+    const smallerButtonStyle = {
+        width: '100px',
+        marginBottom: '10px'
+    };
+
+    const cardStyle = {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '400px',
+        height: '200px',
+        borderRadius: '10px',
+        boxShadow: '0px 0px 10px 3px rgba(0,0,0,0.3)',
+        padding: '20px',
+        backgroundColor: '#2D2D2D',
+        color: 'white'
+    };
+
+    const inputStyle = {
+        marginBottom: '10px',
+        padding: '10px',
+        borderRadius: '5px',
+        borderColor: '#333',
+        backgroundColor: '#555',
+        color: '#fff'
+    };
+
+    const buttonContainerStyle = {
+        display: 'flex',
+        justifyContent: 'space-between',
+        width: '100%'
     };
 
     return (
@@ -115,11 +163,11 @@ const HomePage = ({ onLogout }) => {
                         <span className="tooltip">Good Luck!</span>
                         <span>START</span>
                     </div>
-                ) : (
+                ) : !isCreatingGame ? (
                     <AnimatePresence>
                         <motion.button
                             className="btn btn-primary"
-                            onClick={() => navigate('/create')}
+                            onClick={startCreatingGame}
                             initial="hidden"
                             animate="visible"
                             exit="hidden"
@@ -150,6 +198,25 @@ const HomePage = ({ onLogout }) => {
                         >
                             Cancel
                         </motion.button>
+                    </AnimatePresence>
+                ) : (
+                    <AnimatePresence>
+                        <motion.div
+                            initial="hidden"
+                            animate="visible"
+                            exit="hidden"
+                            variants={buttonVariants}
+                            style={cardStyle}
+                        >
+                            <form onSubmit={createGame}>
+                                <input className="input-field" type="text" placeholder="Name of Game" style={inputStyle} required />
+                                <input className="input-field" type="text" placeholder="Game Code" style={inputStyle} required />
+                                <div style={buttonContainerStyle}>
+                                    <button type="submit" className="btn btn-primary" style={smallerButtonStyle}>Create</button>
+                                    <button type="button" className="btn btn-secondary" onClick={cancelCreatingGame} style={smallerButtonStyle}>Cancel</button>
+                                </div>
+                            </form>
+                        </motion.div>
                     </AnimatePresence>
                 )}
             </div>

@@ -93,3 +93,7 @@
   background: #ffffff;
   color: black;
 }
+
+.input-field::placeholder {
+  color: #fff;
+}
