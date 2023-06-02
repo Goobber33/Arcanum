@@ -8,7 +8,7 @@ const app = express();
 // api keys for getstream.io
 const api_key = process.env.api_key;
 const api_secret = process.env.secret_key;
-const serverClient = new StreamChat.getInstance(api_key, api_secret);
+// const serverClient = new StreamChat.getInstance(api_key, api_secret);
 
 // allow cross-origin requests
 app.use(cors());
