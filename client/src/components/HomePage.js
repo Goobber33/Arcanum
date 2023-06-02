@@ -188,6 +188,17 @@ const HomePage = ({ onLogout }) => {
                             Join Game
                         </motion.button>
                         <motion.button
+                            className="btn btn-primary"
+                            onClick={() => navigate('/game')}
+                            initial="hidden"
+                            animate="visible"
+                            exit="hidden"
+                            variants={buttonVariants}
+                            style={gameButtonStyle}
+                        >
+                            Test Game
+                        </motion.button>
+                        <motion.button
                             className="btn btn-secondary"
                             onClick={cancelGame}
                             initial="hidden"
