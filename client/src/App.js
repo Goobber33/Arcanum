@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'r
 import { AnimatePresence, motion } from 'framer-motion';
 import LoginPage from './components/LoginPage';
 import HomePage from './components/HomePage';
-import ProfilePage from './components/Profile';
+import GamePage from './components/GamePage';
+import ProfilePage from './components/ProfilePage';
 
 const RouteAnimations = ({ isLoggedIn, onLogin, onLogout }) => {
   const location = useLocation();
@@ -32,6 +33,14 @@ const RouteAnimations = ({ isLoggedIn, onLogin, onLogout }) => {
           element={isLoggedIn
             ? <motion.div initial={{ x: "100vw", opacity: 0 }} animate={{ x: "0", opacity: 1 }} exit={{ x: "-100vw", opacity: 0 }} transition={{ type: "tween", ease: "anticipate", duration: 0.5 }}>
               <ProfilePage />
+            </motion.div>
+            : <Navigate to="/" />}
+        />
+        <Route
+          path="/game"
+          element={isLoggedIn
+            ? <motion.div initial={{ x: "100vw", opacity: 0 }} animate={{ x: "0", opacity: 1 }} exit={{ x: "-100vw", opacity: 0 }} transition={{ type: "tween", ease: "anticipate", duration: 0.5 }}>
+              <GamePage />
             </motion.div>
             : <Navigate to="/" />}
         />
