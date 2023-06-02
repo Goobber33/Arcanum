@@ -12,6 +12,7 @@ function Game({channel}) {
     }
     return (
         <div className="gameContainer">
+            {/* Import GamePage.js and remove "Game" text once linked to homepage */}
             Game
         </div>
     )
