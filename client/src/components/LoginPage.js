@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import titleScreen from '../images/TitleScreen.png';
+//import inputField from '../images/InputField.png';
 
 function LoginPage({ onLogin }) {
     const [isLogin] = useState(true);
@@ -57,6 +58,7 @@ function LoginPage({ onLogin }) {
                     </label>
                 </div>
                 <div className="mb-3 password-wrapper">
+                 
                     <label className="form-label">
                         Password:
                     </label>
