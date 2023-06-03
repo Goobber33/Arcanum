@@ -6,6 +6,25 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import titleScreen from '../images/TitleScreen.png';
+import beginButton from '../images/Button-Begin.png';
+
+
+const styles = {
+    buttonStyle: {
+      
+        position: 'relative', 
+        zIndex: '9999',
+        backgroundColor: 'transparent',
+        border: 'none',
+        boxShadow: 'none',
+        color: 'inherit',
+    },
+
+   
+}
+
+
+
 
 function LoginPage({ onLogin }) {
     const [isLogin, setIsLogin] = useState(true);
@@ -39,8 +58,10 @@ function LoginPage({ onLogin }) {
                 <source src={bgVideo} type="video/mp4" />
             </video>
             <img src={titleScreen} alt="Title Screen" className="bg-image"/>
-            <Button variant="primary" onClick={() => setShowModal(true)} style={{position: 'relative', zIndex: 9999}}>
-                Begin
+            <Button onClick={() => setShowModal(true)} className='begin-button' style={styles.buttonStyle}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <img src={beginButton} alt='begin' />
+             </div>
             </Button>
 
             <Modal show={showModal} onHide={handleCloseModal}>
