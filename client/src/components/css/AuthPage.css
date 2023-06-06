@@ -108,13 +108,69 @@
   z-index: 1;
 }
 
-
 .auth-form {
   position: relative;
   z-index: 2;
 }
 
-
 .begin-button {
  background-color: none;
+}
+
+.modal-content {
+  background-color: transparent !important;
+  border: none;
+  box-shadow: none;
+  color: #000;
+}
+
+.modal-backdrop {
+  background-color: transparent !important;
+}
+
+.modal-dialog {
+  background-color: transparent;
+}
+
+.title {
+  font-family: 'VT323', monospace;
+  font-size: 4em;
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  color: white;
+}
+
+.home-button {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.character-selection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
+.character-button,
+.character-confirmation {
+  display: flex;
+  gap: 1em;
+}
+
+.character-image {
+  width: 20em;
+  height: 20em;
+  right: 10em;
+  object-fit: cover;
+  border-radius: 10%;
 }
