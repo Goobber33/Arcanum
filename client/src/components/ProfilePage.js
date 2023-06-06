@@ -151,14 +151,15 @@ const ProfilePage = () => {
             </button>
 
             <Card
-                className="character-selection"
-                style={{
-                    position: 'relative',
-                    marginTop: '7em',
-                    marginLeft: '6em',
-                    padding: '20px',
-                }}
-            >
+    style={{ 
+        minWidth: '300px', 
+        minHeight: '200px',
+        position: 'relative',
+        marginTop: '7em',
+        marginLeft: '6em',
+        padding: '20px',
+    }}
+>
                 {changeMode ? (
                     <>
                         <div
