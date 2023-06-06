@@ -13,6 +13,10 @@ const Game = () => {
     <div className="game">
       <div className="deck">
         <h3>Player 1 Hand</h3>
+        <div className="card">
+          {/* Display a single card for Player 1 */}
+          {player1Deck[0]}
+        </div>
         <div className="card-deck">
           {player1Deck.map((card, index) => (
             <div key={index} className="card">
@@ -30,7 +34,9 @@ const Game = () => {
               {card}
             </div>
           ))}
+          
         </div>
+        
       </div>
 
       <div className="player-area">
@@ -53,6 +59,10 @@ const Game = () => {
               {card}
             </div>
           ))}
+        </div>
+        <div className="card">
+          {/* Display a single card for Player 2 */}
+          {player2Deck[0]}
         </div>
       </div>
     </div>
