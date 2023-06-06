@@ -117,12 +117,6 @@
  background-color: none;
 }
 
-.custom-modal {
-  /* background-image: url('../../images/LoginForm.png'); */
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .modal-content {
   background-color: transparent !important;
   border: none;
@@ -136,6 +130,10 @@
 
 .modal-dialog {
   background-color: transparent;
+  background-size: 50%;
+  position: absolute;
+  width: 500px;
+  height: 500px;
 }
 
 .title {
@@ -179,4 +177,16 @@
   right: 10em;
   object-fit: cover;
   border-radius: 10%;
+}
+
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.form-control {
+  background-color: transparent !important;
+  border: none;
 }
