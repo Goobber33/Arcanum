@@ -8,23 +8,17 @@ import { FiEye, FiEyeOff } from 'react-icons/fi';
 import titleScreen from '../images/TitleScreen.png';
 import beginButton from '../images/Button-Begin.png';
 
-
 const styles = {
     buttonStyle: {
-      
-        position: 'relative', 
+
+        position: 'relative',
         zIndex: '9999',
         backgroundColor: 'transparent',
         border: 'none',
         boxShadow: 'none',
         color: 'inherit',
     },
-
-   
 }
-
-
-
 
 function LoginPage({ onLogin }) {
     const [isLogin, setIsLogin] = useState(true);
@@ -41,14 +35,14 @@ function LoginPage({ onLogin }) {
             if (isLogin) {
                 localStorage.setItem('jwt', data.token);
                 onLogin();
-                navigate('/home');
+                navigate('/home', { state: { username } });
             } else {
                 setShowModal(true);
             }
         } catch (error) {
             console.log(error);
         }
-    };
+    };    
 
     const handleCloseModal = () => setShowModal(false);
 
@@ -57,14 +51,15 @@ function LoginPage({ onLogin }) {
             <video autoPlay loop muted className="bg-video">
                 <source src={bgVideo} type="video/mp4" />
             </video>
-            <img src={titleScreen} alt="Title Screen" className="bg-image"/>
+            <img src={titleScreen} alt="Title Screen" className="bg-image" />
             <Button onClick={() => setShowModal(true)} className='begin-button' style={styles.buttonStyle}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <img src={beginButton} alt='begin' />
-             </div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <img src={beginButton} alt='begin' />
+                </div>
             </Button>
 
             <Modal show={showModal} onHide={handleCloseModal}>
+
                 <Modal.Header closeButton>
                     <Modal.Title>{isLogin ? "Login" : "Signup"}</Modal.Title>
                     <Button variant="secondary" onClick={() => setIsLogin(!isLogin)}>
@@ -77,23 +72,25 @@ function LoginPage({ onLogin }) {
                         handleLogin();
                     }}>
                         <div className="mb-3">
-                            <label className="form-label">
+                            <label className="form-label" style={{ color: '#FFF' }}>
                                 Username:
                                 <input
                                     type="text"
                                     className="form-control"
+                                    style={{ color: '#FFF' }}
                                     value={username}
                                     onChange={e => setUsername(e.target.value)}
                                 />
                             </label>
                         </div>
                         <div className="mb-3 password-wrapper">
-                            <label className="form-label">
+                            <label className="form-label" style={{ color: '#FFF' }}>
                                 Password:
                             </label>
                             <input
                                 type={showPassword ? "text" : "password"}
                                 className="form-control password-input"
+                                style={{ color: '#FFF' }}
                                 value={password}
                                 onChange={e => setPassword(e.target.value)}
                             />
@@ -113,6 +110,7 @@ function LoginPage({ onLogin }) {
                     </form>
                 </Modal.Body>
             </Modal>
+
         </div>
     );
 };
