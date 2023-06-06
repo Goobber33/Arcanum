@@ -117,6 +117,12 @@
  background-color: none;
 }
 
+.custom-modal {
+  /* background-image: url('../../images/LoginForm.png'); */
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .modal-content {
   background-color: transparent !important;
   border: none;
