@@ -1,0 +1,45 @@
+.GamePage{
+    display: grid;
+    grid-template-columns: repeat(8, 100px);
+    grid-template-rows: repeat(8, 100px);
+    width: 800px;
+    height: 800px;
+}
+
+#warBoard{
+    display: grid;
+    grid-template-columns: repeat(8, 100px);
+    grid-template-rows: repeat(8, 100px);
+    width: 800px;
+    height: 800px;
+    background-color: aqua;
+
+}
+
+#warBoard .tile {
+    width: 100px;
+    height: 100px;
+}
+
+#warBoard .black-tile {
+    background-color: #779556;
+}
+
+#warBoard .white-tile {
+    background-color: #ebecd0;
+}
+
+button {
+    background: none;
+    border: 2px solid white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    color:aliceblue;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1em;
+}
+button:hover{
+    background: pink;
+    color: rgb(246, 245, 247);
+}

@@ -17,22 +17,18 @@ import React from 'react'
     
   export default function GamePage() {
          const grid = newWarBattleGrid()
-         const handleClick =()=>{}
+         const handleClick = (rowIdx, colIdx) => {
+          console.log(`Clicked on cell (${rowIdx}, ${colIdx})`);
+          // Perform any desired logic or state updates here
+        };
          
          console.log(grid)
          return(
-         <div style={{display: 'inline-block'}}>
+         <div style={{}}>
             <Grid grid={grid} handleClick={handleClick}/>
          </div>
      )}
-    function Cell({cell,handleClick}){
-        return (
-        <div style={cellStyle}>
-        <button type="button" onClick={handleClick}>
-          {cell}
-        </button>
-      </div>  
-    )}
+    
     
 
 function Grid({ grid }) {
@@ -60,7 +56,10 @@ function Grid({ grid }) {
               // We put the colIdx first because that is our X-axis value
               // and the rowIdx second because that is our Y-axis value
               // Getting in the habit makes using 2d grids much easier
-              <Cell key={`${colIdx}-${rowIdx}`} cell={cell} />
+              <Cell key={`${colIdx}-${rowIdx}`}  key={`${colIdx}-${rowIdx}`}
+              cell={cell}
+              onClick={() => handleClick(rowIdx, colIdx)}
+            />
             ))
           )}
         </div>
@@ -74,6 +73,9 @@ function Grid({ grid }) {
     width: 150,
   }
   
+  function Cell({ cell }) {
+    return <div style={cellStyle}>{cell}</div>
+  }
 
 // ==================================================================================================================================================  
     
