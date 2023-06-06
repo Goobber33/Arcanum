@@ -17,6 +17,7 @@ const styles = {
     border: 'none',
     boxShadow: 'none',
     color: 'inherit',
+    outline: 'none'
   },
 
   formStyle: {
@@ -43,7 +44,7 @@ const styles = {
   },
 
   inputStyle: {
-    backgroundColor: 'transparent',
+    backgroundColor: 'gray',
     border: 'none',
     color: 'white',
   },
@@ -87,11 +88,17 @@ function LoginPage({ onLogin }) {
       <img src={titleScreen} alt="Title Screen" className="bg-image" />
       <Button onClick={() => setShowModal(true)} className="begin-button" style={styles.buttonStyle}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <img src={beginButton} alt="begin" />
+          <img src={beginButton} alt="begin" style={{ width: '300px', height: '400px' }} />
         </div>
       </Button>
 
-      <Modal show={showModal} onHide={handleCloseModal}>
+
+      <Modal
+        show={showModal}
+        onHide={handleCloseModal}
+        dialogClassName="custom-modal-dialog"
+        contentClassName="custom-modal-content"
+      >
         <Modal.Body style={styles.formboxStyle}>
           <form className="auth-form" onSubmit={(event) => {
             event.preventDefault();
