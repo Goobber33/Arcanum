@@ -1,6 +1,7 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const User = require('../utils/models/User');
+const { generateToken } = require('../utils/Auth');
 
 const router = express.Router();
 
@@ -14,8 +15,7 @@ router.post('/signup', async (req, res) => {
   const user = new User({ username, password });
   await user.save();
 
-  const token = jwt.sign({ _id: user._id }, 'SECRET_KEY');
-  
+  const token = generateToken(user);
   res.send({ token });
 });
 
@@ -37,8 +37,7 @@ router.post('/login', async (req, res) => {
       return res.status(400).send('Invalid login');
     }
 
-    const token = jwt.sign({ _id: user._id }, 'SECRET_KEY');
-
+    const token = generateToken(user);
     res.send({ token });
   });
 });
