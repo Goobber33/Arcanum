@@ -1,0 +1,37 @@
+[{
+  "_id": {
+    "$oid": "647905e9f6f5bca74c4f26b9"
+  },
+  "user": "Jeff",
+  "password": "password",
+  "friends": [],
+  "decks": [],
+  "winLoseTotal": []
+},{
+  "_id": {
+    "$oid": "647905fcf6f5bca74c4f26ba"
+  },
+  "user": "Darryl",
+  "password": "password",
+  "friends": [],
+  "decks": [],
+  "winLoseTotal": []
+},{
+  "_id": {
+    "$oid": "64790605f6f5bca74c4f26bb"
+  },
+  "user": "Kyle",
+  "password": "password",
+  "friends": [],
+  "decks": [],
+  "winLoseTotal": []
+},{
+  "_id": {
+    "$oid": "64790616f6f5bca74c4f26bc"
+  },
+  "user": "Wes",
+  "password": "password",
+  "friends": [],
+  "decks": [],
+  "winLoseTotal": []
+}]
