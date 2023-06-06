@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './css/gamepage.css'; // Import the CSS file for styling
 
-const Game = () => {
+const GamePage = () => {
   const [player1Spaces, setPlayer1Spaces] = useState(Array(4).fill(null));
   const [player2Spaces, setPlayer2Spaces] = useState(Array(4).fill(null));
   const [player1Deck, setPlayer1Deck] = useState(['card1', 'card2', 'card3']); // Replace with actual card data
@@ -69,4 +69,6 @@ const Game = () => {
   );
 };
 
-export default Game;
+export default GamePage;
+
+    

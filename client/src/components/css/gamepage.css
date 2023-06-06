@@ -1,5 +1,5 @@
-.GamePage{
-        display: flex;
+.game{
+        /* display: flex; */
         justify-content: center;
         align-items: center;
         gap: 50px;
@@ -43,5 +43,16 @@
         display: flex;
         justify-content: center;
         align-items: center;
+      }
+
+.space:hover {
+        background-color: lightblue;
+        cursor: pointer;
+      }
+      
+.card:hover {
+  background-color: rgb(209, 213, 214);
+        transform: scale(1.1);
+        cursor: pointer;
       }
       
