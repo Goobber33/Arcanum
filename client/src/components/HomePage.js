@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import Game from "./Game"
 import mainImage from './test.png';
 
 const HomePage = ({ onLogout }) => {
@@ -220,10 +220,10 @@ const HomePage = ({ onLogout }) => {
                             style={cardStyle}
                         >
                             <form onSubmit={createGame}>
-                                <input className="input-field" type="text" placeholder="Name of Game" style={inputStyle} required />
-                                <input className="input-field" type="text" placeholder="Game Code" style={inputStyle} required />
+                                <input className="input-field" type="text" placeholder="Rival Username" style={inputStyle} required />
+                                {/* <input className="input-field" type="text" placeholder="Game Code" style={inputStyle} required /> */}
                                 <div style={buttonContainerStyle}>
-                                    <button type="submit" className="btn btn-primary" style={smallerButtonStyle}>Create</button>
+                                    <button type="submit" className="btn btn-primary" onClick={Game} style={smallerButtonStyle}>Create</button>
                                     <button type="button" className="btn btn-secondary" onClick={cancelCreatingGame} style={smallerButtonStyle}>Cancel</button>
                                 </div>
                             </form>
