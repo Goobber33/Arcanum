@@ -2,16 +2,26 @@ import React, { useState, useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Button, Card } from 'react-bootstrap';
+import { Button, Card, Container, Row, Col } from 'react-bootstrap';
 import mainImage from './test.png';
 import character1 from '../images/character1.png';
 import character2 from '../images/character2.png';
 import character3 from '../images/character3.png';
+import cardImage1 from '../images/AbyssalSpellweaver.png';
+import cardImage2 from '../images/AmethystBlazebug.png';
+import cardImage3 from '../images/ArachnocrabTreeshell.png'; 
 
 const ProfilePage = () => {
     const navigate = useNavigate();
 
     const characters = [character1, character2, character3];
+
+    const stats = { gamesWon: 10, gamesLost: 5, gamesTied: 2 };
+    const cards = [cardImage1, cardImage2, cardImage3];
+    
+
+    // State for currently shown card
+    const [currentCard, setCurrentCard] = useState(0);
 
     const [currentCharacter, setCurrentCharacter] = useState(characters[0]);
     const [selectedCharacter, setSelectedCharacter] = useState(null);
@@ -22,7 +32,6 @@ const ProfilePage = () => {
         const token = localStorage.getItem('jwt');
         if (token) {
             const decodedToken = jwt_decode(token);
-            console.log(decodedToken);
             setUsername(decodedToken.username);
         }
     }, []);
@@ -57,6 +66,14 @@ const ProfilePage = () => {
     const beginChange = () => {
         setSelectedCharacter(currentCharacter);
         setChangeMode(true);
+    };
+
+    const nextCard = () => {
+        setCurrentCard((currentCard + 1) % cards.length);
+    };
+
+    const prevCard = () => {
+        setCurrentCard((currentCard - 1 + cards.length) % cards.length);
     };
 
     const pageVariants = {
@@ -215,6 +232,37 @@ const ProfilePage = () => {
                     </Button>
                 )}
             </Card>
+
+            <Container>
+                <Row>
+                    <Col>
+                        <h2>Stats</h2>
+                        <p>Games won: {stats.gamesWon}</p>
+                        <p>Games lost: {stats.gamesLost}</p>
+                        <p>Games tied: {stats.gamesTied}</p>
+                    </Col>
+
+                    <Col>
+                        <h2>My Cards</h2>
+                        <Button onClick={prevCard}>Prev</Button>
+                        <Card.Img
+    variant="top"
+    src={cards[currentCard]}
+    alt="Card Image"
+    className="card-image"
+    style={{ 
+        width: 'auto', 
+        height: '300px', // Adjust this as needed
+        objectFit: 'cover',
+        marginTop: '-20px' 
+    }} 
+/>
+
+
+                        <Button onClick={nextCard}>Next</Button>
+                    </Col>
+                </Row>
+            </Container>
         </motion.div>
     );
 };
