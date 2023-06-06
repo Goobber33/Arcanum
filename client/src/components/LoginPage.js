@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button  } from 'react-bootstrap';
 import './css/AuthPage.css';
 import bgVideo from './background.mp4';
 import axios from 'axios';
@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import titleScreen from '../images/TitleScreen.png';
 import beginButton from '../images/Button-Begin.png';
+import loginForm from '../images/LoginForm.png';
 
 
 const styles = {
@@ -20,6 +21,25 @@ const styles = {
         color: 'inherit',
     },
 
+    formStyle: {
+        backgroundColor: 'transparent',
+        border: 'none',
+        boxShadow: 'none',
+        height: '50%',
+        width: '50%'
+    },
+
+    formboxStyle: {
+        backgroundImage: `url(${loginForm})`, 
+        backgroundRepeat: 'no-repeat', 
+        position: 'absolute',
+        backgroundSize: 'cover', 
+        backgroundPosition: 'center', 
+        backgroundColor: 'transparent', 
+        border: 'none',
+        height: '600px',
+        width: '600px'
+    }
    
 }
 
@@ -64,57 +84,70 @@ function LoginPage({ onLogin }) {
              </div>
             </Button>
 
-            <Modal show={showModal} onHide={handleCloseModal}>
+            <Modal show={showModal} onHide={handleCloseModal} >
                 <Modal.Header closeButton>
                     <Modal.Title>{isLogin ? "Login" : "Signup"}</Modal.Title>
                     <Button variant="secondary" onClick={() => setIsLogin(!isLogin)}>
                         {isLogin ? "Switch to Signup" : "Switch to Login"}
                     </Button>
                 </Modal.Header>
-                <Modal.Body>
+                <Modal.Body style={{backgroundColor: 'transparent', border: 'none'}}>
                     <form className="auth-form" onSubmit={(event) => {
                         event.preventDefault();
                         handleLogin();
                     }}>
-                        <div className="mb-3">
-                            <label className="form-label">
-                                Username:
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    value={username}
-                                    onChange={e => setUsername(e.target.value)}
-                                />
-                            </label>
-                        </div>
-                        <div className="mb-3 password-wrapper">
-                            <label className="form-label">
-                                Password:
-                            </label>
-                            <input
-                                type={showPassword ? "text" : "password"}
-                                className="form-control password-input"
-                                value={password}
-                                onChange={e => setPassword(e.target.value)}
-                            />
-                            <button
-                                type="button"
-                                className="btn btn-outline-secondary password-toggle-button border-0"
-                                onMouseDown={() => setShowPassword(true)}
-                                onMouseUp={() => setShowPassword(false)}
-                                onMouseLeave={() => setShowPassword(false)}
-                            >
-                                {showPassword ? <FiEyeOff /> : <FiEye />}
-                            </button>
-                        </div>
-                        <button type="submit" className="btn btn-primary">
-                            {isLogin ? "Login" : "Signup"}
-                        </button>
-                    </form>
-                </Modal.Body>
-            </Modal>
+                  
+      <div className="login-container" style={styles.formboxStyle} dialogClassName="custom-modal">
+        <div className='image-container'>
+        <div className="mb-3" style={{ position: 'relative', backgroundColor: 'transparent !important', border: 'none' }} >
+          <label className="form-label" >
+            Username:
+            <input
+              type="text"
+              className="form-control"
+              style={{ backgroundColor: 'transparent', border: 'none' }}
+              value={username}
+              onChange={e => setUsername(e.target.value)}
+            />
+          </label>
         </div>
+        <div className="mb-3 password-wrapper">
+          <label className="form-label" >
+            Password:
+          </label>
+          <input
+            type={showPassword ? "text" : "password"}
+            className="form-control password-input"
+            style={{ backgroundColor: 'transparent', border: 'none' }}
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
+          <button
+            type="button"
+            className="password-toggle-button"
+            style={{ backgroundColor: 'transparent', border: 'none' }}
+            onMouseDown={() => setShowPassword(true)}
+            onMouseUp={() => setShowPassword(false)}
+            onMouseLeave={() => setShowPassword(false)}
+          >
+            {showPassword ? <FiEyeOff /> : <FiEye />}
+          </button>
+        </div>
+        <button type="submit" className="btn btn-primary" style={{ backgroundColor: 'transparent', border: 'none' }}>
+          {isLogin ? "Login" : "Signup"}
+        </button>
+           </div>
+          </div>              
+         </form>
+                
+       </Modal.Body>
+      </Modal>
+            
+    </div>
     );
 };
 
 export default LoginPage;
+
+
+     
