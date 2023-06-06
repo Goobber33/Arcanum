@@ -9,11 +9,9 @@ import titleScreen from '../images/TitleScreen.png';
 import beginButton from '../images/Button-Begin.png';
 import loginForm from '../images/LoginForm.png';
 
-
 const styles = {
     buttonStyle: {
-      
-        position: 'relative', 
+        position: 'relative',
         zIndex: '9999',
         backgroundColor: 'transparent',
         border: 'none',
@@ -40,11 +38,7 @@ const styles = {
         height: '600px',
         width: '600px'
     }
-   
 }
-
-
-
 
 function LoginPage({ onLogin }) {
     const [isLogin, setIsLogin] = useState(true);
@@ -61,14 +55,14 @@ function LoginPage({ onLogin }) {
             if (isLogin) {
                 localStorage.setItem('jwt', data.token);
                 onLogin();
-                navigate('/home');
+                navigate('/home', { state: { username } });
             } else {
                 setShowModal(true);
             }
         } catch (error) {
             console.log(error);
         }
-    };
+    };    
 
     const handleCloseModal = () => setShowModal(false);
 
@@ -77,11 +71,11 @@ function LoginPage({ onLogin }) {
             <video autoPlay loop muted className="bg-video">
                 <source src={bgVideo} type="video/mp4" />
             </video>
-            <img src={titleScreen} alt="Title Screen" className="bg-image"/>
+            <img src={titleScreen} alt="Title Screen" className="bg-image" />
             <Button onClick={() => setShowModal(true)} className='begin-button' style={styles.buttonStyle}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <img src={beginButton} alt='begin' />
-             </div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <img src={beginButton} alt='begin' />
+                </div>
             </Button>
 
             <Modal show={showModal} onHide={handleCloseModal} >
@@ -96,58 +90,55 @@ function LoginPage({ onLogin }) {
                         event.preventDefault();
                         handleLogin();
                     }}>
-                  
-      <div className="login-container" style={styles.formboxStyle} dialogClassName="custom-modal">
-        <div className='image-container'>
-        <div className="mb-3" style={{ position: 'relative', backgroundColor: 'transparent !important', border: 'none' }} >
-          <label className="form-label" >
-            Username:
-            <input
-              type="text"
-              className="form-control"
-              style={{ backgroundColor: 'transparent', border: 'none' }}
-              value={username}
-              onChange={e => setUsername(e.target.value)}
-            />
-          </label>
-        </div>
-        <div className="mb-3 password-wrapper">
-          <label className="form-label" >
-            Password:
-          </label>
-          <input
-            type={showPassword ? "text" : "password"}
-            className="form-control password-input"
-            style={{ backgroundColor: 'transparent', border: 'none' }}
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
-          <button
-            type="button"
-            className="password-toggle-button"
-            style={{ backgroundColor: 'transparent', border: 'none' }}
-            onMouseDown={() => setShowPassword(true)}
-            onMouseUp={() => setShowPassword(false)}
-            onMouseLeave={() => setShowPassword(false)}
-          >
-            {showPassword ? <FiEyeOff /> : <FiEye />}
-          </button>
-        </div>
-        <button type="submit" className="btn btn-primary" style={{ backgroundColor: 'transparent', border: 'none' }}>
-          {isLogin ? "Login" : "Signup"}
-        </button>
-           </div>
-          </div>              
-         </form>
+                      
+        <div className="login-container" style={styles.formboxStyle} dialogClassName="custom-modal">
+            <div className='image-container'>
+                <div className="mb-3" style={{ position: 'relative', backgroundColor: 'transparent !important', border: 'none' }} >
+                    <label className="form-label" >
+                        Username:
+                        <input
+                            type="text"
+                            className="form-control"
+                            style={{ backgroundColor: 'transparent', border: 'none' }}
+                            value={username}
+                            onChange={e => setUsername(e.target.value)}
+                        />
+                    </label>
+                </div>
+                <div className="mb-3 password-wrapper">
+                    <label className="form-label" >
+                        Password:
+                    </label>
+                    <input
+                        type={showPassword ? "text" : "password"}
+                        className="form-control password-input"
+                        style={{ backgroundColor: 'transparent', border: 'none' }}
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                    />
+                    <button
+                        type="button"
+                        className="password-toggle-button"
+                        style={{ backgroundColor: 'transparent', border: 'none' }}
+                        onMouseDown={() => setShowPassword(true)}
+                        onMouseUp={() => setShowPassword(false)}
+                        onMouseLeave={() => setShowPassword(false)}
+                    >
+                        {showPassword ? <FiEyeOff /> : <FiEye />}
+                    </button>
+                </div>
+                <button type="submit" className="btn btn-primary" style={{ backgroundColor: 'transparent', border: 'none' }}>
+                    {isLogin ? "Login" : "Signup"}
+                </button>
+            </div>
+        </div>              
+    </form>
                 
-       </Modal.Body>
-      </Modal>
+    </Modal.Body>
+</Modal>
             
-    </div>
-    );
+</div>
+);
 };
 
 export default LoginPage;
-
-
-     
