@@ -97,3 +97,24 @@
 .input-field::placeholder {
   color: #fff;
 }
+
+.bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 1;
+}
+
+
+.auth-form {
+  position: relative;
+  z-index: 2;
+}
+
+
+.begin-button {
+ background-color: none;
+}

@@ -1,10 +1,30 @@
 import React, { useState } from 'react';
-import { Modal } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 import './css/AuthPage.css';
 import bgVideo from './background.mp4';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
+import titleScreen from '../images/TitleScreen.png';
+import beginButton from '../images/Button-Begin.png';
+
+
+const styles = {
+    buttonStyle: {
+      
+        position: 'relative', 
+        zIndex: '9999',
+        backgroundColor: 'transparent',
+        border: 'none',
+        boxShadow: 'none',
+        color: 'inherit',
+    },
+
+   
+}
+
+
+
 
 function LoginPage({ onLogin }) {
     const [isLogin, setIsLogin] = useState(true);
@@ -30,8 +50,6 @@ function LoginPage({ onLogin }) {
         }
     };
 
-   
-
     const handleCloseModal = () => setShowModal(false);
 
     return (
@@ -39,64 +57,61 @@ function LoginPage({ onLogin }) {
             <video autoPlay loop muted className="bg-video">
                 <source src={bgVideo} type="video/mp4" />
             </video>
-            <div className="auth-container p-5">
-                <button className="btn btn-primary mb-4" onClick={() => setIsLogin(!isLogin)}>
-                    Switch to {isLogin ? "Signup" : "Login"}
-                </button>
-                <h2 className="mb-4">{isLogin ? "Login" : "Signup"}</h2>
-                <form onSubmit={(event) => {
-                    event.preventDefault();
-                    handleLogin();
-                }}>
-                    <div className="mb-3">
-                        <label className="form-label">
-                            Username:
-                            <input
-                                type="text"
-                                className="form-control"
-                                value={username}
-                                onChange={e => setUsername(e.target.value)}
-                            />
-                        </label>
-                    </div>
-                    <div className="mb-3 password-wrapper">
-                        <label className="form-label">
-                            Password:
-                        </label>
-                        <input
-                            type={showPassword ? "text" : "password"}
-                            className="form-control password-input"
-                            value={password}
-                            onChange={e => setPassword(e.target.value)}
-                        />
-                        <button
-                            type="button"
-                            className="btn btn-outline-secondary password-toggle-button border-0"
-                            onMouseDown={() => setShowPassword(true)}
-                            onMouseUp={() => setShowPassword(false)}
-                            onMouseLeave={() => setShowPassword(false)}
-                        >
-                            {showPassword ? <FiEyeOff /> : <FiEye />}
-                        </button>
-                    </div>
-                    <button type="submit" className="btn btn-primary">
-                        {isLogin ? "Login" : "Signup"}
-                    </button>
-                </form>
-            </div>
-
-            {/* Success Modal */}
+            <img src={titleScreen} alt="Title Screen" className="bg-image"/>
+            <Button onClick={() => setShowModal(true)} className='begin-button' style={styles.buttonStyle}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <img src={beginButton} alt='begin' />
+             </div>
+            </Button>
 
             <Modal show={showModal} onHide={handleCloseModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Success!</Modal.Title>
+                    <Modal.Title>{isLogin ? "Login" : "Signup"}</Modal.Title>
+                    <Button variant="secondary" onClick={() => setIsLogin(!isLogin)}>
+                        {isLogin ? "Switch to Signup" : "Switch to Login"}
+                    </Button>
                 </Modal.Header>
-                <Modal.Body>Your account was successfully created!</Modal.Body>
-                <Modal.Footer>
-                    <button className="btn btn-primary" onClick={handleCloseModal}>
-                        OK
-                    </button>
-                </Modal.Footer>
+                <Modal.Body>
+                    <form className="auth-form" onSubmit={(event) => {
+                        event.preventDefault();
+                        handleLogin();
+                    }}>
+                        <div className="mb-3">
+                            <label className="form-label">
+                                Username:
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    value={username}
+                                    onChange={e => setUsername(e.target.value)}
+                                />
+                            </label>
+                        </div>
+                        <div className="mb-3 password-wrapper">
+                            <label className="form-label">
+                                Password:
+                            </label>
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                className="form-control password-input"
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
+                            />
+                            <button
+                                type="button"
+                                className="btn btn-outline-secondary password-toggle-button border-0"
+                                onMouseDown={() => setShowPassword(true)}
+                                onMouseUp={() => setShowPassword(false)}
+                                onMouseLeave={() => setShowPassword(false)}
+                            >
+                                {showPassword ? <FiEyeOff /> : <FiEye />}
+                            </button>
+                        </div>
+                        <button type="submit" className="btn btn-primary">
+                            {isLogin ? "Login" : "Signup"}
+                        </button>
+                    </form>
+                </Modal.Body>
             </Modal>
         </div>
     );
