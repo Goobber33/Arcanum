@@ -11,6 +11,9 @@ import cardImage1 from '../images/Elara.png';
 import cardImage2 from '../images/Elysia.png';
 import cardImage3 from '../images/ArachnocrabTreeshell.png';
 import './css/App.css'; // Importing fonts
+import HomeButton from '../images/HomeButton.png';
+import ArrowLeft from '../images/ArrowLeft.png';
+import ArrowRight from '../images/ArrowRight.png';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -145,11 +148,11 @@ const ProfilePage = () => {
     >
       <h1 style={titleStyle}>Profile Page</h1>
       <button
-        className="btn btn-primary"
+        className="btn"
         style={homeButtonStyle}
         onClick={() => navigate('/home')}
       >
-        Home
+        <img src = {HomeButton} alt='homebutton' />
       </button>
 
       <Card
@@ -260,7 +263,7 @@ const ProfilePage = () => {
 
           <Col>
             <h2 style={{ fontFamily: 'SellYourSoul' }}>My Cards</h2>
-            <Button onClick={prevCard}>Prev</Button>
+            <Button onClick={prevCard}><img src={ArrowLeft}/></Button>
             <Card.Img
               variant="top"
               src={cards[currentCard]}
@@ -274,7 +277,7 @@ const ProfilePage = () => {
               }}
             />
 
-            <Button onClick={nextCard}>Next</Button>
+            <Button onClick={nextCard}><img src={ArrowRight}/></Button>
           </Col>
         </Row>
       </Container>
