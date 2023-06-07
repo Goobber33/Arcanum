@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import bgVideo from './background.mp4';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+//import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import character1 from '../images/Aldric.png';
 import character2 from '../images/Calypso.png';
 import character3 from '../images/Celeste.png';
@@ -16,6 +16,9 @@ import character8 from '../images/Tarik.png';
 import character9 from '../images/Torvald.png';
 import character10 from '../images/Zara.png';
 import swordImage from '../images/sword.png';
+import './css/App.css';
+import arrowLeft from '../images/ArrowLeft.png';
+import arrowRight from '../images/ArrowRight.png';
 
 const CharacterSelectionPage = () => {
     const navigate = useNavigate();
@@ -147,6 +150,8 @@ const CharacterSelectionPage = () => {
 
     const headingStyle = {
         marginBottom: '50px',
+        fontFamily: 'SupernaturalKnight',
+        fontSize: '4.5em'
     };
 
 
@@ -166,10 +171,10 @@ const CharacterSelectionPage = () => {
             <h1 style={headingStyle}>Character Selection</h1>
 
             <button className="text-white mb-3" type="button" style={nextArrowStyle} onClick={handleNextPage}>
-                <FontAwesomeIcon icon={faArrowRight} />
+                <img src ={arrowRight} />
             </button>
             <button type="button" style={prevArrowStyle} onClick={handlePrevPage}>
-                <FontAwesomeIcon icon={faArrowLeft} />
+                <img src ={arrowLeft} />
             </button>
             <Container>
                 <Row>
