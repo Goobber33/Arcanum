@@ -3,6 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Game from "./Game"
 import mainImage from './test.png';
+import './css/App.css';
+import ProfileButton from '../images/Profile.png';
+import LogoutButton from '../images/Logout.png';
+import StartButton from '../images/StartButton.png';
 
 const HomePage = ({ onLogout }) => {
     const navigate = useNavigate();
@@ -44,7 +48,7 @@ const HomePage = ({ onLogout }) => {
     };
 
     const titleStyle = {
-        fontFamily: "'VT323', monospace",
+        fontFamily: 'SellYourSoul',
         fontSize: '4em',
         marginTop: '0',
         marginBottom: '20px',
@@ -155,13 +159,13 @@ const HomePage = ({ onLogout }) => {
             style={style}
         >
             <h1 style={titleStyle}>Welcome to the Game!</h1>
-            <button className="btn btn-primary" onClick={onLogout} style={logoutButtonStyle}>Logout</button>
-            <button className="btn btn-primary" onClick={() => navigate('/profile')} style={profileButtonStyle}>Profile</button>
+            <button className="btn" onClick={onLogout} style={logoutButtonStyle}><img src={LogoutButton}/></button>
+            <button className="btn" onClick={() => navigate('/profile')} style={profileButtonStyle}><img src={ProfileButton}/></button>
             <div style={containerStyle}>
                 {!startClicked ? (
                     <div className="start-button" onClick={startGame}>
-                        <span className="tooltip">Good Luck!</span>
-                        <span>START</span>
+                        <span className="tooltip" style={{fontFamily: 'SellYourSoul'}}>Good Luck!</span>
+                        <span><img src={StartButton}/></span>
                     </div>
                 ) : !isCreatingGame ? (
                     <AnimatePresence>
