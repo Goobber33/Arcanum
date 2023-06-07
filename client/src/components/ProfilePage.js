@@ -10,6 +10,7 @@ import character3 from '../images/character3.png';
 import cardImage1 from '../images/AbyssalSpellweaver.png';
 import cardImage2 from '../images/AmethystBlazebug.png';
 import cardImage3 from '../images/ArachnocrabTreeshell.png';
+import './css/App.css'; // Importing fonts
 
 const ProfilePage = () => {
     const navigate = useNavigate();
@@ -112,7 +113,7 @@ const ProfilePage = () => {
     };
 
     const titleStyle = {
-        fontFamily: "'VT323', monospace",
+        fontFamily: "SellYourSoul",
         fontSize: '4em',
         marginTop: '0',
         marginBottom: '20px',
@@ -202,7 +203,7 @@ const ProfilePage = () => {
                     alt="Current Character"
                     className="character-image"
                 />
-                <Card.Text style={{ textAlign: 'center', marginTop: '10px', color: 'black' }}>
+                <Card.Text style={{ textAlign: 'center', marginTop: '10px', color: 'black', fontFamily: 'SellYourSoul' }}>
                     Username: {username}
                 </Card.Text>
                 {changeMode ? (
@@ -237,14 +238,14 @@ const ProfilePage = () => {
             <Container>
                 <Row>
                     <Col>
-                        <h2>Stats</h2>
-                        <p>Games won: {stats.gamesWon}</p>
-                        <p>Games lost: {stats.gamesLost}</p>
-                        <p>Games tied: {stats.gamesTied}</p>
+                        <h2 style={{fontFamily: 'SellYourSoul'}}>Stats</h2>
+                        <p style={{fontFamily: 'SellYourSoul'}}>Games won: {stats.gamesWon}</p>
+                        <p style ={{fontFamily: 'SellYourSoul'}}>Games lost: {stats.gamesLost}</p>
+                        <p style={{fontFamily: 'SellYourSoul'}}>Games tied: {stats.gamesTied}</p>
                     </Col>
 
                     <Col>
-                        <h2>My Cards</h2>
+                        <h2 style={{fontFamily: 'SellYourSoul'}}>My Cards</h2>
                         <Button onClick={prevCard}>Prev</Button>
                         <Card.Img
                             variant="top"
