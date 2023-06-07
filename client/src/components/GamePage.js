@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './css/gamepage.css'; // Import the CSS file for styling
+import './css/App.css'; // Importing fonts
 
 const GamePage = () => {
   const [player1Spaces, setPlayer1Spaces] = useState(Array(4).fill(null));
