@@ -9,7 +9,7 @@ import character2 from '../images/character2.png';
 import character3 from '../images/character3.png';
 import cardImage1 from '../images/AbyssalSpellweaver.png';
 import cardImage2 from '../images/AmethystBlazebug.png';
-import cardImage3 from '../images/ArachnocrabTreeshell.png'; 
+import cardImage3 from '../images/ArachnocrabTreeshell.png';
 
 const ProfilePage = () => {
     const navigate = useNavigate();
@@ -18,7 +18,7 @@ const ProfilePage = () => {
 
     const stats = { gamesWon: 10, gamesLost: 5, gamesTied: 2 };
     const cards = [cardImage1, cardImage2, cardImage3];
-    
+
 
     // State for currently shown card
     const [currentCard, setCurrentCard] = useState(0);
@@ -151,15 +151,15 @@ const ProfilePage = () => {
             </button>
 
             <Card
-    style={{ 
-        minWidth: '300px', 
-        minHeight: '200px',
-        position: 'relative',
-        marginTop: '7em',
-        marginLeft: '6em',
-        padding: '20px',
-    }}
->
+                style={{
+                    minWidth: '300px',
+                    minHeight: '200px',
+                    position: 'relative',
+                    marginTop: '7em',
+                    marginLeft: '6em',
+                    padding: '20px',
+                }}
+            >
                 {changeMode ? (
                     <>
                         <div
@@ -247,17 +247,17 @@ const ProfilePage = () => {
                         <h2>My Cards</h2>
                         <Button onClick={prevCard}>Prev</Button>
                         <Card.Img
-    variant="top"
-    src={cards[currentCard]}
-    alt="Card Image"
-    className="card-image"
-    style={{ 
-        width: 'auto', 
-        height: '300px', // Adjust this as needed
-        objectFit: 'cover',
-        marginTop: '-20px' 
-    }} 
-/>
+                            variant="top"
+                            src={cards[currentCard]}
+                            alt="Card Image"
+                            className="card-image"
+                            style={{
+                                width: 'auto',
+                                height: '300px',
+                                objectFit: 'cover',
+                                marginTop: '-20px'
+                            }}
+                        />
 
 
                         <Button onClick={nextCard}>Next</Button>

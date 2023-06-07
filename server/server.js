@@ -2,14 +2,14 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/userRoutes');
-const StreamChat = require('stream-chat').StreamChat;
+// const StreamChat = require('stream-chat').StreamChat;
 
 const app = express();
 
 // api keys for getstream.io
 const api_key = process.env.api_key;
 const api_secret = process.env.secret_key;
-const serverClient = StreamChat.getInstance(api_key, api_secret);
+// const serverClient = StreamChat.getInstance(api_key, api_secret);
 
 // allow cross-origin requests
 app.use(cors());
