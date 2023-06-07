@@ -4,11 +4,11 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Button, Card, Container, Row, Col } from 'react-bootstrap';
 import mainImage from './test.png';
-import character1 from '../images/character1.png';
-import character2 from '../images/character2.png';
-import character3 from '../images/character3.png';
-import cardImage1 from '../images/AbyssalSpellweaver.png';
-import cardImage2 from '../images/AmethystBlazebug.png';
+import character1 from '../images/Aldric.png';
+import character2 from '../images/Calypso.png';
+import character3 from '../images/Celeste.png';
+import cardImage1 from '../images/Elara.png';
+import cardImage2 from '../images/Elysia.png';
 import cardImage3 from '../images/ArachnocrabTreeshell.png';
 import './css/App.css'; // Importing fonts
 
@@ -31,12 +31,16 @@ const ProfilePage = () => {
 
     useEffect(() => {
         const token = localStorage.getItem('jwt');
+        const selectedCharacterIndex = localStorage.getItem('selectedCharacterIndex');
         if (token) {
             const decodedToken = jwt_decode(token);
             setUsername(decodedToken.username);
         }
+        if (selectedCharacterIndex) {
+            setCurrentCharacter(characters[selectedCharacterIndex]);
+        }
     }, []);
-
+    
     const nextCharacter = () => {
         const currentIndex = characters.indexOf(selectedCharacter);
         setSelectedCharacter(
@@ -57,8 +61,9 @@ const ProfilePage = () => {
 
     const confirmCharacter = () => {
         setCurrentCharacter(selectedCharacter);
+        localStorage.setItem('selectedCharacterIndex', characters.indexOf(selectedCharacter));
         setChangeMode(false);
-    };
+    };    
 
     const cancelChange = () => {
         setChangeMode(false);
