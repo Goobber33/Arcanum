@@ -8,6 +8,7 @@ import { FiEye, FiEyeOff } from 'react-icons/fi';
 import titleScreen from '../images/TitleScreen.png';
 import beginButton from '../images/Button-Begin.png';
 import loginForm from '../images/LoginForm.png';
+//import blankButton from '../images/BlankButton.png';
 
 const styles = {
   buttonStyle: {
@@ -51,6 +52,8 @@ const styles = {
 
   labelStyle: {
     color: 'white',
+    fontFamily: 'SellYourSoul',
+    fontSize: '20px'
   },
 };
 
@@ -69,7 +72,7 @@ function LoginPage({ onLogin }) {
       if (isLogin) {
         localStorage.setItem('jwt', data.token);
         onLogin();
-        navigate('/home', { state: { username } });
+        navigate('/character-selection', { state: { username } });
       } else {
         setShowModal(true);
       }
@@ -123,7 +126,6 @@ function LoginPage({ onLogin }) {
                 <div className="mb-3 password-wrapper">
                   <label className="form-label" style={styles.labelStyle}>
                     Password:
-                  </label>
                   <input
                     type={showPassword ? 'text' : 'password'}
                     className="form-control password-input"
@@ -132,10 +134,11 @@ function LoginPage({ onLogin }) {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
+                  </label>
                   <button
                     type="button"
                     className="password-toggle-button"
-                    style={{ backgroundColor: 'transparent', border: 'none' }}
+                    style={{ backgroundColor: 'transparent !important', border: 'none', }}
                     onMouseDown={() => setShowPassword(true)}
                     onMouseUp={() => setShowPassword(false)}
                     onMouseLeave={() => setShowPassword(false)}
@@ -144,10 +147,10 @@ function LoginPage({ onLogin }) {
                   </button>
                 </div>
                 <div className="d-grid gap-2">
-                  <button type="submit" className="btn btn-primary" style={{ backgroundColor: 'transparent', border: 'none' }}>
+                  <button type="submit" className='btn' style={{  fontFamily: 'SellYourSoul', fontSize: '20px', color: 'white', }}>
                     {isLogin ? 'Login' : 'Signup'}
                   </button>
-                  <Button variant="secondary" onClick={() => setIsLogin(!isLogin)}>
+                  <Button className= 'btn' style={{fontFamily:'SellYourSoul', fontSize: '20px', backgroundColor: 'transparent', border: 'none' }}onClick={() => setIsLogin(!isLogin)}>
                     {isLogin ? 'Switch to Signup' : 'Switch to Login'}
                   </Button>
                 </div>
