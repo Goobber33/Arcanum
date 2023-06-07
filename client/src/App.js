@@ -7,6 +7,7 @@ import GamePage from './components/GamePage';
 import ProfilePage from './components/ProfilePage';
 import CharacterSelectionPage from './components/characterSelections';
 
+
 const RouteAnimations = ({ isLoggedIn, onLogin, onLogout }) => {
   const location = useLocation();
 
