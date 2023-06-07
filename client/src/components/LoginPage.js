@@ -69,7 +69,7 @@ function LoginPage({ onLogin }) {
       if (isLogin) {
         localStorage.setItem('jwt', data.token);
         onLogin();
-        navigate('/home', { state: { username } });
+        navigate('/character-selection', { state: { username } });
       } else {
         setShowModal(true);
       }
