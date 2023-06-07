@@ -29,17 +29,18 @@ const ProfilePage = () => {
     const [username, setUsername] = useState('');
 
     useEffect(() => {
-        const token = localStorage.getItem('jwt');
-        const selectedCharacterIndex = localStorage.getItem('selectedCharacterIndex');
-        if (token) {
-            const decodedToken = jwt_decode(token);
-            setUsername(decodedToken.username);
-        }
-        if (selectedCharacterIndex) {
-            setCurrentCharacter(characters[selectedCharacterIndex]);
-        }
-    }, []);
-    
+    const token = localStorage.getItem('jwt');
+    const selectedCharacter = localStorage.getItem('selectedCharacter');
+    if (token) {
+        const decodedToken = jwt_decode(token);
+        setUsername(decodedToken.username);
+    }
+    if (selectedCharacter) {
+        setCurrentCharacter(selectedCharacter);
+    }
+}, []);
+
+
     const nextCharacter = () => {
         const currentIndex = characters.indexOf(selectedCharacter);
         setSelectedCharacter(
@@ -60,9 +61,8 @@ const ProfilePage = () => {
 
     const confirmCharacter = () => {
         setCurrentCharacter(selectedCharacter);
-        localStorage.setItem('selectedCharacterIndex', characters.indexOf(selectedCharacter));
         setChangeMode(false);
-    };    
+    };
 
     const cancelChange = () => {
         setChangeMode(false);
