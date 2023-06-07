@@ -39,6 +39,8 @@ const CharacterSelectionPage = () => {
     const handleCharacterSelect = (index) => {
         const character = characters[index];
         localStorage.setItem('selectedCharacter', character, () => {
+            localStorage.setItem('selectedCharacterIndex', index);
+
             console.log('Selected character:', character);
             console.log('About to navigate to /home');
             navigate('/home');
