@@ -218,3 +218,6 @@
   box-shadow: none;
 }
 
+.button-content {
+  background-color: transparent !important;
+}

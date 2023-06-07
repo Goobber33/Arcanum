@@ -8,7 +8,7 @@ import { FiEye, FiEyeOff } from 'react-icons/fi';
 import titleScreen from '../images/TitleScreen.png';
 import beginButton from '../images/Button-Begin.png';
 import loginForm from '../images/LoginForm.png';
-import blankButton from '../images/BlankButton.png';
+//import blankButton from '../images/BlankButton.png';
 
 const styles = {
   buttonStyle: {
@@ -138,7 +138,7 @@ function LoginPage({ onLogin }) {
                   <button
                     type="button"
                     className="password-toggle-button"
-                    style={{ backgroundColor: 'transparent !important', border: 'none', backgroundImage: `url(${blankButton})` }}
+                    style={{ backgroundColor: 'transparent !important', border: 'none', }}
                     onMouseDown={() => setShowPassword(true)}
                     onMouseUp={() => setShowPassword(false)}
                     onMouseLeave={() => setShowPassword(false)}
@@ -147,10 +147,10 @@ function LoginPage({ onLogin }) {
                   </button>
                 </div>
                 <div className="d-grid gap-2">
-                  <button type="submit"  style={{ backgroundColor: 'transparent !important', border: 'none', fontFamily: 'SellYourSoul', fontSize: '20px',backgroundImage: `url(${blankButton})` }}>
+                  <button type="submit" className='btn' style={{  fontFamily: 'SellYourSoul', fontSize: '20px', color: 'white', }}>
                     {isLogin ? 'Login' : 'Signup'}
                   </button>
-                  <Button style={{fontFamily:'SellYourSoul', backgroundImage: `url(${blankButton})`, backgroundColor: 'transparent !important' }}onClick={() => setIsLogin(!isLogin)}>
+                  <Button className= 'btn' style={{fontFamily:'SellYourSoul', fontSize: '20px', backgroundColor: 'transparent', border: 'none' }}onClick={() => setIsLogin(!isLogin)}>
                     {isLogin ? 'Switch to Signup' : 'Switch to Login'}
                   </Button>
                 </div>
