@@ -122,6 +122,7 @@
   border: none;
   box-shadow: none;
   color: #000;
+  outline: none !important;
 }
 
 .modal-backdrop {
@@ -190,3 +191,30 @@
   background-color: transparent !important;
   border: none;
 }
+
+.custom-modal-dialog {
+  margin: 0;
+  margin-right: auto;
+  margin-left: auto;
+  width: 600px;
+}
+
+.custom-modal-content {
+  background-color: transparent !important;
+  border: none !important;
+  position: relative;
+  transform: translateX(-10%);
+  top: 6rem;
+}
+
+.custom-modal-dialog,
+.custom-modal-dialog .modal-content,
+.custom-modal-dialog .modal-content .modal-header,
+.custom-modal-dialog .modal-content .modal-body,
+.custom-modal-dialog .modal-content .modal-footer {
+  border: none;
+  background: transparent;
+  outline: none;
+  box-shadow: none;
+}
+
