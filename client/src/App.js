@@ -5,6 +5,8 @@ import LoginPage from './components/LoginPage';
 import HomePage from './components/HomePage';
 import GamePage from './components/GamePage';
 import ProfilePage from './components/ProfilePage';
+import CharacterSelectionPage from './components/characterSelections';
+
 
 const RouteAnimations = ({ isLoggedIn, onLogin, onLogout }) => {
   const location = useLocation();
@@ -15,10 +17,18 @@ const RouteAnimations = ({ isLoggedIn, onLogin, onLogout }) => {
         <Route
           path="/"
           element={isLoggedIn
-            ? <Navigate to="/home" />
+            ? <Navigate to="/character-selection" />
             : <motion.div initial={{ y: "100vh", opacity: 0 }} animate={{ y: "0", opacity: 1 }} exit={{ y: "-100vh", opacity: 0 }} transition={{ type: "tween", ease: "anticipate", duration: 0.5 }}>
               <LoginPage onLogin={onLogin} />
             </motion.div>}
+        />
+        <Route
+          path="/character-selection"
+          element={isLoggedIn
+            ? <motion.div initial={{ x: "100vw", opacity: 0 }} animate={{ x: "0", opacity: 1 }} exit={{ x: "-100vw", opacity: 0 }} transition={{ type: "tween", ease: "anticipate", duration: 0.5 }}>
+              <CharacterSelectionPage />
+            </motion.div>
+            : <Navigate to="/" />}
         />
         <Route
           path="/home"

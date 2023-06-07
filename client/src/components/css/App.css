@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+@font-face {
+  font-family: 'SupernaturalKnight';
+  src: local('SupernaturalKnight'),
+    url('../../fonts/SupernaturalKnight.ttf') format('truetype');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SellYourSoul';
+  src: local('SellYourSoul'),
+  url('../../fonts/SellYourSoul.ttf') format('truetype');
+  font-style: normal;
+}
