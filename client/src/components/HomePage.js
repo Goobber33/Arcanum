@@ -7,6 +7,10 @@ import './css/App.css';
 import ProfileButton from '../images/Profile.png';
 import LogoutButton from '../images/Logout.png';
 import StartButton from '../images/StartButton.png';
+import CreateGame from '../images/CreateGame.png';
+import JoinGame from '../images/JoinGame.png';
+import TestGame from '../images/TestGame.png';
+import CancelButton from '../images/Cancel.png';
 
 const HomePage = ({ onLogout }) => {
     const navigate = useNavigate();
@@ -112,7 +116,10 @@ const HomePage = ({ onLogout }) => {
 
     const gameButtonStyle = {
         width: '150px',
-        marginBottom: '10px'
+        marginBottom: '10px',
+        backgroundColor: 'transparent',
+        border: 'none',
+        
     };
 
     const smallerButtonStyle = {
@@ -178,7 +185,7 @@ const HomePage = ({ onLogout }) => {
                             variants={buttonVariants}
                             style={gameButtonStyle}
                         >
-                            Create Game
+                            <img src={CreateGame} alt ='create-game-button' />
                         </motion.button>
                         <motion.button
                             className="btn btn-primary"
@@ -189,7 +196,7 @@ const HomePage = ({ onLogout }) => {
                             variants={buttonVariants}
                             style={gameButtonStyle}
                         >
-                            Join Game
+                            <img src={JoinGame} alt='join-game-button' />
                         </motion.button>
                         <motion.button
                             className="btn btn-primary"
@@ -200,7 +207,7 @@ const HomePage = ({ onLogout }) => {
                             variants={buttonVariants}
                             style={gameButtonStyle}
                         >
-                            Test Game
+                            <img src={TestGame} alt='test-game-button' />
                         </motion.button>
                         <motion.button
                             className="btn btn-secondary"
@@ -211,7 +218,7 @@ const HomePage = ({ onLogout }) => {
                             variants={buttonVariants}
                             style={gameButtonStyle}
                         >
-                            Cancel
+                            <img src={CancelButton} alt='cancel-button' />
                         </motion.button>
                     </AnimatePresence>
                 ) : (

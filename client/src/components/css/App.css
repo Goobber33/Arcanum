@@ -50,3 +50,7 @@
   url('../../fonts/SellYourSoul.ttf') format('truetype');
   font-style: normal;
 }
+
+.character-image {
+  height: auto;
+}
