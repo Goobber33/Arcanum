@@ -14,6 +14,7 @@ import './css/App.css'; // Importing fonts
 import HomeButton from '../images/HomeButton.png';
 import ArrowLeft from '../images/ArrowLeft.png';
 import ArrowRight from '../images/ArrowRight.png';
+import ChangeButton from '../images/ChangeButton.png';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -158,11 +159,13 @@ const ProfilePage = () => {
       <Card
         style={{
           minWidth: '300px',
-          minHeight: '200px',
+          minHeight: '400px',
           position: 'relative',
           marginTop: '7em',
           marginLeft: '6em',
           padding: '20px',
+          backgroundColor: 'transparent',
+          border: 'none'
         }}
       >
         {changeMode ? (
@@ -173,6 +176,8 @@ const ProfilePage = () => {
                 left: '-6em',
                 top: '50%',
                 transform: 'translateY(-50%)',
+                backgroundColor: 'transparent',
+                border: 'none'
               }}
             >
               <Button
@@ -211,8 +216,10 @@ const ProfilePage = () => {
           style={{
             textAlign: 'center',
             marginTop: '10px',
-            color: 'black',
+            color: 'white',
             fontFamily: 'SellYourSoul',
+            fontSize: '20px',
+            height: 'auto'
           }}
         >
           Username: {username}
@@ -238,10 +245,10 @@ const ProfilePage = () => {
           <Button
             variant="primary"
             className="change-button"
-            style={{ marginTop: '10px' }}
+            style={{ marginTop: '10px', backgroundColor: 'transparent', border: 'none' }}
             onClick={beginChange}
           >
-            Change
+            <img src={ChangeButton} alt='changebutton' />
           </Button>
         )}
       </Card>
@@ -263,7 +270,7 @@ const ProfilePage = () => {
 
           <Col>
             <h2 style={{ fontFamily: 'SellYourSoul' }}>My Cards</h2>
-            <Button onClick={prevCard}><img src={ArrowLeft}/></Button>
+            <Button onClick={prevCard} style={{backgroundColor: 'transparent', border: 'none'}}><img src={ArrowLeft}/></Button>
             <Card.Img
               variant="top"
               src={cards[currentCard]}
@@ -277,7 +284,7 @@ const ProfilePage = () => {
               }}
             />
 
-            <Button onClick={nextCard}><img src={ArrowRight}/></Button>
+            <Button onClick={nextCard} style={{backgroundColor: 'transparent', border: 'none'}}><img src={ArrowRight}/></Button>
           </Col>
         </Row>
       </Container>
