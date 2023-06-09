@@ -184,8 +184,9 @@ const ProfilePage = () => {
                 variant="primary"
                 className="character-button"
                 onClick={prevCharacter}
+                style={{backgroundColor: 'transparent', border: 'none'}}
               >
-                Previous
+                <img src={ArrowLeft} alt='arrow-left'/>
               </Button>
             </div>
             <div
@@ -200,8 +201,9 @@ const ProfilePage = () => {
                 variant="primary"
                 className="character-button"
                 onClick={nextCharacter}
+                style={{backgroundColor: 'transparent', border: 'none'}}
               >
-                Next
+               <img src={ArrowRight} alt='arrow-right'/>
               </Button>
             </div>
           </>
@@ -269,7 +271,7 @@ const ProfilePage = () => {
           </Col>
 
           <Col>
-            <h2 style={{ fontFamily: 'SellYourSoul' }}>My Cards</h2>
+            <h2 style={{ fontFamily: 'SellYourSoul', margin: '20px' }}>My Cards</h2>
             <Button onClick={prevCard} style={{backgroundColor: 'transparent', border: 'none'}}><img src={ArrowLeft}/></Button>
             <Card.Img
               variant="top"
