@@ -15,6 +15,8 @@ import HomeButton from '../images/HomeButton.png';
 import ArrowLeft from '../images/ArrowLeft.png';
 import ArrowRight from '../images/ArrowRight.png';
 import ChangeButton from '../images/ChangeButton.png';
+import ConfirmButton from '../images/ConfirmButton.png';
+import NoButton from '../images/NoButton.png';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -232,15 +234,17 @@ const ProfilePage = () => {
               variant="success"
               className="character-button"
               onClick={confirmCharacter}
+              style={{backgroundColor: 'transparent', border: 'none'}}
             >
-              ✔
+              <img src={ConfirmButton} alt  ='confirm-button' />
             </Button>
             <Button
               variant="danger"
               className="character-button"
               onClick={cancelChange}
+              style={{backgroundColor: 'transparent', border: 'none'}}
             >
-              ✖
+              <img src={NoButton} alt='no-button' />
             </Button>
           </div>
         ) : (
