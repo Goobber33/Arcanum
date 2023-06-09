@@ -119,6 +119,7 @@ const HomePage = ({ onLogout }) => {
         marginBottom: '10px',
         backgroundColor: 'transparent',
         border: 'none',
+        marginRight: '50px'
         
     };
 
