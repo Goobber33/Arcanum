@@ -72,7 +72,12 @@ function LoginPage({ onLogin }) {
       if (isLogin) {
         localStorage.setItem('jwt', data.token);
         onLogin();
-        navigate('/character-selection', { state: { username } });
+        // Check if a character has been selected before
+        if (localStorage.getItem('selectedCharacter')) {
+          navigate('/home');
+        } else {
+          navigate('/character-selection', { state: { username } });
+        }
       } else {
         setShowModal(true);
       }
