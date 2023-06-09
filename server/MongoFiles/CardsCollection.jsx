@@ -1,4 +1,4 @@
-[{
+const cardData =[{
   "_id": {
     "$oid": "647fbddef6f5bca74c4f26c7"
   },
@@ -89,3 +89,8 @@
   "health": "60",
   "image": "./src/images/Scorchfang.png"
 }]
+
+const addCardToHand = () => {
+  const randomCard = cardData[Math.floor(Math.random() * cardData.length)];
+  setPlayerHand((prevHand) => [...prevHand, randomCard]);
+};
