@@ -2,20 +2,34 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/userRoutes');
-// const StreamChat = require('stream-chat').StreamChat;
+// socket.io server connection
+const { createServer } = require('http');
+const { Server } = require('socket.io');
 
 const app = express();
-
-// api keys for getstream.io
-const api_key = process.env.api_key;
-const api_secret = process.env.secret_key;
-// const serverClient = StreamChat.getInstance(api_key, api_secret);
 
 // allow cross-origin requests
 app.use(cors());
 
 // parse JSON
 app.use(express.json());
+
+const httpServer = createServer(app);
+// socket.io listener
+const io = new Server(httpServer, {
+  cors: {
+    origin: 'http://localhost:3000'
+  },
+});
+
+io.on('connect', (socket) => {
+  console.log('socket', socket);
+  console.log("User connected", socket.id);
+
+  socket.on('disconnect', () => {
+    console.log("User disconnected", socket.id);
+  });
+});
 
 // connect to MongoDB
 mongoose.connect('mongodb://127.0.0.1:27017/game', {
@@ -34,6 +48,6 @@ app.get('/', (req, res) => {
 });
 
 const port = 4000;
-app.listen(port, () => {
+httpServer.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
