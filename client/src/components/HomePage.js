@@ -101,6 +101,10 @@ const HomePage = ({ onLogout }) => {
         setIsCreatingGame(false);
     }
 
+    const joinExistingGame = () => {
+        setIsCreatingGame(true);
+    }
+
     const buttonVariants = {
         hidden: { opacity: 0, y: "-100%" },
         visible: { opacity: 1, y: 0 },
@@ -178,7 +182,7 @@ const HomePage = ({ onLogout }) => {
                         </motion.button>
                         <motion.button
                             className="btn btn-primary"
-                            onClick={() => navigate('/join')}
+                            onClick={(joinExistingGame)}
                             initial="hidden"
                             animate="visible"
                             exit="hidden"
