@@ -11,6 +11,10 @@ import cardImage1 from '../images/Elara.png';
 import cardImage2 from '../images/Elysia.png';
 import cardImage3 from '../images/ArachnocrabTreeshell.png';
 import './css/App.css'; // Importing fonts
+import HomeButton from '../images/HomeButton.png';
+import ArrowLeft from '../images/ArrowLeft.png';
+import ArrowRight from '../images/ArrowRight.png';
+import ChangeButton from '../images/ChangeButton.png';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -145,21 +149,23 @@ const ProfilePage = () => {
     >
       <h1 style={titleStyle}>Profile Page</h1>
       <button
-        className="btn btn-primary"
+        className="btn"
         style={homeButtonStyle}
         onClick={() => navigate('/home')}
       >
-        Home
+        <img src = {HomeButton} alt='homebutton' />
       </button>
 
       <Card
         style={{
           minWidth: '300px',
-          minHeight: '200px',
+          minHeight: '400px',
           position: 'relative',
           marginTop: '7em',
           marginLeft: '6em',
           padding: '20px',
+          backgroundColor: 'transparent',
+          border: 'none'
         }}
       >
         {changeMode ? (
@@ -170,14 +176,17 @@ const ProfilePage = () => {
                 left: '-6em',
                 top: '50%',
                 transform: 'translateY(-50%)',
+                backgroundColor: 'transparent',
+                border: 'none'
               }}
             >
               <Button
                 variant="primary"
                 className="character-button"
                 onClick={prevCharacter}
+                style={{backgroundColor: 'transparent', border: 'none'}}
               >
-                Previous
+                <img src={ArrowLeft} alt='arrow-left'/>
               </Button>
             </div>
             <div
@@ -192,8 +201,9 @@ const ProfilePage = () => {
                 variant="primary"
                 className="character-button"
                 onClick={nextCharacter}
+                style={{backgroundColor: 'transparent', border: 'none'}}
               >
-                Next
+               <img src={ArrowRight} alt='arrow-right'/>
               </Button>
             </div>
           </>
@@ -208,8 +218,10 @@ const ProfilePage = () => {
           style={{
             textAlign: 'center',
             marginTop: '10px',
-            color: 'black',
+            color: 'white',
             fontFamily: 'SellYourSoul',
+            fontSize: '20px',
+            height: 'auto'
           }}
         >
           Username: {username}
@@ -235,10 +247,10 @@ const ProfilePage = () => {
           <Button
             variant="primary"
             className="change-button"
-            style={{ marginTop: '10px' }}
+            style={{ marginTop: '10px', backgroundColor: 'transparent', border: 'none' }}
             onClick={beginChange}
           >
-            Change
+            <img src={ChangeButton} alt='changebutton' />
           </Button>
         )}
       </Card>
@@ -259,8 +271,8 @@ const ProfilePage = () => {
           </Col>
 
           <Col>
-            <h2 style={{ fontFamily: 'SellYourSoul' }}>My Cards</h2>
-            <Button onClick={prevCard}>Prev</Button>
+            <h2 style={{ fontFamily: 'SellYourSoul', margin: '20px' }}>My Cards</h2>
+            <Button onClick={prevCard} style={{backgroundColor: 'transparent', border: 'none'}}><img src={ArrowLeft}/></Button>
             <Card.Img
               variant="top"
               src={cards[currentCard]}
@@ -274,7 +286,7 @@ const ProfilePage = () => {
               }}
             />
 
-            <Button onClick={nextCard}>Next</Button>
+            <Button onClick={nextCard} style={{backgroundColor: 'transparent', border: 'none'}}><img src={ArrowRight}/></Button>
           </Col>
         </Row>
       </Container>
