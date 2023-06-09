@@ -154,7 +154,7 @@ const GamePage = () => {
         <h3>{username}'s Hand</h3>
         <div className="card-deck">
           {player1Deck.map((card) => (
-            <div key={card._id} className="card">
+            <div key={Cards._id} className="card">
               <img src={Cards.image} alt={Cards.cardname} />
             </div>
           ))}
