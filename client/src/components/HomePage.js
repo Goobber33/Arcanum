@@ -3,6 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Game from "./Game"
 import mainImage from './test.png';
+import './css/App.css';
+import ProfileButton from '../images/Profile.png';
+import LogoutButton from '../images/Logout.png';
+import StartButton from '../images/StartButton.png';
+import CreateGame from '../images/CreateGame.png';
+import JoinGame from '../images/JoinGame.png';
+import TestGame from '../images/TestGame.png';
+import CancelButton from '../images/Cancel.png';
 
 const HomePage = ({ onLogout }) => {
     const navigate = useNavigate();
@@ -44,7 +52,7 @@ const HomePage = ({ onLogout }) => {
     };
 
     const titleStyle = {
-        fontFamily: "'VT323', monospace",
+        fontFamily: 'SellYourSoul',
         fontSize: '4em',
         marginTop: '0',
         marginBottom: '20px',
@@ -112,7 +120,11 @@ const HomePage = ({ onLogout }) => {
 
     const gameButtonStyle = {
         width: '150px',
-        marginBottom: '10px'
+        marginBottom: '10px',
+        backgroundColor: 'transparent',
+        border: 'none',
+        marginRight: '50px'
+        
     };
 
     const smallerButtonStyle = {
@@ -159,13 +171,13 @@ const HomePage = ({ onLogout }) => {
             style={style}
         >
             <h1 style={titleStyle}>Welcome to the Game!</h1>
-            <button className="btn btn-primary" onClick={onLogout} style={logoutButtonStyle}>Logout</button>
-            <button className="btn btn-primary" onClick={() => navigate('/profile')} style={profileButtonStyle}>Profile</button>
+            <button className="btn" onClick={onLogout} style={logoutButtonStyle}><img src={LogoutButton}/></button>
+            <button className="btn" onClick={() => navigate('/profile')} style={profileButtonStyle}><img src={ProfileButton}/></button>
             <div style={containerStyle}>
                 {!startClicked ? (
                     <div className="start-button" onClick={startGame}>
-                        <span className="tooltip">Good Luck!</span>
-                        <span>START</span>
+                        <span className="tooltip" style={{fontFamily: 'SellYourSoul'}}>Good Luck!</span>
+                        <span><img src={StartButton}/></span>
                     </div>
                 ) : !isCreatingGame ? (
                     <AnimatePresence>
@@ -178,7 +190,7 @@ const HomePage = ({ onLogout }) => {
                             variants={buttonVariants}
                             style={gameButtonStyle}
                         >
-                            Create Game
+                            <img src={CreateGame} alt ='create-game-button' />
                         </motion.button>
                         <motion.button
                             className="btn btn-primary"
@@ -189,7 +201,7 @@ const HomePage = ({ onLogout }) => {
                             variants={buttonVariants}
                             style={gameButtonStyle}
                         >
-                            Join Game
+                            <img src={JoinGame} alt='join-game-button' />
                         </motion.button>
                         <motion.button
                             className="btn btn-primary"
@@ -200,7 +212,7 @@ const HomePage = ({ onLogout }) => {
                             variants={buttonVariants}
                             style={gameButtonStyle}
                         >
-                            Test Game
+                            <img src={TestGame} alt='test-game-button' />
                         </motion.button>
                         <motion.button
                             className="btn btn-secondary"
@@ -211,7 +223,7 @@ const HomePage = ({ onLogout }) => {
                             variants={buttonVariants}
                             style={gameButtonStyle}
                         >
-                            Cancel
+                            <img src={CancelButton} alt='cancel-button' />
                         </motion.button>
                     </AnimatePresence>
                 ) : (
