@@ -5,7 +5,7 @@
   "user": "Jeff",
   "password": "password",
   "friends": [],
-  "decks": [],
+  "decks": ["64790779f6f5bca74c4f26bd","647907ddf6f5bca74c4f26be","6479083ef6f5bca74c4f26bf"],
   "winLoseTotal": []
 },{
   "_id": {
@@ -14,7 +14,7 @@
   "user": "Darryl",
   "password": "password",
   "friends": [],
-  "decks": [],
+  "decks": ["64790867f6f5bca74c4f26c0","64790882f6f5bca74c4f26c1","647908eef6f5bca74c4f26c2"],
   "winLoseTotal": []
 },{
   "_id": {
