@@ -139,16 +139,14 @@ const GamePage = () => {
   useEffect(() => {
     const token = localStorage.getItem('jwt');
     if (token) {
-        const decodedToken = jwt_decode(token);
-        setUsername(decodedToken.username);
+      const decodedToken = jwt_decode(token);
+      setUsername(decodedToken.username);
     }
-}, []);
-
+  }, []);
 
   return (
     <div className="game">
       <div className="deck">
-        
         <div className="card">
           {/* Display cards for Player 1 */}
           {Deck}
@@ -162,7 +160,6 @@ const GamePage = () => {
           ))}
         </div>
       </div>
-
       <div className="player-area">
         <h2>{username}1</h2>
         <div className="spaces">
@@ -171,33 +168,27 @@ const GamePage = () => {
               {Cards.image}
             </div>
           ))}
-          
         </div>
-        
       </div>
-
       <div className="player-area">
-       
         <div className="spaces">
           {player2Spaces.map((card, index) => (
             <div key={index} className="space">
               {card}
             </div>
           ))}
-        </div><h2>{username}2</h2>
+        </div>
+        <h2>{username}2</h2>
       </div>
-
-
       <div className="deck">
-        
-        <div className="card-deck"> 
-        
+        <div className="card-deck">
           {player2Deck.map((card, index) => (
             <div key={index} className="card">
               {card}
             </div>
           ))}
-        </div><h3>{username}'s Hand</h3>
+        </div>
+        <h3>{username}'s Hand</h3>
         <div className="card">
           {/* Display cards for Player 2 */}
           {player2Deck[0]}
@@ -208,5 +199,3 @@ const GamePage = () => {
 };
 
 export default GamePage;
-
-    
