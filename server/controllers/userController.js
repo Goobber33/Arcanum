@@ -18,12 +18,13 @@ exports.signup = async (req, res) => {
     await newUser.save();
     // Generate JWT token
     const token = generateToken(newUser);
-    // Send the token to the client
-    res.status(201).json({ token });
+    // Send the token and newSignup flag to the client
+    res.status(201).json({ token, newSignup: true });
   } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
 };
+
 
 exports.login = async (req, res) => {
   const { username, password } = req.body;
@@ -40,9 +41,10 @@ exports.login = async (req, res) => {
     }
     // Generate JWT token
     const token = generateToken(existingUser);
-    // Send the token to the client
-    res.status(200).json({ token });
+    // Send the token and a new field "newSignup" to the client
+    res.status(200).json({ token, newSignup: false });
   } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
 };
+

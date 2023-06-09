@@ -1,47 +1,59 @@
-import React, { useState } from 'react';
-import './css/gamepage.css'; // Import the CSS file for styling
-import './css/App.css'; // Importing fonts
+import React, { useState, useEffect } from 'react';
+import jwt_decode from 'jwt-decode';
+import './css/gamepage.css';
+import './css/App.css';
 
 const GamePage = () => {
+  const [username, setUsername] = useState('');
+  const cardData = [
+    // card data array...
+  ];
+  const Deck = [
+    // deck array...
+  ];
+
   const [player1Spaces, setPlayer1Spaces] = useState(Array(4).fill(null));
   const [player2Spaces, setPlayer2Spaces] = useState(Array(4).fill(null));
-  const [player1Deck, setPlayer1Deck] = useState(['card1', 'card2', 'card3']); // Replace with actual card data
-  const [player2Deck, setPlayer2Deck] = useState(['card4', 'card5', 'card6']); // Replace with actual card data
-  const [player1Hand, setPlayer1Hand] = useState(['card7', 'card8', 'card9']); // Replace with actual card data
-  const [player2Hand, setPlayer2Hand] = useState(['card10', 'card11', 'card12']); // Replace with actual card data
+  const [player1Deck, setPlayer1Deck] = useState([]);
+  const [player2Deck, setPlayer2Deck] = useState(['card4', 'card5', 'card6']);
+  const [player1Hand, setPlayer1Hand] = useState(['card7', 'card8', 'card9']);
+  const [player2Hand, setPlayer2Hand] = useState(['card10', 'card11', 'card12']);
+
+  useEffect(() => {
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      const decodedToken = jwt_decode(token);
+      setUsername(decodedToken.username);
+    }
+  }, []);
 
   return (
     <div className="game">
       <div className="deck">
-        <h3>Player 1 Hand</h3>
         <div className="card">
-          {/* Display a single card for Player 1 */}
-          {player1Deck[0]}
+          {/* Display cards for Player 1 */}
+          {/* {?} */}
         </div>
+        <h3>{username}'s Hand</h3>
         <div className="card-deck">
-          {player1Deck.map((card, index) => (
-            <div key={index} className="card">
-              {card}
+          {player1Deck.map((card) => (
+            <div key={card._id} className="card">
+              <img src={card.image} alt={card.cardname} />
             </div>
           ))}
         </div>
       </div>
-
       <div className="player-area">
-        <h2>Player 1</h2>
+        <h2>{username}1</h2>
         <div className="spaces">
-          {player1Spaces.map((card, index) => (
-            <div key={index} className="space">
-              {card}
+          {player1Spaces.map((card, Deck) => (
+            <div key={Deck} className="space">
+              {/* {card.image} */}
             </div>
           ))}
-          
         </div>
-        
       </div>
-
       <div className="player-area">
-        <h2>Player 2</h2>
         <div className="spaces">
           {player2Spaces.map((card, index) => (
             <div key={index} className="space">
@@ -49,11 +61,9 @@ const GamePage = () => {
             </div>
           ))}
         </div>
+        <h2>{username}2</h2>
       </div>
-
-
       <div className="deck">
-        <h3>Player 2 Hand</h3>
         <div className="card-deck">
           {player2Deck.map((card, index) => (
             <div key={index} className="card">
@@ -61,8 +71,9 @@ const GamePage = () => {
             </div>
           ))}
         </div>
+        <h3>{username}'s Hand</h3>
         <div className="card">
-          {/* Display a single card for Player 2 */}
+          {/* Display cards for Player 2 */}
           {player2Deck[0]}
         </div>
       </div>
@@ -71,5 +82,3 @@ const GamePage = () => {
 };
 
 export default GamePage;
-
-    

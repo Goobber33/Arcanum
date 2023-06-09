@@ -39,6 +39,7 @@ const CharacterSelectionPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [showSwordIndex, setShowSwordIndex] = useState(null);
   const [swordPosition, setSwordPosition] = useState({ x: 0, y: 0 });
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) => (prevPage % totalPages) + 1);
@@ -50,14 +51,21 @@ const CharacterSelectionPage = () => {
 
   const handleCharacterSelect = (index) => {
     const character = characters[index];
-    localStorage.setItem('selectedCharacter', character, () => {
-      localStorage.setItem('selectedCharacterIndex', index);
+    setSelectedCharacter(character);
+  };
 
-      console.log('Selected character:', character);
+  useEffect(() => {
+    if (selectedCharacter) {
+      const index = characters.indexOf(selectedCharacter);
+      localStorage.setItem('selectedCharacter', selectedCharacter);
+      localStorage.setItem('selectedCharacterIndex', index);
+      console.log('Selected character:', selectedCharacter);
       console.log('About to navigate to /home');
       navigate('/home');
-    });
-  };
+      // This user has chosen a character before
+      localStorage.setItem('hasChosenCharacterBefore', 'true');
+    }
+  }, [selectedCharacter, navigate]);
 
   const handleMouseEnter = (index, event) => {
     setShowSwordIndex(index);
@@ -159,13 +167,6 @@ const CharacterSelectionPage = () => {
   const headingStyle = {
     marginBottom: '50px',
   };
-
-  useEffect(() => {
-    const isAuthenticated = localStorage.getItem('jwt');
-    if (isAuthenticated) {
-      navigate('/home');
-    }
-  }, []);
 
   return (
     <motion.div
