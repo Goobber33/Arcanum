@@ -25,7 +25,7 @@ const GamePage = () => {
   const [username, setUsername] = useState('');
 
 
-  const Cards =[{
+  const Cards = [{
     "_id": {
       "$oid": "647fbddef6f5bca74c4f26c7"
     },
@@ -34,7 +34,7 @@ const GamePage = () => {
     "defence": "30",
     "health": "30",
     "image": CelestialScalebearer
-  },{
+  }, {
     "_id": {
       "$oid": "647fbddef6f5bca74c4f26c8"
     },
@@ -43,7 +43,7 @@ const GamePage = () => {
     "defence": "40",
     "health": "20",
     "image": DreadmawRavager
-  },{
+  }, {
     "_id": {
       "$oid": "647fbddef6f5bca74c4f26c9"
     },
@@ -52,7 +52,7 @@ const GamePage = () => {
     "defence": "10",
     "health": "10",
     "image": SpectralTidewarden
-  },{
+  }, {
     "_id": {
       "$oid": "647fbddef6f5bca74c4f26ca"
     },
@@ -61,7 +61,7 @@ const GamePage = () => {
     "defence": "50",
     "health": "50",
     "image": ToweringEarthshaker
-  },{
+  }, {
     "_id": {
       "$oid": "647fbddef6f5bca74c4f26cb"
     },
@@ -70,7 +70,7 @@ const GamePage = () => {
     "defence": "50",
     "health": "50",
     "image": WastelandDevourer
-  },{
+  }, {
     "_id": {
       "$oid": "647fbddef6f5bca74c4f26cc"
     },
@@ -79,7 +79,7 @@ const GamePage = () => {
     "defence": "20",
     "health": "20",
     "image": AbyssalSpellweaver
-  },{
+  }, {
     "_id": {
       "$oid": "647fbddef6f5bca74c4f26cd"
     },
@@ -88,7 +88,7 @@ const GamePage = () => {
     "defence": "30",
     "health": "30",
     "image": ForestbaneBerserker
-  },{
+  }, {
     "_id": {
       "$oid": "647fbddef6f5bca74c4f26ce"
     },
@@ -97,7 +97,7 @@ const GamePage = () => {
     "defence": "30",
     "health": "40",
     "image": FungalAxemaster
-  },{
+  }, {
     "_id": {
       "$oid": "647fbddef6f5bca74c4f26cf"
     },
@@ -106,7 +106,7 @@ const GamePage = () => {
     "defence": "20",
     "health": "40",
     "image": Mountainstride
-  },{
+  }, {
     "_id": {
       "$oid": "647fbddef6f5bca74c4f26d0"
     },
@@ -117,25 +117,19 @@ const GamePage = () => {
     "image": Scorchfang
   }]
 
-  const Deck = ["647fbddef6f5bca74c4f26c7","647fbddef6f5bca74c4f26c8","647fbddef6f5bca74c4f26c9","647fbddef6f5bca74c4f26ca","647fbddef6f5bca74c4f26cb"]
+  const Deck = ["647fbddef6f5bca74c4f26c7", "647fbddef6f5bca74c4f26c8", "647fbddef6f5bca74c4f26c9", "647fbddef6f5bca74c4f26ca", "647fbddef6f5bca74c4f26cb"]
 
 
-  const [gameOver,setGameOver] = useState(true)
-  const [winner,setWinner] = useState('')
-  const [turn,setTurn] = useState('')
+  const [gameOver, setGameOver] = useState(true)
+  const [winner, setWinner] = useState('')
+  const [turn, setTurn] = useState('')
   const [player1Spaces, setPlayer1Spaces] = useState(Array(4).fill(null));
   const [player2Spaces, setPlayer2Spaces] = useState(Array(4).fill(null));
   const [player1Deck, setPlayer1Deck] = useState(Cards); // Replace with actual card data
-  const [player2Deck, setPlayer2Deck] = useState(['card4', 'card5', 'card6']); 
-  const [player1Hand, setPlayer1Hand] = useState(Deck); 
-  const [player2Hand, setPlayer2Hand] = useState(['card10', 'card11', 'card12']); 
+  const [player2Deck, setPlayer2Deck] = useState(['card4', 'card5', 'card6']);
+  const [player1Hand, setPlayer1Hand] = useState(Deck);
+  const [player2Hand, setPlayer2Hand] = useState(['card10', 'card11', 'card12']);
 
-
-
-
-
-
-  
   useEffect(() => {
     const token = localStorage.getItem('jwt');
     if (token) {
@@ -153,9 +147,13 @@ const GamePage = () => {
         </div>
         <h3>{username}'s Hand</h3>
         <div className="card-deck">
-          {player1Deck.map((card) => (
-            <div key={Cards._id} className="card">
-              <img src={Cards.image} alt={Cards.cardname} />
+          {player1Deck.map((card, index) => (
+            <div key={index} className="card">
+              <img src={card.image} alt={card.cardName} />
+              <h4>{card.cardName}</h4>
+              <p>Offense: {card.offence}</p>
+              <p>Defense: {card.defence}</p>
+              <p>Health: {card.health}</p>
             </div>
           ))}
         </div>

@@ -78,70 +78,70 @@ const reducer = (state = initialState, action) => {
             }
         }
 
-        // case CARD_PLAYED: {
-        //     const cardPlayedBy = state.turn
-        //     switch(action.payload.cardPlayed) {
-        //         case '0R': case '1R': case '2R': case '3R': case '4R': case '5R': case '6R': case '7R': case '8R': case '9R': case '#R': case '0G': case '1G': case '2G': case '3G': case '4G': case '5G': case '6G': case '7G': case '8G': case '9G': case '#G': case '0B': case '1B': case '2B': case '3B': case '4B': case '5B': case '6B': case '7B': case '8B': case '9B': case '#B': case '0Y': case '1Y': case '2Y': case '3Y': case '4Y': case '5Y': case '6Y': case '7Y': case '8Y': case '9Y': case '#Y': {
-        //             const numberOfPlayedCard = action.payload.cardPlayed.charAt(0)
-        //             const colorOfPlayedCard = action.payload.cardPlayed.charAt(1)
+        case CARD_PLAYED: {
+            const cardPlayedBy = state.turn
+            switch(action.payload.cardPlayed) {
+                case '0R': case '1R': case '2R': case '3R': case '4R': case '5R': case '6R': case '7R': case '8R': case '9R': case '#R': case '0G': case '1G': case '2G': case '3G': case '4G': case '5G': case '6G': case '7G': case '8G': case '9G': case '#G': case '0B': case '1B': case '2B': case '3B': case '4B': case '5B': case '6B': case '7B': case '8B': case '9B': case '#B': case '0Y': case '1Y': case '2Y': case '3Y': case '4Y': case '5Y': case '6Y': case '7Y': case '8Y': case '9Y': case '#Y': {
+                    const numberOfPlayedCard = action.payload.cardPlayed.charAt(0)
+                    const colorOfPlayedCard = action.payload.cardPlayed.charAt(1)
 
-        //             if(state.currentColor === colorOfPlayedCard) {
-        //                 console.log('colors matched!');
-        //                 if(cardPlayedBy === 'Player 1') {
-        //                     const removeIndex = state.player1Deck.indexOf(action.payload.cardPlayed)
-        //                     return {
-        //                         ...state,
-        //                         turn: 'Player 2',
-        //                         playedCardsPile: [...state.playedCardsPile.slice(0, state.playedCardsPile.length), action.payload.cardPlayed, ...state.playedCardsPile.slice(state.playedCardsPile.length)],
-        //                         player1Deck: [...state.player1Deck.slice(0, removeIndex), ...state.player1Deck.slice(removeIndex + 1)],
-        //                         currentColor: colorOfPlayedCard,
-        //                         currentNumber: numberOfPlayedCard
-        //                     }
-        //                 }
-        //                 else {
-        //                     const removeIndex = state.player2Deck.indexOf(action.payload.cardPlayed)
-        //                     return {
-        //                         ...state,
-        //                         turn: 'Player 1',
-        //                         playedCardsPile: [...state.playedCardsPile.slice(0, state.playedCardsPile.length), action.payload.cardPlayed, ...state.playedCardsPile.slice(state.playedCardsPile.length)],
-        //                         player2Deck: [...state.player2Deck.slice(0, removeIndex), ...state.player2Deck.slice(removeIndex + 1)],
-        //                         currentColor: colorOfPlayedCard,
-        //                         currentNumber: numberOfPlayedCard
-        //                     }
-        //                 }
-        //             }
-        //             else if(state.currentNumber === numberOfPlayedCard) {
-        //                 console.log('numbers matched!');
-        //                 if(cardPlayedBy === 'Player 1') {
-        //                     const removeIndex = state.player1Deck.indexOf(action.payload.cardPlayed)
-        //                     return {
-        //                         ...state,
-        //                         turn: 'Player 2',
-        //                         playedCardsPile: [...state.playedCardsPile.slice(0, state.playedCardsPile.length), action.payload.cardPlayed, ...state.playedCardsPile.slice(state.playedCardsPile.length)],
-        //                         player1Deck: [...state.player1Deck.slice(0, removeIndex), ...state.player1Deck.slice(removeIndex + 1)],
-        //                         currentColor: colorOfPlayedCard,
-        //                         currentNumber: numberOfPlayedCard
-        //                     }
-        //                 }
-        //                 else {
-        //                     const removeIndex = state.player2Deck.indexOf(action.payload.cardPlayed)
-        //                     return {
-        //                         ...state,
-        //                         turn: 'Player 1',
-        //                         playedCardsPile: [...state.playedCardsPile.slice(0, state.playedCardsPile.length), action.payload.cardPlayed, ...state.playedCardsPile.slice(state.playedCardsPile.length)],
-        //                         player2Deck: [...state.player2Deck.slice(0, removeIndex), ...state.player2Deck.slice(removeIndex + 1)],
-        //                         currentColor: colorOfPlayedCard,
-        //                         currentNumber: numberOfPlayedCard
-        //                     }
-        //                 }
-        //             }
-        //             else {
-        //                 alert('Invalid Move!')
-        //             }
+                    if(state.currentColor === colorOfPlayedCard) {
+                        console.log('colors matched!');
+                        if(cardPlayedBy === 'Player 1') {
+                            const removeIndex = state.player1Deck.indexOf(action.payload.cardPlayed)
+                            return {
+                                ...state,
+                                turn: 'Player 2',
+                                playedCardsPile: [...state.playedCardsPile.slice(0, state.playedCardsPile.length), action.payload.cardPlayed, ...state.playedCardsPile.slice(state.playedCardsPile.length)],
+                                player1Deck: [...state.player1Deck.slice(0, removeIndex), ...state.player1Deck.slice(removeIndex + 1)],
+                                currentColor: colorOfPlayedCard,
+                                currentNumber: numberOfPlayedCard
+                            }
+                        }
+                        else {
+                            const removeIndex = state.player2Deck.indexOf(action.payload.cardPlayed)
+                            return {
+                                ...state,
+                                turn: 'Player 1',
+                                playedCardsPile: [...state.playedCardsPile.slice(0, state.playedCardsPile.length), action.payload.cardPlayed, ...state.playedCardsPile.slice(state.playedCardsPile.length)],
+                                player2Deck: [...state.player2Deck.slice(0, removeIndex), ...state.player2Deck.slice(removeIndex + 1)],
+                                currentColor: colorOfPlayedCard,
+                                currentNumber: numberOfPlayedCard
+                            }
+                        }
+                    }
+                    else if(state.currentNumber === numberOfPlayedCard) {
+                        console.log('numbers matched!');
+                        if(cardPlayedBy === 'Player 1') {
+                            const removeIndex = state.player1Deck.indexOf(action.payload.cardPlayed)
+                            return {
+                                ...state,
+                                turn: 'Player 2',
+                                playedCardsPile: [...state.playedCardsPile.slice(0, state.playedCardsPile.length), action.payload.cardPlayed, ...state.playedCardsPile.slice(state.playedCardsPile.length)],
+                                player1Deck: [...state.player1Deck.slice(0, removeIndex), ...state.player1Deck.slice(removeIndex + 1)],
+                                currentColor: colorOfPlayedCard,
+                                currentNumber: numberOfPlayedCard
+                            }
+                        }
+                        else {
+                            const removeIndex = state.player2Deck.indexOf(action.payload.cardPlayed)
+                            return {
+                                ...state,
+                                turn: 'Player 1',
+                                playedCardsPile: [...state.playedCardsPile.slice(0, state.playedCardsPile.length), action.payload.cardPlayed, ...state.playedCardsPile.slice(state.playedCardsPile.length)],
+                                player2Deck: [...state.player2Deck.slice(0, removeIndex), ...state.player2Deck.slice(removeIndex + 1)],
+                                currentColor: colorOfPlayedCard,
+                                currentNumber: numberOfPlayedCard
+                            }
+                        }
+                    }
+                    else {
+                        alert('Invalid Move!')
+                    }
                     
-        //             break;
-        //         }
-        //     }
+                    break;
+                }
+            }
         }
         
         default:

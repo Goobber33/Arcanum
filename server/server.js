@@ -2,25 +2,24 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/userRoutes');
-// socket.io server connection
+const gameRoutes = require('./routes/gameRoutes');
 const { createServer } = require('http');
 const { Server } = require('socket.io');
 
 const app = express();
 
-// allow cross-origin requests
 app.use(cors());
-
-// parse JSON
 app.use(express.json());
 
 const httpServer = createServer(app);
-// socket.io listener
 const io = new Server(httpServer, {
   cors: {
     origin: 'http://localhost:3000'
   },
 });
+
+// Passing 'io' object to gameRoutes
+gameRoutes.setIo(io);
 
 io.on('connect', (socket) => {
   console.log('socket', socket);
@@ -31,7 +30,6 @@ io.on('connect', (socket) => {
   });
 });
 
-// connect to MongoDB
 mongoose.connect('mongodb://127.0.0.1:27017/game', {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -40,8 +38,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/game', {
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-// Use the auth routes
 app.use('/auth', authRoutes);
+app.use('/game', gameRoutes.router); 
 
 app.get('/', (req, res) => {
   res.send('Hello, World!');
