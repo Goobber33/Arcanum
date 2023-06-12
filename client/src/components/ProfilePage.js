@@ -279,7 +279,7 @@ const ProfilePage = () => {
             <div
               style={{
                 position: 'absolute',
-                left: '-6em',
+                left: '-5em',
                 top: '50%',
                 transform: 'translateY(-50%)',
                 backgroundColor: 'transparent',
@@ -290,7 +290,7 @@ const ProfilePage = () => {
                 variant="primary"
                 className="character-button"
                 onClick={prevCharacter}
-                style={{backgroundColor: 'transparent', border: 'none', marginLeft: '25px'}}
+                style={{backgroundColor: 'transparent', border: 'none', marginLeft: '25px', marginTop: '-300px'}}
               >
                 <img src={ArrowLeft} alt='arrow-left'/>
               </Button>
@@ -307,7 +307,7 @@ const ProfilePage = () => {
                 variant="primary"
                 className="character-button"
                 onClick={nextCharacter}
-                style={{backgroundColor: 'transparent', border: 'none',}}
+                style={{backgroundColor: 'transparent', border: 'none', marginTop: '-300px'}}
               >
                <img src={ArrowRight} alt='arrow-right'/>
               </Button>
@@ -327,21 +327,24 @@ const ProfilePage = () => {
             color: 'white',
             fontFamily: 'SellYourSoul',
             fontSize: '20px',
-            height: 'auto'
+            height: 'auto',
           }}
         >
-         <div className='col md-6' style={{alignItems: 'center'}}>  
-          Username: {username}
-          <h2 style={{ fontFamily: 'SellYourSoul' }}>Stats</h2>
-            <p style={{ fontFamily: 'SellYourSoul' }}>
-              Games won: {stats.gamesWon}
+        
+          <h1>Username: {username}</h1>
+          <div className='row'> 
+          <div className='col md-6' style={{alignItems: 'center', display: 'flex', flexDirection:'column'}}>
+          <h2 style={{ fontFamily: 'SellYourSoul', fontSize: '2em', marginRight: '25px' }}>Stats</h2>
+            <p style={{ fontFamily: 'SellYourSoul', fontSize: '1.5em', marginLeft: '15px' }}>
+            Games won: {stats.gamesWon}
             </p>
-            <p style={{ fontFamily: 'SellYourSoul' }}>
-              Games lost: {stats.gamesLost}
+            <p style={{ fontFamily: 'SellYourSoul', fontSize: '1.5em' }}>
+            Games lost: {stats.gamesLost}
             </p>
-            <p style={{ fontFamily: 'SellYourSoul' }}>
-              Games tied: {stats.gamesTied}
+            <p style={{ fontFamily: 'SellYourSoul', fontSize: '1.5em' }}>
+            Games tied: {stats.gamesTied}
             </p>
+            </div>
             </div>
         </Card.Text>
         {changeMode ? (
@@ -367,7 +370,7 @@ const ProfilePage = () => {
           <Button
             variant="primary"
             className="change-button"
-            style={{ marginTop: '10px', backgroundColor: 'transparent', border: 'none' }}
+            style={{marginTop:'-20px', backgroundColor: 'transparent', border: 'none', marginRight: '25px' }}
             onClick={beginChange}
           >
             <img src={ChangeButton} alt='changebutton' />
@@ -385,7 +388,7 @@ const ProfilePage = () => {
               className="card-image"
               style={{
                 width: 'auto',
-                height: '300px',
+                height: '375px',
                 objectFit: 'cover',
                 marginTop: '-20px',
               }}
