@@ -290,7 +290,7 @@ const ProfilePage = () => {
                 variant="primary"
                 className="character-button"
                 onClick={prevCharacter}
-                style={{backgroundColor: 'transparent', border: 'none', marginLeft: '25px', marginTop: '-300px'}}
+                style={{backgroundColor: 'transparent', border: 'none', marginLeft: '10px', marginTop: '-400px'}}
               >
                 <img src={ArrowLeft} alt='arrow-left'/>
               </Button>
@@ -307,7 +307,7 @@ const ProfilePage = () => {
                 variant="primary"
                 className="character-button"
                 onClick={nextCharacter}
-                style={{backgroundColor: 'transparent', border: 'none', marginTop: '-300px'}}
+                style={{backgroundColor: 'transparent', border: 'none', marginTop: '-400px', marginLeft: '20px'}}
               >
                <img src={ArrowRight} alt='arrow-right'/>
               </Button>

@@ -134,10 +134,10 @@ const HomePage = ({ onLogout }) => {
 
     const gameButtonStyle = {
         width: '150px',
-        marginBottom: '10px',
+        marginBottom: '20px',
         backgroundColor: 'transparent',
         border: 'none',
-        marginRight: '50px'
+        marginRight: '100px'
         
     };
 
