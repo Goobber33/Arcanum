@@ -1,3 +1,7 @@
+*{
+  cursor: url('../..//images/Cursor_Normal.png');
+}
+
 .full-height {
   height: 100vh;
 }
@@ -24,6 +28,7 @@
 
 .password-input {
   padding-right: 40px;
+  color: 'white'
 }
 
 .password-toggle-button {
@@ -231,5 +236,4 @@
       transform: translateY(10px);
   }
 }
-
 
