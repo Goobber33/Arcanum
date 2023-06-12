@@ -49,10 +49,3 @@
         background-color: lightblue;
         cursor: pointer;
       }
-      
-.card:hover {
-  background-color: rgb(209, 213, 214);
-        transform: scale(1.1);
-        cursor: pointer;
-      }
-      

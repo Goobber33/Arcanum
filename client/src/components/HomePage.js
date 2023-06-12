@@ -11,6 +11,7 @@ import CreateGame from '../images/CreateGame.png';
 import JoinGame from '../images/JoinGame.png';
 import TestGame from '../images/TestGame.png';
 import CancelButton from '../images/Cancel.png';
+import axios from 'axios';
 
 const HomePage = ({ onLogout }) => {
     const navigate = useNavigate();
@@ -100,10 +101,23 @@ const HomePage = ({ onLogout }) => {
         setIsCreatingGame(true);
     }
 
-    const createGame = () => {
-        // Here you can handle the creation of the game.
-        // You will probably want to send a request to your server.
-    }
+    const createGame = (event) => {
+        event.preventDefault();
+        // Get rival's username from the input field
+        const rivalUsername = event.target.elements[0].value;
+        
+        // Call backend endpoint to create game
+        axios.post('http://localhost:4000/game/create', {
+          player2: rivalUsername  // passing rival's username to the endpoint
+        })
+        .then(response => {
+          console.log(response.data);
+          // you can navigate to the game page here or show some message
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }    
 
     const cancelCreatingGame = () => {
         setIsCreatingGame(false);
@@ -236,7 +250,7 @@ const HomePage = ({ onLogout }) => {
                             style={cardStyle}
                         >
                             <form onSubmit={createGame}>
-                                <input className="input-field" type="text" placeholder="Rival Username" style={inputStyle} required />
+                            <input className="input-field" name="rivalUsername" type="text" placeholder="Rival Username" style={inputStyle} required />
                                 {/* <input className="input-field" type="text" placeholder="Game Code" style={inputStyle} required /> */}
                                 <div style={buttonContainerStyle}>
                                     <button type="submit" className="btn btn-primary" onClick={Game} style={smallerButtonStyle}>Create</button>
