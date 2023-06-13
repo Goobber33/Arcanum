@@ -268,13 +268,13 @@ const ProfilePage = () => {
           <div className='row'> 
           <div className='col md-6' style={{alignItems: 'center', display: 'flex', flexDirection:'column'}}>
           <h2 style={{ fontFamily: 'SellYourSoul', fontSize: '2em', marginRight: '25px' }}>Stats</h2>
-            <p style={{ fontFamily: 'SellYourSoul', fontSize: '1.5em', marginLeft: '15px' }}>
+            <p style={{ fontFamily: 'SupernaturalKnight', fontSize: '1.5em', marginLeft: '15px' }}>
             Games won: {stats.gamesWon}
             </p>
-            <p style={{ fontFamily: 'SellYourSoul', fontSize: '1.5em' }}>
+            <p style={{ fontFamily: 'SupernaturalKnight', fontSize: '1.5em' }}>
             Games lost: {stats.gamesLost}
             </p>
-            <p style={{ fontFamily: 'SellYourSoul', fontSize: '1.5em' }}>
+            <p style={{ fontFamily: 'SupernaturalKnight', fontSize: '1.5em' }}>
             Games tied: {stats.gamesTied}
             </p>
             </div>
