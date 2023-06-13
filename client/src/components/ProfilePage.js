@@ -7,9 +7,34 @@ import mainImage from './test.png';
 import character1 from '../images/Characters/Aldric.png';
 import character2 from '../images/Characters/Calypso.png';
 import character3 from '../images/Characters/Celeste.png';
-import cardImage1 from '../images/Characters/Elara.png';
-import cardImage2 from '../images/Characters/Elysia.png';
+import character4 from '../images/Characters/Elara.png';
+import character5 from '../images/Characters/Elysia.png';
+import character6 from '../images/Characters/Finnian.png';
+import character7 from '../images/Characters/Griffin.png';
+import character8 from '../images/Characters/Tarik.png';
+import character9 from '../images/Characters/Torvald.png';
+import character10 from '../images/Characters/Zara.png';
+import cardImage1 from '../images/Creatures/AbyssalSpellweaver.png';
+import cardImage2 from '../images/Creatures/AmethystBlazebug.png';
 import cardImage3 from '../images/Creatures/ArachnocrabTreeshell.png';
+import cardImage4 from '../images/Creatures/BjornTheAxeFury.png';
+import cardImage5 from '../images/Creatures/CelestialScalebearer.png';
+import cardImage6 from '../images/Creatures/ColossalVoidgaze.png';
+import cardImage7 from '../images/Creatures/DreadmawRavager.png';
+import cardImage8 from '../images/Creatures/EmberguardSentinel.png';
+import cardImage9 from '../images/Creatures/ForestbaneBerserker.png';
+import cardImage10 from '../images/Creatures/FungalAxemaster.png';
+import cardImage11 from '../images/Creatures/GrimbeakCrownbearer.png';
+import cardImage12 from '../images/Creatures/Mountainstride.png';
+import cardImage13 from '../images/Creatures/OcculoidTentaculus.png';
+import cardImage14 from '../images/Creatures/ScaleslashSerpentkin.png';
+import cardImage15 from '../images/Creatures/Scorchfang.png';
+import cardImage16 from "../images/Creatures/SpectralTidewarden.png";
+import cardImage17 from '../images/Creatures/TalonshotArcher.png';
+import cardImage18 from '../images/Creatures/VenomcoilMawripper.png';
+import cardImage19 from '../images/Creatures/ViperthornAzurefang.png';
+import cardImage20 from '../images/Creatures/WarbrandColossus.png';
+import cardImage21 from '../images/Creatures/WastelandDevourer.png';
 import './css/App.css'; // Importing fonts
 import HomeButton from '../images/page elements/HomeButton.png';
 import ArrowLeft from '../images/page elements/ArrowLeft.png';
@@ -21,10 +46,11 @@ import NoButton from '../images/page elements/NoButton.png';
 const ProfilePage = () => {
   const navigate = useNavigate();
 
-  const characters = [character1, character2, character3];
+  const characters = [character1, character2, character3, character4, character5, character6, character7, character8, character9, character10];
 
   const stats = { gamesWon: 10, gamesLost: 5, gamesTied: 2 };
-  const cards = [cardImage1, cardImage2, cardImage3];
+  const cards = [cardImage1, cardImage2, cardImage3, cardImage4, cardImage5, cardImage6, cardImage7, cardImage8, cardImage9, cardImage10, cardImage11, cardImage12, 
+                 cardImage13, cardImage14, cardImage15, cardImage16, cardImage17, cardImage18, cardImage19, cardImage20, cardImage21];
 
   // State for currently shown card
   const [currentCard, setCurrentCard] = useState(0);
