@@ -5,6 +5,7 @@ const authRoutes = require('./routes/userRoutes');
 const gameRoutes = require('./routes/gameRoutes');
 const { createServer } = require('http');
 const { Server } = require('socket.io');
+const { roomHandler } = require('./utils/roomHandler');
 
 const app = express();
 
@@ -21,9 +22,13 @@ const io = new Server(httpServer, {
 // Passing 'io' object to gameRoutes
 gameRoutes.setIo(io);
 
+
+const rooms = [];
+
 io.on('connect', (socket) => {
-  console.log('socket', socket);
+  
   console.log("User connected", socket.id);
+  roomHandler(io, socket, rooms);
 
   socket.on('disconnect', () => {
     console.log("User disconnected", socket.id);
