@@ -7,9 +7,34 @@ import mainImage from './test.png';
 import character1 from '../images/Characters/Aldric.png';
 import character2 from '../images/Characters/Calypso.png';
 import character3 from '../images/Characters/Celeste.png';
-import cardImage1 from '../images/Characters/Elara.png';
-import cardImage2 from '../images/Characters/Elysia.png';
+import character4 from '../images/Characters/Elara.png';
+import character5 from '../images/Characters/Elysia.png';
+import character6 from '../images/Characters/Finnian.png';
+import character7 from '../images/Characters/Griffin.png';
+import character8 from '../images/Characters/Tarik.png';
+import character9 from '../images/Characters/Torvald.png';
+import character10 from '../images/Characters/Zara.png';
+import cardImage1 from '../images/Creatures/AbyssalSpellweaver.png';
+import cardImage2 from '../images/Creatures/AmethystBlazebug.png';
 import cardImage3 from '../images/Creatures/ArachnocrabTreeshell.png';
+import cardImage4 from '../images/Creatures/BjornTheAxeFury.png';
+import cardImage5 from '../images/Creatures/CelestialScalebearer.png';
+import cardImage6 from '../images/Creatures/ColossalVoidgaze.png';
+import cardImage7 from '../images/Creatures/DreadmawRavager.png';
+import cardImage8 from '../images/Creatures/EmberguardSentinel.png';
+import cardImage9 from '../images/Creatures/ForestbaneBerserker.png';
+import cardImage10 from '../images/Creatures/FungalAxemaster.png';
+import cardImage11 from '../images/Creatures/GrimbeakCrownbearer.png';
+import cardImage12 from '../images/Creatures/Mountainstride.png';
+import cardImage13 from '../images/Creatures/OcculoidTentaculus.png';
+import cardImage14 from '../images/Creatures/ScaleslashSerpentkin.png';
+import cardImage15 from '../images/Creatures/Scorchfang.png';
+import cardImage16 from "../images/Creatures/SpectralTidewarden.png";
+import cardImage17 from '../images/Creatures/TalonshotArcher.png';
+import cardImage18 from '../images/Creatures/VenomcoilMawripper.png';
+import cardImage19 from '../images/Creatures/ViperthornAzurefang.png';
+import cardImage20 from '../images/Creatures/WarbrandColossus.png';
+import cardImage21 from '../images/Creatures/WastelandDevourer.png';
 import './css/App.css'; // Importing fonts
 import HomeButton from '../images/page elements/HomeButton.png';
 import ArrowLeft from '../images/page elements/ArrowLeft.png';
@@ -21,10 +46,11 @@ import NoButton from '../images/page elements/NoButton.png';
 const ProfilePage = () => {
   const navigate = useNavigate();
 
-  const characters = [character1, character2, character3];
+  const characters = [character1, character2, character3, character4, character5, character6, character7, character8, character9, character10];
 
   const stats = { gamesWon: 10, gamesLost: 5, gamesTied: 2 };
-  const cards = [cardImage1, cardImage2, cardImage3];
+  const cards = [cardImage1, cardImage2, cardImage3, cardImage4, cardImage5, cardImage6, cardImage7, cardImage8, cardImage9, cardImage10, cardImage11, cardImage12, 
+                 cardImage13, cardImage14, cardImage15, cardImage16, cardImage17, cardImage18, cardImage19, cardImage20, cardImage21];
 
   // State for currently shown card
   const [currentCard, setCurrentCard] = useState(0);
@@ -152,9 +178,7 @@ const ProfilePage = () => {
     >
       <h1 style={titleStyle}>Profile Page</h1>
       <Container>
-      <motion.div 
-      whileTap={{scale: '0.8'}}
-      >
+      <motion.div whileTap={{scale: '0.8'}}>
       <button
         className="btn"
         style={homeButtonStyle}
@@ -191,14 +215,16 @@ const ProfilePage = () => {
                 border: 'none'
               }}
             >
+            <motion.div whileTap={{scale: 0.8}}>
               <Button
                 variant="primary"
                 className="character-button"
                 onClick={prevCharacter}
-                style={{backgroundColor: 'transparent', border: 'none', marginLeft: '10px', marginTop: '-400px'}}
+                style={{backgroundColor: 'transparent', border: 'none', marginLeft: '10px', marginTop: '-400px', padding: '0px'}}
               >
                 <img src={ArrowLeft} alt='arrow-left'/>
               </Button>
+            </motion.div>
             </div>
             <div
               style={{
@@ -208,14 +234,16 @@ const ProfilePage = () => {
                 transform: 'translateY(-50%)',
               }}
             >
+            <motion.div whileTap={{scale: 0.8}}>
               <Button
                 variant="primary"
                 className="character-button"
                 onClick={nextCharacter}
-                style={{backgroundColor: 'transparent', border: 'none', marginTop: '-400px', marginLeft: '20px'}}
+                style={{backgroundColor: 'transparent', border: 'none', marginTop: '-400px', padding: '0px'}}
               >
                <img src={ArrowRight} alt='arrow-right'/>
               </Button>
+              </motion.div>
             </div>
           </>
         ) : null}
@@ -240,13 +268,13 @@ const ProfilePage = () => {
           <div className='row'> 
           <div className='col md-6' style={{alignItems: 'center', display: 'flex', flexDirection:'column'}}>
           <h2 style={{ fontFamily: 'SellYourSoul', fontSize: '2em', marginRight: '25px' }}>Stats</h2>
-            <p style={{ fontFamily: 'SellYourSoul', fontSize: '1.5em', marginLeft: '15px' }}>
+            <p style={{ fontFamily: 'SupernaturalKnight', fontSize: '1.5em', marginLeft: '15px' }}>
             Games won: {stats.gamesWon}
             </p>
-            <p style={{ fontFamily: 'SellYourSoul', fontSize: '1.5em' }}>
+            <p style={{ fontFamily: 'SupernaturalKnight', fontSize: '1.5em' }}>
             Games lost: {stats.gamesLost}
             </p>
-            <p style={{ fontFamily: 'SellYourSoul', fontSize: '1.5em' }}>
+            <p style={{ fontFamily: 'SupernaturalKnight', fontSize: '1.5em' }}>
             Games tied: {stats.gamesTied}
             </p>
             </div>
@@ -254,9 +282,9 @@ const ProfilePage = () => {
         </Card.Text>
         {changeMode ? (
     
-        <motion.div whileTap={'0.8'}>
-          <div style={{ display: 'flex', marginTop: '10px' }}>
-
+        
+          <div style={{ display: 'flex', marginTop: '10px', marginLeft: '-25px' }}>
+          <motion.div whileTap={{scale: 0.8}}>
             <Button
               variant="success"
               className="character-button"
@@ -265,6 +293,8 @@ const ProfilePage = () => {
             >
               <img src={ConfirmButton} alt  ='confirm-button' />
             </Button>
+            </motion.div>
+            <motion.div whileTap={{scale: 0.8}}>
             <Button
               variant="danger"
               className="character-button"
@@ -273,10 +303,11 @@ const ProfilePage = () => {
             >
               <img src={NoButton} alt='no-button' />
             </Button>
+            </motion.div>
           </div>
-          </motion.div>
+          
         ) : (
-        <motion.div whileTap={'0.8'}>
+        <motion.div whileTap={{scale: '0.8'}}>
           <Button
             variant="primary"
             className="change-button"
@@ -291,8 +322,10 @@ const ProfilePage = () => {
         </Col>
           <Col md={6} style={{marginTop: '80px'}}>
             <h2 style={{ fontFamily: 'SellYourSoul', margin: '20px' }}>My Cards</h2>
-            
-            <Button onClick={prevCard} style={{backgroundColor: 'transparent', border: 'none'}}><img src={ArrowLeft}/></Button>
+            <div style={{display: 'flex', alignItems: 'center', marginLeft: '70px'}}>
+            <motion.div whileTap={{scale: 0.8}}>
+            <Button onClick={prevCard} style={{backgroundColor: 'transparent', border: 'none',}}><img src={ArrowLeft}/></Button>
+            </motion.div>
             <Card.Img
               variant="top"
               src={cards[currentCard]}
@@ -305,9 +338,10 @@ const ProfilePage = () => {
                 marginTop: '-20px',
               }}
             />
-
+            <motion.div whileTap={{scale: 0.8}}>
             <Button onClick={nextCard} style={{backgroundColor: 'transparent', border: 'none'}}><img src={ArrowRight}/></Button>
-         
+            </motion.div>
+            </div>
           </Col>
         </Row>
       </Container>

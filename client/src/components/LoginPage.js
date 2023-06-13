@@ -8,6 +8,7 @@ import { FiEye, FiEyeOff } from 'react-icons/fi';
 import titleScreen from '../images/page elements/TitleScreen.png';
 import beginButton from '../images/page elements/Button-Begin.png';
 import loginForm from '../images/page elements/LoginForm.png';
+import { motion } from 'framer-motion';
 //import blankButton from '../images/BlankButton.png';
 
 const styles = {
@@ -48,11 +49,12 @@ const styles = {
     backgroundColor: 'gray',
     border: 'none',
     color: 'white',
+    fontFamily: 'SupernaturalKnight'
   },
 
   labelStyle: {
     color: 'white',
-    fontFamily: 'SellYourSoul',
+    fontFamily: 'SellYourSoul,',
     fontSize: '20px'
   },
 };
@@ -95,11 +97,13 @@ function LoginPage({ onLogin }) {
       </video>
       <img src={titleScreen} alt="Title Screen" className="bg-image" />
       <Button onClick={() => setShowModal(true)} className="button" style={styles.buttonStyle}>
+        <motion.div whileTap={{scale: 0.8}}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <img src={beginButton} alt="begin" style={{ width: '300px', height: '400px' }} />
+          <img src={beginButton} alt="begin" style={{ width: '300px', height: '400px', }} />
         </div>
+        </motion.div>
       </Button>
-
+      
 
       <Modal
         show={showModal}

@@ -20,10 +20,9 @@ import FungalAxemaster from '../images/Creatures/FungalAxemaster.png';
 import Scorchfang from '../images/Creatures/Scorchfang.png';
 import ToweringEarthshaker from '../images/Creatures/ToweringEarthshaker.png';
 import CardBacks from '../images/page elements/back.PNG';
-
+import mainImage from './test.png';
 
 const GamePage = () => {
-
   const [username, setUsername] = useState('');
   const [player1Health, setPlayer1Health] = useState(100);
   const [player2Health, setPlayer2Health] = useState(100);
@@ -124,10 +123,10 @@ const GamePage = () => {
 
 
 
-  
-  const Deck = ["647fbddef6f5bca74c4f26c7", "647fbddef6f5bca74c4f26c8", "647fbddef6f5bca74c4f26c9", "647fbddef6f5bca74c4f26ca", "647fbddef6f5bca74c4f26cb","647fbddef6f5bca74c4f26cc","647fbddef6f5bca74c4f26cd","647fbddef6f5bca74c4f26ce","647fbddef6f5bca74c4f26cf","647fbddef6f5bca74c4f26d0"]
+
+  const Deck = ["647fbddef6f5bca74c4f26c7", "647fbddef6f5bca74c4f26c8", "647fbddef6f5bca74c4f26c9", "647fbddef6f5bca74c4f26ca", "647fbddef6f5bca74c4f26cb", "647fbddef6f5bca74c4f26cc", "647fbddef6f5bca74c4f26cd", "647fbddef6f5bca74c4f26ce", "647fbddef6f5bca74c4f26cf", "647fbddef6f5bca74c4f26d0"]
   const Deck2 = ["647fbddef6f5bca74c4f26c7", "647fbddef6f5bca74c4f26c8", "647fbddef6f5bca74c4f26c9", "647fbddef6f5bca74c4f26ca", "647fbddef6f5bca74c4f26cb"]
-// =============================================================================================================================================================
+  // =============================================================================================================================================================
 
 
   const [selectedCard, setSelectedCard] = useState(null);
@@ -197,24 +196,24 @@ const GamePage = () => {
     // Shuffle player decks
     const shuffledPlayer1Deck = shuffle(player1Deck);
     const shuffledPlayer2Deck = shuffle(player2Deck);
-  
+
     // Draw three cards for each player's hand
     const player1StartingHand = shuffledPlayer1Deck.slice(0, 3);
     const player2StartingHand = shuffledPlayer2Deck.slice(0, 3);
-  
+
     // Remove drawn cards from player decks
     const updatedPlayer1Deck = shuffledPlayer1Deck.slice(3);
     const updatedPlayer2Deck = shuffledPlayer2Deck.slice(3);
-  
+
     // Update game state with starting hands and updated decks
     setPlayer1Hand(player1StartingHand);
     setPlayer2Hand(player2StartingHand);
     console.log(player1StartingHand)
     setPlayer1Deck(updatedPlayer1Deck);
     setPlayer2Deck(updatedPlayer2Deck);
-  
+
     // ...existing code...
-    
+
   };
 
 
@@ -224,6 +223,7 @@ const GamePage = () => {
 
 
   
+
   const drawCard = () => {
     if (player1Deck.length > 0) {
       const [drawnCard, ...remainingDeck] = player1Deck;
@@ -237,26 +237,26 @@ const GamePage = () => {
 
 
 
-  return (
+    <div className="game" style={style}>
     <div className="game">
       <div className="deck">
         <div className="card" >
-          {<img src={CardBacks} alt={"cardbacks"} className="card"/>}
+          {player2Deck}
         </div>
         <h3>{username}'s Deck</h3>
         <div className="card-deck">
           {player2Hand.map((card, index) => (
-            <div key={index} className="card">
               <img src={CardBacks} alt={Cards[index].cardName} className="card"/>
 
+              <p>Health: {card.health}</p>
             </div>
           ))}
         </div>
       </div>
       <div className="player-area">
         <h2>{username}'s Hand</h2>
-        <div className="spaces">
           {player2Spaces.map((card, index) => (
+          {player1Spaces.map((card, index) => (
             <div key={index} className="space">
               {Cards.image}
             </div>
@@ -264,7 +264,6 @@ const GamePage = () => {
         </div>
       </div>
       <div className="player-area">
-        <div className="spaces">
           {player1Spaces.map((card, index) => (
             <div
             key={index}
@@ -272,25 +271,26 @@ const GamePage = () => {
             onClick={() => handleCardPlacement(index)}
           >
               <img src={Cards[index].image} alt={Cards[index].cardName} className="card"/>
+              {card}
             </div>
           ))}
         </div>
         <h2>{username}'s Hand</h2>
       </div>
-      <div className="deck">
+        <div className="card-deck">
       <div className="card-deck">
-          {player1Hand.map((card, index) => (
             <div
             key={index}
             className={`card ${selectedCard === card ? 'selected' : ''}`}
             onClick={() => handleCardSelection(card)}
           >
               <img src={Cards[index].image} alt={Cards[index].cardName} className="card"/>
+              <p>Health: {Cards[index].health}</p>
             </div>
           ))}
         </div>
         <h3>{username}'s Deck</h3>
-        <div className="card" onClick={drawCard}>
+          {<img src={CardBacks} alt={"back of cards"} className="card" />}
           {<img src={CardBacks} alt={"back of cards"} className="card"/>}
           {setPlayer1Deck}
         </div>

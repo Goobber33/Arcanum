@@ -21,12 +21,32 @@ const io = new Server(httpServer, {
 // Passing 'io' object to gameRoutes
 gameRoutes.setIo(io);
 
-io.on('connect', (socket) => {
-  console.log('socket', socket);
+io.on('connect', async (socket) => {
+  // trying to get socket data
+
+  // for (const socket of sockets) {
+  //   console.log(socket.id);
+  //   console.log(socket.handshake);
+  //   console.log(socket.rooms);
+  //   console.log(socket.data);
+  // }
+  
+  socket.join("room1");
+  console.log(socket.rooms); // Set { <socket.id>, "room1" }
+
   console.log("User connected", socket.id);
+  
 
   socket.on('disconnect', () => {
     console.log("User disconnected", socket.id);
+  });
+
+  socket.on("send-message", (message, room)=> {
+    if (room === '') {
+      socket.broadcast.emit("receive-message", message)
+    } else {
+      socket.to(room).emit("receive-message", message)
+    }
   });
 });
 
