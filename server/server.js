@@ -28,7 +28,7 @@ const rooms = [];
 io.on('connect', (socket) => {
   
   console.log("User connected", socket.id);
-  roomHandler(io, socket, rooms);
+  // roomHandler(io, socket, rooms);
 
   socket.on('disconnect', () => {
     console.log("User disconnected", socket.id);
