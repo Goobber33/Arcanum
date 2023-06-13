@@ -70,7 +70,7 @@ function LoginPage({ onLogin }) {
   const handleLogin = async () => {
     const endpoint = isLogin ? '/login' : '/signup';
     try {
-      const { data } = await axios.post(`http://localhost:4000/auth${endpoint}`, { username, password });
+      const { data } = await axios.post(`https://arcanum.herokuapp.com/auth${endpoint}`, { username, password });
       if (isLogin) {
         localStorage.setItem('jwt', data.token);
         onLogin();
@@ -87,6 +87,7 @@ function LoginPage({ onLogin }) {
       console.log(error);
     }
   };
+
 
   const handleCloseModal = () => setShowModal(false);
 
@@ -135,14 +136,14 @@ function LoginPage({ onLogin }) {
                 <div className="mb-3 password-wrapper">
                   <label className="form-label" style={styles.labelStyle}>
                     Password:
-                  <input
-                    type={showPassword ? 'text' : 'password'}
-                    className="form-control password-input"
-                    style={styles.inputStyle}
-                    placeholder="Enter your password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
+                    <input
+                      type={showPassword ? 'text' : 'password'}
+                      className="form-control password-input"
+                      style={styles.inputStyle}
+                      placeholder="Enter your password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
                   </label>
                   <button
                     type="button"
@@ -156,10 +157,10 @@ function LoginPage({ onLogin }) {
                   </button>
                 </div>
                 <div className="d-grid gap-2">
-                  <button type="submit" className='btn' style={{  fontFamily: 'SellYourSoul', fontSize: '20px', color: 'white', }}>
+                  <button type="submit" className='btn' style={{ fontFamily: 'SellYourSoul', fontSize: '20px', color: 'white', }}>
                     {isLogin ? 'Login' : 'Signup'}
                   </button>
-                  <Button className= 'btn' style={{fontFamily:'SellYourSoul', fontSize: '20px', backgroundColor: 'transparent', border: 'none' }}onClick={() => setIsLogin(!isLogin)}>
+                  <Button className='btn' style={{ fontFamily: 'SellYourSoul', fontSize: '20px', backgroundColor: 'transparent', border: 'none' }} onClick={() => setIsLogin(!isLogin)}>
                     {isLogin ? 'Switch to Signup' : 'Switch to Login'}
                   </Button>
                 </div>
