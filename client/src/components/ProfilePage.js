@@ -322,6 +322,7 @@ const ProfilePage = () => {
         </Col>
           <Col md={6} style={{marginTop: '80px'}}>
             <h2 style={{ fontFamily: 'SellYourSoul', margin: '20px' }}>My Cards</h2>
+            <div style={{display: 'flex', alignItems: 'center', marginLeft: '70px'}}>
             <motion.div whileTap={{scale: 0.8}}>
             <Button onClick={prevCard} style={{backgroundColor: 'transparent', border: 'none',}}><img src={ArrowLeft}/></Button>
             </motion.div>
@@ -340,6 +341,7 @@ const ProfilePage = () => {
             <motion.div whileTap={{scale: 0.8}}>
             <Button onClick={nextCard} style={{backgroundColor: 'transparent', border: 'none'}}><img src={ArrowRight}/></Button>
             </motion.div>
+            </div>
           </Col>
         </Row>
       </Container>
