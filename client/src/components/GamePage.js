@@ -122,7 +122,13 @@ const GamePage = () => {
   // =============================================================================================================================================================
 
 
-
+const style = {
+    backgroundImage: `url(${mainImage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    minHeight: '100vh',
+   
+  };
 
   
   const Deck = ["647fbddef6f5bca74c4f26c7", "647fbddef6f5bca74c4f26c8", "647fbddef6f5bca74c4f26c9", "647fbddef6f5bca74c4f26ca", "647fbddef6f5bca74c4f26cb","647fbddef6f5bca74c4f26cc","647fbddef6f5bca74c4f26cd","647fbddef6f5bca74c4f26ce","647fbddef6f5bca74c4f26cf","647fbddef6f5bca74c4f26d0"]
@@ -206,16 +212,19 @@ const GamePage = () => {
     const updatedPlayer1Deck = shuffledPlayer1Deck.slice(3);
     const updatedPlayer2Deck = shuffledPlayer2Deck.slice(3);
   
+    // Reset the player spaces
+    setPlayer1Spaces(Array(4).fill(null));
+    setPlayer2Spaces(Array(4).fill(null));
+  
     // Update game state with starting hands and updated decks
     setPlayer1Hand(player1StartingHand);
     setPlayer2Hand(player2StartingHand);
-    console.log(player1StartingHand)
     setPlayer1Deck(updatedPlayer1Deck);
-    setPlayer2Deck(updatedPlayer2Deck);
+    setPlayer2Deck(updatedPlayer2Deck); 
   
     // ...existing code...
-    
   };
+  
 
 
   useEffect(() => {
@@ -234,10 +243,8 @@ const GamePage = () => {
     }
   };
 
-
-
   return (
-    <div className="game">
+    <div className="game" style={style}>
       <div className="deck">
         <div className="card" >
           {<img src={CardBacks} alt={"cardbacks"} className="card"/>}
