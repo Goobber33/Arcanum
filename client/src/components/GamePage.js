@@ -397,7 +397,7 @@ const GamePage = () => {
           {<img src={CardBacks} alt={"cardbacks"} className="card" />}
 
         </div>
-        <h3>{username}'s Deck</h3>
+        <h3 style={{fontFamily:'SupernaturalKnight', color:'white'}}>{username}'s Deck</h3>
         <div className="card-deck">
           {player2Hand.map((card, index) => (
             <div key={index} className="card">
@@ -407,7 +407,7 @@ const GamePage = () => {
         </div>
       </div>
       <div className="player-area">
-        <h2>{username}'s Hand</h2>
+        <h2 style={{fontFamily: 'SupernaturalKnight', color: 'white'}}>{username}'s Hand</h2>
         <div className="spaces">
           {player2Spaces.map((card, index) => (
             <div key={index} className="space">
@@ -424,7 +424,7 @@ const GamePage = () => {
             </div>
           ))}
         </div>
-        <h2>{username}'s Hand</h2>
+        <h2 style ={{fontFamily: 'SupernaturalKnight', color: 'white'}}>{username}'s Hand</h2>
       </div>
       <div className="deck">
         <div className="card-deck" >
@@ -434,7 +434,7 @@ const GamePage = () => {
             </div>
           ))}
         </div>
-        <h3>{username}'s Deck</h3>
+        <h3 style={{fontFamily: 'SupernaturalKnight', color: 'white'}}>{username}'s Deck</h3>
         <div className="card" onClick={drawCard}>
           {<img src={CardBacks} alt={"back of cards"} className="card" />}
           {setPlayer1Deck}
