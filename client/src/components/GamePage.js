@@ -143,6 +143,8 @@ const GamePage = () => {
   const [battleInProgress, setBattleInProgress] = useState(false);
   const [battleLog, setBattleLog] = useState([]);
 
+  console.log(player1Deck)
+
   useEffect(() => {
     const token = localStorage.getItem('jwt');
     if (token) {
