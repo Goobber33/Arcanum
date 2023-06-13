@@ -234,7 +234,7 @@ const GamePage = () => {
     }
   };
 
-  
+
 
 
   return (
