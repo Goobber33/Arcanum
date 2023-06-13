@@ -20,7 +20,7 @@ import FungalAxemaster from '../images/Creatures/FungalAxemaster.png';
 import Scorchfang from '../images/Creatures/Scorchfang.png';
 import ToweringEarthshaker from '../images/Creatures/ToweringEarthshaker.png';
 import CardBacks from '../images/page elements/back.PNG';
-
+import mainImage from '../images/page elements/GameBackground.png';
 
 const GamePage = () => {
 
