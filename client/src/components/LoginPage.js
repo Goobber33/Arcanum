@@ -94,7 +94,7 @@ function LoginPage({ onLogin }) {
         <source src={bgVideo} type="video/mp4" />
       </video>
       <img src={titleScreen} alt="Title Screen" className="bg-image" />
-      <Button onClick={() => setShowModal(true)} className="begin-button" style={styles.buttonStyle}>
+      <Button onClick={() => setShowModal(true)} className="button" style={styles.buttonStyle}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <img src={beginButton} alt="begin" style={{ width: '300px', height: '400px' }} />
         </div>
