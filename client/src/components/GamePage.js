@@ -162,27 +162,28 @@ const GamePage = () => {
   };
 
 
-  const handleCardSelection = (card) => {
-    setSelectedCard(card);
+  const handleCardSelection = (e) => {
+    setSelectedCard(e);
+    console.log(e.target)
   };
 
-  const handleCardPlacement = (index) => {
-    if (selectedCard) {
-      if (currentTurn === 1 && !player1Spaces[index]) {
-        const updatedSpaces = [...player1Spaces];
-        updatedSpaces[index] = selectedCard;
-        setPlayer1Spaces(updatedSpaces);
-        setSelectedCard(null);
-        switchTurn();
-      } else if (currentTurn === 2 && !player2Spaces[index]) {
-        const updatedSpaces = [...player2Spaces];
-        updatedSpaces[index] = selectedCard;
-        setPlayer2Spaces(updatedSpaces);
-        setSelectedCard(null);
-        switchTurn();
-      }
-    }
-  };
+  // const handleCardPlacement = (index) => {
+  //   if (selectedCard) {
+  //     if (currentTurn === 1 && !player1Spaces[index]) {
+  //       const updatedSpaces = [...player1Spaces];
+  //       updatedSpaces[index] = selectedCard;
+  //       setPlayer1Spaces(updatedSpaces);
+  //       setSelectedCard(null);
+  //       switchTurn();
+  //     } else if (currentTurn === 2 && !player2Spaces[index]) {
+  //       const updatedSpaces = [...player2Spaces];
+  //       updatedSpaces[index] = selectedCard;
+  //       setPlayer2Spaces(updatedSpaces);
+  //       setSelectedCard(null);
+  //       switchTurn();
+  //     }
+  //   }
+  // };
 
   const shuffle = (array) => {
     const newArray = [...array];
@@ -267,8 +268,8 @@ const GamePage = () => {
           {player1Spaces.map((card, index) => (
             <div
             key={index}
-            className={`space ${!card && selectedCard ? 'droppable' : ''}`}
-            onClick={() => handleCardPlacement(index)}
+            // className={`space ${!card && selectedCard ? 'droppable' : ''}`}
+            // onClick={() => handleCardPlacement(index)}
           >
               <img src={Cards[index].image} alt={Cards[index].cardName} className="card"/>
             </div>
