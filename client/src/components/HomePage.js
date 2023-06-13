@@ -2,16 +2,15 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Game from "./Game"
-import Gridwarz from "./gameview/game/Gridwarz"
 import mainImage from './test.png';
 import './css/App.css';
-import ProfileButton from '../images/Profile.png';
-import LogoutButton from '../images/Logout.png';
-import StartButton from '../images/StartButton.png';
-import CreateGame from '../images/CreateGame.png';
-import JoinGame from '../images/JoinGame.png';
-import TestGame from '../images/TestGame.png';
-import CancelButton from '../images/Cancel.png';
+import ProfileButton from '../images/page elements/Profile.png';
+import LogoutButton from '../images/page elements/Logout.png';
+import StartButton from '../images/page elements/StartButton.png';
+import CreateGame from '../images/page elements/CreateGame.png';
+import JoinGame from '../images/page elements/JoinGame.png';
+import TestGame from '../images/page elements/TestGame.png';
+import CancelButton from '../images/page elements/Cancel.png';
 import axios from 'axios';
 
 const HomePage = ({ onLogout }) => {
@@ -228,17 +227,6 @@ const HomePage = ({ onLogout }) => {
                             style={gameButtonStyle}
                         >
                             <img src={TestGame} alt='test-game-button' />
-                        </motion.button>
-                        <motion.button
-                            className="btn btn-primary"
-                            onClick={() => navigate('/game')}
-                            initial="hidden"
-                            animate="visible"
-                            exit="hidden"
-                            variants={buttonVariants}
-                            style={gameButtonStyle}
-                        >
-                            <img src={Gridwarz} alt='Grid-warz-button' />
                         </motion.button>
                         <motion.button
                             className="btn btn-secondary"

@@ -5,9 +5,9 @@ import bgVideo from './background.mp4';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
-import titleScreen from '../images/TitleScreen.png';
-import beginButton from '../images/Button-Begin.png';
-import loginForm from '../images/LoginForm.png';
+import titleScreen from '../images/page elements/TitleScreen.png';
+import beginButton from '../images/page elements/Button-Begin.png';
+import loginForm from '../images/page elements/LoginForm.png';
 //import blankButton from '../images/BlankButton.png';
 
 const styles = {
