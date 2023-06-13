@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
+import {HTMLBackend} from 'react-dnd-html5-backend';
 import './css/gamepage.css'; // Import the CSS file for styling
 import './css/App.css'; // Importing fonts
 import AbyssalSpellweaver from '../images/Creatures/AbyssalSpellweaver.png';
@@ -136,6 +137,7 @@ const GamePage = () => {
 
 
   const [selectedCard, setSelectedCard] = useState(null);
+  const [lastCardDrawn, setLastCardDrawn] = useState(null);
   const [gameOver, setGameOver] = useState(false)
   const [winner, setWinner] = useState('')
   const [currentTurn, setCurrentTurn] = useState('')
@@ -352,6 +354,7 @@ const GamePage = () => {
     // ...existing code...
   }, [currentTurn, gameOver, player1Deck, player1Hand, player1Spaces, player2Deck, player2Hand, player2Spaces]);
 
+
   const drawCard = () => {
     if (player1Deck.length > 0) {
       const [drawnCard, ...remainingDeck] = player1Deck;
@@ -361,23 +364,40 @@ const GamePage = () => {
       console.log(player1Hand)
     }
   };
+  // ================================================================================================
 
+
+
+  const playSpace = () => {
+    if (player1Hand.length > 0) {
+      const [playedSpace, ...remainingHand] = player1Hand;
+      setPlayer1Spaces([...player1Spaces, playedSpace]);
+      setPlayer1Hand(remainingHand);
+      console.log(remainingHand)
+      console.log(player1Spaces)
+    }
+  };
+
+
+
+
+
+
+
+  
+// ================================================================================================
   return (
     <div className="game" style={style}>
       <div className="deck">
         <div className="card" >
           {<img src={CardBacks} alt={"cardbacks"} className="card" />}
-          {player2Deck}
+
         </div>
         <h3>{username}'s Deck</h3>
         <div className="card-deck">
           {player2Hand.map((card, index) => (
             <div key={index} className="card">
               <img src={CardBacks} alt={card.cardName} className="card" />
-              <h4>{card.cardName}</h4>
-              <p>Offense: {card.offence}</p>
-              <p>Defense: {card.defence}</p>
-              <p>Health: {card.health}</p>
             </div>
           ))}
         </div>
@@ -385,7 +405,7 @@ const GamePage = () => {
       <div className="player-area">
         <h2>{username}'s Hand</h2>
         <div className="spaces">
-          {player1Spaces.map((card, index) => (
+          {player2Spaces.map((card, index) => (
             <div key={index} className="space">
               {Cards.image}
             </div>
@@ -394,23 +414,19 @@ const GamePage = () => {
       </div>
       <div className="player-area">
         <div className="spaces">
-          {player2Spaces.map((card, index) => (
+          {player1Spaces.map((card, index) => (
             <div key={index} className="space">
-              {card}
+              <img src={Cards[index].image} alt={Cards[index].cardName} className="card" />
             </div>
           ))}
         </div>
         <h2>{username}'s Hand</h2>
       </div>
       <div className="deck">
-        <div className="card-deck">
+        <div className="card-deck" >
           {player1Hand.map((card, index) => (
-            <div key={index} className="card">
+            <div key={index} className="card" onClick={playSpace}>
               <img src={Cards[index].image} alt={Cards[index].cardName} className="card" />
-              <h4>{Cards[index].cardName}</h4>
-              <p>Offense: {Cards[index].offence}</p>
-              <p>Defense: {Cards[index].defence}</p>
-              <p>Health: {Cards[index].health}</p>
             </div>
           ))}
         </div>
