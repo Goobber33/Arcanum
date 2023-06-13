@@ -195,7 +195,7 @@ const CharacterSelectionPage = () => {
         <source src={bgVideo} type="video/mp4" />
       </video>
       <h1 style={headingStyle}>Character Selection</h1>
-
+    <motion.div whileTap={{scale: 0.8}}>
       <button
         className="text-white mb-3"
         type="button"
@@ -204,9 +204,12 @@ const CharacterSelectionPage = () => {
       >
         <img src ={arrowRight} />
       </button>
+      </motion.div>
+      <motion.div whileTap={{scale: 0.8}}>
       <button type="button" style={prevArrowStyle} onClick={handlePrevPage}>
       <img src ={arrowLeft} />
       </button>
+      </motion.div>
       <Container>
         <Row>
           <Col>
