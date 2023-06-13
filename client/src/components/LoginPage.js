@@ -5,9 +5,9 @@ import bgVideo from './background.mp4';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
-import titleScreen from '../images/TitleScreen.png';
-import beginButton from '../images/Button-Begin.png';
-import loginForm from '../images/LoginForm.png';
+import titleScreen from '../images/page elements/TitleScreen.png';
+import beginButton from '../images/page elements/Button-Begin.png';
+import loginForm from '../images/page elements/LoginForm.png';
 //import blankButton from '../images/BlankButton.png';
 
 const styles = {
@@ -94,7 +94,7 @@ function LoginPage({ onLogin }) {
         <source src={bgVideo} type="video/mp4" />
       </video>
       <img src={titleScreen} alt="Title Screen" className="bg-image" />
-      <Button onClick={() => setShowModal(true)} className="begin-button" style={styles.buttonStyle}>
+      <Button onClick={() => setShowModal(true)} className="button" style={styles.buttonStyle}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <img src={beginButton} alt="begin" style={{ width: '300px', height: '400px' }} />
         </div>

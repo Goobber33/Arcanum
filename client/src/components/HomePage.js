@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import mainImage from './test.png';
 import './css/App.css';
-import ProfileButton from '../images/Profile.png';
-import LogoutButton from '../images/Logout.png';
-import StartButton from '../images/StartButton.png';
-import CreateGame from '../images/CreateGame.png';
-import JoinGame from '../images/JoinGame.png';
-import TestGame from '../images/TestGame.png';
-import CancelButton from '../images/Cancel.png';
+import ProfileButton from '../images/page elements/Profile.png';
+import LogoutButton from '../images/page elements/Logout.png';
+import StartButton from '../images/page elements/StartButton.png';
+import CreateGame from '../images/page elements/CreateGame.png';
+import JoinGame from '../images/page elements/JoinGame.png';
+import TestGame from '../images/page elements/TestGame.png';
+import CancelButton from '../images/page elements/Cancel.png';
 import axios from 'axios';
 
 const HomePage = ({ onLogout }) => {
@@ -134,10 +134,10 @@ const HomePage = ({ onLogout }) => {
 
     const gameButtonStyle = {
         width: '150px',
-        marginBottom: '10px',
+        marginBottom: '20px',
         backgroundColor: 'transparent',
         border: 'none',
-        marginRight: '50px'
+        marginRight: '100px'
         
     };
 
@@ -185,17 +185,22 @@ const HomePage = ({ onLogout }) => {
             style={style}
         >
             <h1 style={titleStyle}>Welcome to the Game!</h1>
-            <button className="btn" onClick={onLogout} style={logoutButtonStyle}><img src={LogoutButton}/></button>
+            <button className="btn" onClick={onLogout} style={logoutButtonStyle}><img src={LogoutButton}/></button>                   
             <button className="btn" onClick={() => navigate('/profile')} style={profileButtonStyle}><img src={ProfileButton}/></button>
+                     
             <div style={containerStyle}>
                 {!startClicked ? (
+                    <motion.div  whileTap={{scale: '0.8'}} >
                     <div className="start-button" onClick={startGame}>
                         <span className="tooltip" style={{fontFamily: 'SellYourSoul'}}>Good Luck!</span>
                         <span><img src={StartButton}/></span>
                     </div>
+                   </motion.div>
+                
                 ) : !isCreatingGame ? (
                     <AnimatePresence>
                         <motion.button
+                            whileTap={{scale: '0.8'}}
                             className="btn btn-primary"
                             onClick={() => navigate('/game')}
                             initial="hidden"
@@ -207,6 +212,7 @@ const HomePage = ({ onLogout }) => {
                             <img src={CreateGame} alt ='create-game-button' />
                         </motion.button>
                         <motion.button
+                            whileTap={{scale: '0.8'}}
                             className="btn btn-primary"
                             onClick={(joinExistingGame)}
                             initial="hidden"
@@ -218,6 +224,7 @@ const HomePage = ({ onLogout }) => {
                             <img src={JoinGame} alt='join-game-button' />
                         </motion.button>
                         <motion.button
+                            whileTap={{scale: '0.8'}}
                             className="btn btn-primary"
                             onClick={() => navigate('/game')}
                             initial="hidden"
@@ -229,6 +236,7 @@ const HomePage = ({ onLogout }) => {
                             <img src={TestGame} alt='test-game-button' />
                         </motion.button>
                         <motion.button
+                            whileTap={{scale: '0.8'}}
                             className="btn btn-secondary"
                             onClick={cancelGame}
                             initial="hidden"

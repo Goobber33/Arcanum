@@ -1,0 +1,58 @@
+/* Game.css */
+
+.game {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .player-deck {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .card {
+    width: 100px;
+    height: 150px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .card.selected {
+    border-color: blue;
+  }
+  
+  .player-spaces {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .space {
+    width: 100px;
+    height: 150px;
+    border: 1px dashed #ccc;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .space.droppable {
+    background-color: lightgreen;
+  }
+  
+  .player1-spaces .space {
+    background-color: lightblue;
+  }
+  
+  .player2-spaces .space {
+    background-color: lightpink;
+  }
