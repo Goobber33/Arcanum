@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import './components/css/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { SocketContextProvider } from './context/SocketContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

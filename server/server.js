@@ -5,7 +5,6 @@ const authRoutes = require('./routes/userRoutes');
 const gameRoutes = require('./routes/gameRoutes');
 const { createServer } = require('http');
 const { Server } = require('socket.io');
-const { roomHandler } = require('./utils/roomHandler');
 
 const app = express();
 
@@ -22,16 +21,32 @@ const io = new Server(httpServer, {
 // Passing 'io' object to gameRoutes
 gameRoutes.setIo(io);
 
+io.on('connect', async (socket) => {
+  // trying to get socket data
 
-const rooms = [];
-
-io.on('connect', (socket) => {
+  // for (const socket of sockets) {
+  //   console.log(socket.id);
+  //   console.log(socket.handshake);
+  //   console.log(socket.rooms);
+  //   console.log(socket.data);
+  // }
   
+  socket.join("room1");
+  console.log(socket.rooms); // Set { <socket.id>, "room1" }
+
   console.log("User connected", socket.id);
-  // roomHandler(io, socket, rooms);
+  
 
   socket.on('disconnect', () => {
     console.log("User disconnected", socket.id);
+  });
+
+  socket.on("send-message", (message, room)=> {
+    if (room === '') {
+      socket.broadcast.emit("receive-message", message)
+    } else {
+      socket.to(room).emit("receive-message", message)
+    }
   });
 });
 

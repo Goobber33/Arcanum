@@ -261,7 +261,7 @@ const HomePage = ({ onLogout }) => {
                             <input className="input-field" name="rivalUsername" type="text" placeholder="Rival Username" style={inputStyle} required />
                                 {/* <input className="input-field" type="text" placeholder="Game Code" style={inputStyle} required /> */}
                                 <div style={buttonContainerStyle}>
-                                    <button type="submit" className="btn btn-primary" onClick={joinExistingGame} style={smallerButtonStyle}>Join</button>
+                                    <button type="submit" className="btn btn-primary" onClick={() => navigate('/game')} style={smallerButtonStyle}>Join</button>
                                     <button type="button" className="btn btn-secondary" onClick={cancelCreatingGame} style={smallerButtonStyle}>Cancel</button>
                                 </div>
                             </form>
