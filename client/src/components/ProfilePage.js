@@ -178,9 +178,7 @@ const ProfilePage = () => {
     >
       <h1 style={titleStyle}>Profile Page</h1>
       <Container>
-      <motion.div 
-      whileTap={{scale: '0.8'}}
-      >
+      <motion.div whileTap={{scale: '0.8'}}>
       <button
         className="btn"
         style={homeButtonStyle}
@@ -217,14 +215,16 @@ const ProfilePage = () => {
                 border: 'none'
               }}
             >
+            <motion.div whileTap={{scale: 0.8}}>
               <Button
                 variant="primary"
                 className="character-button"
                 onClick={prevCharacter}
-                style={{backgroundColor: 'transparent', border: 'none', marginLeft: '10px', marginTop: '-400px'}}
+                style={{backgroundColor: 'transparent', border: 'none', marginLeft: '10px', marginTop: '-400px', padding: '0px'}}
               >
                 <img src={ArrowLeft} alt='arrow-left'/>
               </Button>
+            </motion.div>
             </div>
             <div
               style={{
@@ -234,14 +234,16 @@ const ProfilePage = () => {
                 transform: 'translateY(-50%)',
               }}
             >
+            <motion.div whileTap={{scale: 0.8}}>
               <Button
                 variant="primary"
                 className="character-button"
                 onClick={nextCharacter}
-                style={{backgroundColor: 'transparent', border: 'none', marginTop: '-400px', marginLeft: '20px'}}
+                style={{backgroundColor: 'transparent', border: 'none', marginTop: '-400px', padding: '0px'}}
               >
                <img src={ArrowRight} alt='arrow-right'/>
               </Button>
+              </motion.div>
             </div>
           </>
         ) : null}
@@ -266,13 +268,13 @@ const ProfilePage = () => {
           <div className='row'> 
           <div className='col md-6' style={{alignItems: 'center', display: 'flex', flexDirection:'column'}}>
           <h2 style={{ fontFamily: 'SellYourSoul', fontSize: '2em', marginRight: '25px' }}>Stats</h2>
-            <p style={{ fontFamily: 'SellYourSoul', fontSize: '1.5em', marginLeft: '15px' }}>
+            <p style={{ fontFamily: 'SupernaturalKnight', fontSize: '1.5em', marginLeft: '15px' }}>
             Games won: {stats.gamesWon}
             </p>
-            <p style={{ fontFamily: 'SellYourSoul', fontSize: '1.5em' }}>
+            <p style={{ fontFamily: 'SupernaturalKnight', fontSize: '1.5em' }}>
             Games lost: {stats.gamesLost}
             </p>
-            <p style={{ fontFamily: 'SellYourSoul', fontSize: '1.5em' }}>
+            <p style={{ fontFamily: 'SupernaturalKnight', fontSize: '1.5em' }}>
             Games tied: {stats.gamesTied}
             </p>
             </div>
@@ -280,9 +282,9 @@ const ProfilePage = () => {
         </Card.Text>
         {changeMode ? (
     
-        <motion.div whileTap={'0.8'}>
-          <div style={{ display: 'flex', marginTop: '10px' }}>
-
+        
+          <div style={{ display: 'flex', marginTop: '10px', marginLeft: '-25px' }}>
+          <motion.div whileTap={{scale: 0.8}}>
             <Button
               variant="success"
               className="character-button"
@@ -291,6 +293,8 @@ const ProfilePage = () => {
             >
               <img src={ConfirmButton} alt  ='confirm-button' />
             </Button>
+            </motion.div>
+            <motion.div whileTap={{scale: 0.8}}>
             <Button
               variant="danger"
               className="character-button"
@@ -299,10 +303,11 @@ const ProfilePage = () => {
             >
               <img src={NoButton} alt='no-button' />
             </Button>
+            </motion.div>
           </div>
-          </motion.div>
+          
         ) : (
-        <motion.div whileTap={'0.8'}>
+        <motion.div whileTap={{scale: '0.8'}}>
           <Button
             variant="primary"
             className="change-button"
@@ -317,8 +322,10 @@ const ProfilePage = () => {
         </Col>
           <Col md={6} style={{marginTop: '80px'}}>
             <h2 style={{ fontFamily: 'SellYourSoul', margin: '20px' }}>My Cards</h2>
-            
-            <Button onClick={prevCard} style={{backgroundColor: 'transparent', border: 'none'}}><img src={ArrowLeft}/></Button>
+            <div style={{display: 'flex', alignItems: 'center', marginLeft: '70px'}}>
+            <motion.div whileTap={{scale: 0.8}}>
+            <Button onClick={prevCard} style={{backgroundColor: 'transparent', border: 'none',}}><img src={ArrowLeft}/></Button>
+            </motion.div>
             <Card.Img
               variant="top"
               src={cards[currentCard]}
@@ -331,9 +338,10 @@ const ProfilePage = () => {
                 marginTop: '-20px',
               }}
             />
-
+            <motion.div whileTap={{scale: 0.8}}>
             <Button onClick={nextCard} style={{backgroundColor: 'transparent', border: 'none'}}><img src={ArrowRight}/></Button>
-         
+            </motion.div>
+            </div>
           </Col>
         </Row>
       </Container>

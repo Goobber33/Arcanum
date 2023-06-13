@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
 import { motion, AnimatePresence } from 'framer-motion';
 import mainImage from './test.png';
 import './css/App.css';
@@ -76,15 +77,15 @@ const HomePage = ({ onLogout }) => {
 
     const logoutButtonStyle = {
         position: 'absolute',
-        top: '100px',
-        left: 'calc(40% + 70px)',
+        top: '20px',
+        left: 'calc(50% - 60px)',
         transform: 'translateX(-50%)'
     };
 
     const profileButtonStyle = {
         position: 'absolute',
-        top: '100px',
-        left: '50%',
+        top: '20px',
+        left: 'calc(50% + 60px)',
         transform: 'translateX(-50%)'
     };
 
@@ -184,10 +185,10 @@ const HomePage = ({ onLogout }) => {
             transition={pageTransition}
             style={style}
         >
+            
             <h1 style={titleStyle}>Welcome to the Game!</h1>
-            <button className="btn" onClick={onLogout} style={logoutButtonStyle}><img src={LogoutButton}/></button>                   
-            <button className="btn" onClick={() => navigate('/profile')} style={profileButtonStyle}><img src={ProfileButton}/></button>
-                     
+            
+                
             <div style={containerStyle}>
                 {!startClicked ? (
                     <motion.div  whileTap={{scale: '0.8'}} >
@@ -196,7 +197,7 @@ const HomePage = ({ onLogout }) => {
                         <span><img src={StartButton}/></span>
                     </div>
                    </motion.div>
-                
+                 
                 ) : !isCreatingGame ? (
                     <AnimatePresence>
                         <motion.button
@@ -234,6 +235,30 @@ const HomePage = ({ onLogout }) => {
                             style={gameButtonStyle}
                         >
                             <img src={TestGame} alt='test-game-button' />
+                        </motion.button>
+                        <motion.button
+                            whileTap={{scale: '0.8'}}
+                            className="btn btn-primary"
+                            onClick={() => navigate('/profile')}
+                            initial="hidden"
+                            animate="visible"
+                            exit="hidden"
+                            variants={buttonVariants}
+                            style={gameButtonStyle}
+                        >
+                            <img src={ProfileButton}/>
+                        </motion.button>
+                        <motion.button
+                            whileTap={{scale: '0.8'}}
+                            className="btn btn-primary"
+                            onClick={onLogout}
+                            initial="hidden"
+                            animate="visible"
+                            exit="hidden"
+                            variants={buttonVariants}
+                            style={gameButtonStyle}
+                        >
+                            <img src={LogoutButton}/>
                         </motion.button>
                         <motion.button
                             whileTap={{scale: '0.8'}}
