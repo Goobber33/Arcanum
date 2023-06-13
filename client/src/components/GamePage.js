@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
-import {HTMLBackend} from 'react-dnd-html5-backend';
+// import { HTMLBackend } from 'react-dnd-html5-backend';
 import './css/gamepage.css'; // Import the CSS file for styling
 import './css/App.css'; // Importing fonts
 import AbyssalSpellweaver from '../images/Creatures/AbyssalSpellweaver.png';
@@ -32,7 +32,8 @@ const GamePage = () => {
   const style = {
     backgroundImage: `url(${mainImage})`,
     backgroundSize: '100% 100%',
-};
+    minHeight:'100vh',
+  };
 
   const Cards = [{
     "_id": {
@@ -125,9 +126,6 @@ const GamePage = () => {
     "health": "60",
     "image": Scorchfang
   }]
-  // =============================================================================================================================================================
-
-
 
 
 
@@ -284,7 +282,6 @@ const GamePage = () => {
     // Update game state with starting hands and updated decks
     setPlayer1Hand(player1StartingHand);
     setPlayer2Hand(player2StartingHand);
-    console.log(player1StartingHand)
     setPlayer1Deck(updatedPlayer1Deck);
     setPlayer2Deck(updatedPlayer2Deck);
 
@@ -391,8 +388,8 @@ const GamePage = () => {
 
 
 
-  
-// ================================================================================================
+
+  // ================================================================================================
   return (
     <div className="game" style={style}>
       <div className="deck">
