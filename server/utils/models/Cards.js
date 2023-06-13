@@ -19,7 +19,7 @@ const CardSchema = new mongoose.Schema({
   health: {
     type: String,
     required: true
-  }
+  },
   img: {
     type: String,
     required: true
