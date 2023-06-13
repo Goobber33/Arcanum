@@ -56,3 +56,24 @@
   .player2-spaces .space {
     background-color: lightpink;
   }
+
+  .top-right {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+  }
+
+  .health-bar {
+    width: 100px;
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .health-bar-inner {
+    height: 100%;
+    background-color: #4caf50;
+    transition: width 0.3s ease-in-out;
+  }
+  
