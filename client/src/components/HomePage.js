@@ -103,22 +103,26 @@ const HomePage = ({ onLogout }) => {
 
     const createGame = (event) => {
         event.preventDefault();
-        // Get rival's username from the input field
-        const rivalUsername = event.target.elements[0].value;
+        const rivalUsername = event.target.elements.rivalUsername.value;
         
         // Call backend endpoint to create game
-        axios.post('http://localhost:4000/game/create', {
-          player2: rivalUsername  // passing rival's username to the endpoint
+        axios.post('https://arcanum.herokuapp.com/game/create', {
+          player2: rivalUsername
+        }, {
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json'
+          }
         })
-        .then(response => {
-          console.log(response.data);
-          // you can navigate to the game page here or show some message
-        })
-        .catch(error => {
-          console.error(error);
-        });
-
-    }    
+          .then(response => {
+            console.log(response.data);
+            // you can navigate to the game page here or show some message
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      }
+         
 
     const cancelCreatingGame = () => {
         setIsCreatingGame(false);

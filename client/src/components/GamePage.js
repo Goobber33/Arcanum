@@ -22,10 +22,14 @@ import Scorchfang from '../images/Creatures/Scorchfang.png';
 import ToweringEarthshaker from '../images/Creatures/ToweringEarthshaker.png';
 import CardBacks from '../images/page elements/back.PNG';
 import mainImage from '../images/page elements/GameBackground.png';
+import io from 'socket.io-client';
+
+let socket;
 
 const GamePage = () => {
 
   const [username, setUsername] = useState('');
+  const [opponentUsername, setOpponentUsername] = useState('');
   const [player1Health, setPlayer1Health] = useState(100);
   const [player2Health, setPlayer2Health] = useState(100);
 
@@ -152,82 +156,43 @@ const GamePage = () => {
   console.log(player1Deck)
 
   useEffect(() => {
-    const token = localStorage.getItem('jwt');
-    if (token) {
-      const decodedToken = jwt_decode(token);
-      setUsername(decodedToken.username);
+    try {
+      socket = io('https://arcanum.herokuapp.com');
+      
+      const token = localStorage.getItem('jwt');
+      if (token) {
+        const decodedToken = jwt_decode(token);
+        setUsername(decodedToken.username);
+        
+        // emit your username to the server
+        socket.emit('join', { username: decodedToken.username });
+  
+        // listen for 'newOpponent' event from server
+        socket.on('newOpponent', (opponent) => {
+          setOpponentUsername(opponent.username);
+        });
+  
+        startGame();
+      } else {
+        throw new Error("Token not found in local storage.");
+      }
+    } catch (error) {
+      console.error(error);
+      // Handle error as needed
     }
-    startGame();
-  }, []);
-
-  // const drawCard = (deck, hand) => {
-  //   if (deck.length > 0) {
-  //     const randomIndex = Math.floor(Math.random() * deck.length);
-  //     const drawnCard = deck[randomIndex];
-  //     const updatedDeck = [...deck];
-  //     updatedDeck.splice(randomIndex, 1);
-  //     const updatedHand = [...hand, drawnCard];
-  //     return { updatedDeck, updatedHand };
-  //   }
-  //   return { deck, hand };
-  // };
-
-  // const switchTurn = () => {
-  //   setCurrentTurn(currentTurn === 1 ? 2 : 1);
-  // };
-
-  // useEffect(() => {
-  //   if (currentTurn === 1) {
-  //     const { updatedDeck, updatedHand } = drawCard(player1Deck, player1Hand);
-  //     setPlayer1Deck(updatedDeck);
-  //     setPlayer1Hand(updatedHand);
-  //   } else if (currentTurn === 2) {
-  //     const { updatedDeck, updatedHand } = drawCard(player2Deck, player2Hand);
-  //     setPlayer2Deck(updatedDeck);
-  //     setPlayer2Hand(updatedHand);
-  //   }
-  // }, [currentTurn]);
-
-
-
-  // const handleCardSelection = (card) => {
-  //   setSelectedCard(card);
-  // };
-
-  // const handleCardPlacement = (index) => {
-  //   if (selectedCard) {
-  //     if (currentTurn === 1 && !player1Spaces[index]) {
-  //       const updatedSpaces = [...player1Spaces];
-  //       updatedSpaces[index] = selectedCard;
-  //       setPlayer1Spaces(updatedSpaces);
-  //       setSelectedCard(null);
-  //       switchTurn();
-  //     } else if (currentTurn === 2 && !player2Spaces[index]) {
-  //       const updatedSpaces = [...player2Spaces];
-  //       updatedSpaces[index] = selectedCard;
-  //       setPlayer2Spaces(updatedSpaces);
-  //       setSelectedCard(null);
-  //       switchTurn();
-  //     }
-  //   }
-  // };
+  }, []);  
 
   const startNextRound = () => {
     setRound(round + 1);
     setBattleInProgress(false);
     setBattleLog([]);
-    // ...reset other necessary state variables...
   };
 
   const addCardToHand = (playerDeck, playerHand) => {
     if (playerDeck.length > 0 && playerHand.length < 4) {
       const drawnCard = playerDeck[0];
-
-      // Remove the drawn card from the deck
       const updatedDeck = playerDeck.slice(1);
-      // Add the drawn card to the hand
       const updatedHand = [...playerHand, drawnCard];
-
       return [updatedDeck, updatedHand];
     }
     return [playerDeck, playerHand];
@@ -235,7 +200,6 @@ const GamePage = () => {
 
   const handlePlayerDeckClick = () => {
     if (!battleInProgress) {
-      // Draw a card for each player
       const [updatedDeck1, updatedHand1] = addCardToHand(player1Deck, player1Hand);
       const [updatedDeck2, updatedHand2] = addCardToHand(player2Deck, player2Hand);
       setPlayer1Deck(updatedDeck1);
@@ -286,27 +250,18 @@ const GamePage = () => {
   };
 
   const startGame = () => {
-    // Shuffle player decks
     const shuffledPlayer1Deck = shuffle(player1Deck);
     const shuffledPlayer2Deck = shuffle(player2Deck);
-
-    // Draw three cards for each player's hand
     const player1StartingHand = shuffledPlayer1Deck.slice(0, 3);
     const player2StartingHand = shuffledPlayer2Deck.slice(0, 3);
-
-    // Remove drawn cards from player decks
-    const updatedPlayer1Deck = shuffledPlayer1Deck.slice(3);
-    const updatedPlayer2Deck = shuffledPlayer2Deck.slice(3);
-
-    // Update game state with starting hands and updated decks
+    const remainingPlayer1Deck = shuffledPlayer1Deck.slice(3);
+    const remainingPlayer2Deck = shuffledPlayer2Deck.slice(3);
+    setPlayer1Deck(remainingPlayer1Deck);
     setPlayer1Hand(player1StartingHand);
+    setPlayer2Deck(remainingPlayer2Deck);
     setPlayer2Hand(player2StartingHand);
-    setPlayer1Deck(updatedPlayer1Deck);
-    setPlayer2Deck(updatedPlayer2Deck);
-
-    // ...existing code...
-
   };
+
   const resolveBattle = () => {
     // ...implement battle resolution logic...
 
@@ -386,9 +341,12 @@ const GamePage = () => {
   // ================================================================================================
   return (
     <div className="game" style={style}>
+      <p>{username}</p>
       <div className="deck">
         <div className="card" >
           {<img src={CardBacks} alt={"cardbacks"} className="card" />}
+
+        
 
         </div>
         <h3>{username}'s Deck</h3>
