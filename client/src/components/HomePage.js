@@ -185,17 +185,22 @@ const HomePage = ({ onLogout }) => {
             style={style}
         >
             <h1 style={titleStyle}>Welcome to the Game!</h1>
-            <button className="btn" onClick={onLogout} style={logoutButtonStyle}><img src={LogoutButton}/></button>
+            <button className="btn" onClick={onLogout} style={logoutButtonStyle}><img src={LogoutButton}/></button>                   
             <button className="btn" onClick={() => navigate('/profile')} style={profileButtonStyle}><img src={ProfileButton}/></button>
+                     
             <div style={containerStyle}>
                 {!startClicked ? (
+                    <motion.div  whileTap={{scale: '0.8'}} >
                     <div className="start-button" onClick={startGame}>
                         <span className="tooltip" style={{fontFamily: 'SellYourSoul'}}>Good Luck!</span>
                         <span><img src={StartButton}/></span>
                     </div>
+                   </motion.div>
+                
                 ) : !isCreatingGame ? (
                     <AnimatePresence>
                         <motion.button
+                            whileTap={{scale: '0.8'}}
                             className="btn btn-primary"
                             onClick={startCreatingGame}
                             initial="hidden"
@@ -207,6 +212,7 @@ const HomePage = ({ onLogout }) => {
                             <img src={CreateGame} alt ='create-game-button' />
                         </motion.button>
                         <motion.button
+                            whileTap={{scale: '0.8'}}
                             className="btn btn-primary"
                             onClick={(joinExistingGame)}
                             initial="hidden"
@@ -218,6 +224,7 @@ const HomePage = ({ onLogout }) => {
                             <img src={JoinGame} alt='join-game-button' />
                         </motion.button>
                         <motion.button
+                            whileTap={{scale: '0.8'}}
                             className="btn btn-primary"
                             onClick={() => navigate('/game')}
                             initial="hidden"
@@ -229,6 +236,7 @@ const HomePage = ({ onLogout }) => {
                             <img src={TestGame} alt='test-game-button' />
                         </motion.button>
                         <motion.button
+                            whileTap={{scale: '0.8'}}
                             className="btn btn-secondary"
                             onClick={cancelGame}
                             initial="hidden"

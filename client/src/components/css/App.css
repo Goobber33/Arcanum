@@ -54,3 +54,11 @@
 .character-image {
   height: auto;
 }
+
+.button {
+  position:absolute
+}
+
+.button:active {
+  transform: translateY(0.8)
+}

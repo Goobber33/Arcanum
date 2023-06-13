@@ -138,6 +138,7 @@ const ProfilePage = () => {
     top: '100px',
     left: '50%',
     transform: 'translate(-50%)',
+    border: 'none'
   };
 
   return (
@@ -150,6 +151,10 @@ const ProfilePage = () => {
       style={style}
     >
       <h1 style={titleStyle}>Profile Page</h1>
+      <Container>
+      <motion.div 
+      whileTap={{scale: '0.8'}}
+      >
       <button
         className="btn"
         style={homeButtonStyle}
@@ -157,109 +162,9 @@ const ProfilePage = () => {
       >
         <img src = {HomeButton} alt='homebutton' />
       </button>
-
-      {/* <Card
-        style={{
-          minWidth: '300px',
-          minHeight: '400px',
-          position: 'relative',
-          marginTop: '7em',
-          marginLeft: '6em',
-          padding: '20px',
-          backgroundColor: 'transparent',
-          border: 'none'
-        }}
-      >
-        {changeMode ? (
-          <>
-            <div
-              style={{
-                position: 'absolute',
-                left: '-6em',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                backgroundColor: 'transparent',
-                border: 'none'
-              }}
-            >
-              <Button
-                variant="primary"
-                className="character-button"
-                onClick={prevCharacter}
-                style={{backgroundColor: 'transparent', border: 'none', marginLeft: '25px'}}
-              >
-                <img src={ArrowLeft} alt='arrow-left'/>
-              </Button>
-            </div>
-            <div
-              style={{
-                position: 'absolute',
-                right: '-4.2em',
-                top: '50%',
-                transform: 'translateY(-50%)',
-              }}
-            >
-              <Button
-                variant="primary"
-                className="character-button"
-                onClick={nextCharacter}
-                style={{backgroundColor: 'transparent', border: 'none',}}
-              >
-               <img src={ArrowRight} alt='arrow-right'/>
-              </Button>
-            </div>
-          </>
-        ) : null}
-        <Card.Img
-          variant="top"
-          src={changeMode ? selectedCharacter : currentCharacter}
-          alt="Current Character"
-          className="character-image"
-        />
-        <Card.Text
-          style={{
-            textAlign: 'center',
-            marginTop: '10px',
-            color: 'white',
-            fontFamily: 'SellYourSoul',
-            fontSize: '20px',
-            height: 'auto'
-          }}
-        >
-          Username: {username}
-        </Card.Text>
-        {changeMode ? (
-          <div style={{ display: 'flex', marginTop: '10px' }}>
-            <Button
-              variant="success"
-              className="character-button"
-              onClick={confirmCharacter}
-              style={{backgroundColor: 'transparent', border: 'none'}}
-            >
-              <img src={ConfirmButton} alt  ='confirm-button' />
-            </Button>
-            <Button
-              variant="danger"
-              className="character-button"
-              onClick={cancelChange}
-              style={{backgroundColor: 'transparent', border: 'none'}}
-            >
-              <img src={NoButton} alt='no-button' />
-            </Button>
-          </div>
-        ) : (
-          <Button
-            variant="primary"
-            className="change-button"
-            style={{ marginTop: '10px', backgroundColor: 'transparent', border: 'none' }}
-            onClick={beginChange}
-          >
-            <img src={ChangeButton} alt='changebutton' />
-          </Button>
-        )}
-      </Card> */}
-
-      <Container>
+      </motion.div>
+      </Container>
+    <Container>
        <Row>
         <Col md={6}>
       <Card
@@ -348,7 +253,10 @@ const ProfilePage = () => {
             </div>
         </Card.Text>
         {changeMode ? (
+    
+        <motion.div whileTap={'0.8'}>
           <div style={{ display: 'flex', marginTop: '10px' }}>
+
             <Button
               variant="success"
               className="character-button"
@@ -366,7 +274,9 @@ const ProfilePage = () => {
               <img src={NoButton} alt='no-button' />
             </Button>
           </div>
+          </motion.div>
         ) : (
+        <motion.div whileTap={'0.8'}>
           <Button
             variant="primary"
             className="change-button"
@@ -375,11 +285,13 @@ const ProfilePage = () => {
           >
             <img src={ChangeButton} alt='changebutton' />
           </Button>
+        </motion.div>
         )}
       </Card>
         </Col>
           <Col md={6} style={{marginTop: '80px'}}>
             <h2 style={{ fontFamily: 'SellYourSoul', margin: '20px' }}>My Cards</h2>
+            
             <Button onClick={prevCard} style={{backgroundColor: 'transparent', border: 'none'}}><img src={ArrowLeft}/></Button>
             <Card.Img
               variant="top"
@@ -395,6 +307,7 @@ const ProfilePage = () => {
             />
 
             <Button onClick={nextCard} style={{backgroundColor: 'transparent', border: 'none'}}><img src={ArrowRight}/></Button>
+         
           </Col>
         </Row>
       </Container>
