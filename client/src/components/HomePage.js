@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import Game from "./Game"
 import mainImage from './test.png';
 import './css/App.css';
 import ProfileButton from '../images/page elements/Profile.png';
@@ -117,6 +116,7 @@ const HomePage = ({ onLogout }) => {
         .catch(error => {
           console.error(error);
         });
+
     }    
 
     const cancelCreatingGame = () => {
@@ -202,7 +202,7 @@ const HomePage = ({ onLogout }) => {
                         <motion.button
                             whileTap={{scale: '0.8'}}
                             className="btn btn-primary"
-                            onClick={startCreatingGame}
+                            onClick={() => navigate('/game')}
                             initial="hidden"
                             animate="visible"
                             exit="hidden"
@@ -261,7 +261,7 @@ const HomePage = ({ onLogout }) => {
                             <input className="input-field" name="rivalUsername" type="text" placeholder="Rival Username" style={inputStyle} required />
                                 {/* <input className="input-field" type="text" placeholder="Game Code" style={inputStyle} required /> */}
                                 <div style={buttonContainerStyle}>
-                                    <button type="submit" className="btn btn-primary" onClick={Game} style={smallerButtonStyle}>Create</button>
+                                    <button type="submit" className="btn btn-primary" onClick={joinExistingGame} style={smallerButtonStyle}>Join</button>
                                     <button type="button" className="btn btn-secondary" onClick={cancelCreatingGame} style={smallerButtonStyle}>Cancel</button>
                                 </div>
                             </form>
