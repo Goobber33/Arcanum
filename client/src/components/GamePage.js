@@ -25,7 +25,8 @@ import CardBacks from '../images/page elements/back.PNG';
 const GamePage = () => {
 
   const [username, setUsername] = useState('');
-
+  const [player1Health, setPlayer1Health] = useState(100);
+  const [player2Health, setPlayer2Health] = useState(100);
 
   const Cards = [{
     "_id": {
@@ -154,119 +155,32 @@ const GamePage = () => {
     startGame();
   }, []);
 
-  // const drawCard = (deck, hand) => {
-  //   if (deck.length > 0) {
-  //     const randomIndex = Math.floor(Math.random() * deck.length);
-  //     const drawnCard = deck[randomIndex];
-  //     const updatedDeck = [...deck];
-  //     updatedDeck.splice(randomIndex, 1);
-  //     const updatedHand = [...hand, drawnCard];
-  //     return { updatedDeck, updatedHand };
-  //   }
-  //   return { deck, hand };
-  // };
-
-  // const switchTurn = () => {
-  //   setCurrentTurn(currentTurn === 1 ? 2 : 1);
-  // };
-
-  // useEffect(() => {
-  //   if (currentTurn === 1) {
-  //     const { updatedDeck, updatedHand } = drawCard(player1Deck, player1Hand);
-  //     setPlayer1Deck(updatedDeck);
-  //     setPlayer1Hand(updatedHand);
-  //   } else if (currentTurn === 2) {
-  //     const { updatedDeck, updatedHand } = drawCard(player2Deck, player2Hand);
-  //     setPlayer2Deck(updatedDeck);
-  //     setPlayer2Hand(updatedHand);
-  //   }
-  // }, [currentTurn]);
-
-
-
-  // const handleCardSelection = (card) => {
-  //   setSelectedCard(card);
-  // };
-
-  // const handleCardPlacement = (index) => {
-  //   if (selectedCard) {
-  //     if (currentTurn === 1 && !player1Spaces[index]) {
-  //       const updatedSpaces = [...player1Spaces];
-  //       updatedSpaces[index] = selectedCard;
-  //       setPlayer1Spaces(updatedSpaces);
-  //       setSelectedCard(null);
-  //       switchTurn();
-  //     } else if (currentTurn === 2 && !player2Spaces[index]) {
-  //       const updatedSpaces = [...player2Spaces];
-  //       updatedSpaces[index] = selectedCard;
-  //       setPlayer2Spaces(updatedSpaces);
-  //       setSelectedCard(null);
-  //       switchTurn();
-  //     }
-  //   }
-  // };
-
-  const startNextRound = () => {
-    setRound(round + 1);
+  const switchTurn = () => {
+    setCurrentTurn(currentTurn === 1 ? 2 : 1);
     setBattleInProgress(false);
     setBattleLog([]);
-    // ...reset other necessary state variables...
   };
 
-  const addCardToHand = (playerDeck, playerHand) => {
-    if (playerDeck.length > 0 && playerHand.length < 4) {
-      const drawnCard = playerDeck[0];
 
-      // Remove the drawn card from the deck
-      const updatedDeck = playerDeck.slice(1);
-      // Add the drawn card to the hand
-      const updatedHand = [...playerHand, drawnCard];
-
-      return [updatedDeck, updatedHand];
-    }
-    return [playerDeck, playerHand];
+  const handleCardSelection = (card) => {
+    setSelectedCard(card);
   };
 
-  const handlePlayerDeckClick = () => {
-    if (!battleInProgress) {
-      // Draw a card for each player
-      const [updatedDeck1, updatedHand1] = addCardToHand(player1Deck, player1Hand);
-      const [updatedDeck2, updatedHand2] = addCardToHand(player2Deck, player2Hand);
-      setPlayer1Deck(updatedDeck1);
-      setPlayer1Hand(updatedHand1);
-      setPlayer2Deck(updatedDeck2);
-      setPlayer2Hand(updatedHand2);
-      setBattleInProgress(true);
-    }
-  };
-
-  const handleCardPlacement = (player, index) => {
-    if (battleInProgress && player === currentTurn && player === 1 && player1Spaces[index] === null) {
-      const selectedCard = player1Hand[index];
-      const updatedBoard = [...player1Spaces];
-      updatedBoard[index] = selectedCard;
-      const updatedHand = player1Hand.filter((_, i) => i !== index);
-      setPlayer1Spaces(updatedBoard);
-      setPlayer1Hand(updatedHand);
-    } else if (battleInProgress && player === currentTurn && player === 2 && player2Spaces[index] === null) {
-      const selectedCard = player2Hand[index];
-      const updatedBoard = [...player2Spaces];
-      updatedBoard[index] = selectedCard;
-      const updatedHand = player2Hand.filter((_, i) => i !== index);
-      setPlayer2Spaces(updatedBoard);
-      setPlayer2Hand(updatedHand);
-    }
-  };
-
-  const handleAttackDefenseSelection = (player, index, selection) => {
-    if (battleInProgress && player === currentTurn && player === 1 && player1Spaces[index] !== null) {
-      const updatedBoard = [...player1Spaces];
-      updatedBoard[index].selection = selection;
-      setPlayer1Spaces(updatedBoard);
-    } else if (battleInProgress && player === currentTurn && player === 2 && player2Spaces[index] !== null) {
-      const updatedBoard = [...player2Spaces];
-      updatedBoard[index].selection = selection;
-      setPlayer2Spaces(updatedBoard);
+  const handleCardPlacement = (index) => {
+    if (selectedCard) {
+      if (currentTurn === 1 && !player1Spaces[index]) {
+        const updatedSpaces = [...player1Spaces];
+        updatedSpaces[index] = selectedCard;
+        setPlayer1Spaces(updatedSpaces);
+        setSelectedCard(null);
+        switchTurn();
+      } else if (currentTurn === 2 && !player2Spaces[index]) {
+        const updatedSpaces = [...player2Spaces];
+        updatedSpaces[index] = selectedCard;
+        setPlayer2Spaces(updatedSpaces);
+        setSelectedCard(null);
+        switchTurn();
+      }
     }
   };
 
@@ -302,50 +216,14 @@ const GamePage = () => {
     // ...existing code...
     
   };
-  const resolveBattle = () => {
-    // ...implement battle resolution logic...
 
-    // Example: Just logging the battle results
-    const battleResults = [];
-    for (let i = 0; i < player1Spaces.length; i++) {
-      const player1Card = player1Spaces[i];
-      const player2Card = player2Spaces[i];
-
-      if (player1Card !== null && player2Card !== null) {
-        if (player1Card.selection === 'attack' && player2Card.selection === 'attack') {
-          // Both Cards chose to attack
-          // Update health points accordingly
-          const player1HealthDiff = player2Card.offense - player1Card.defense;
-          const player2HealthDiff = player1Card.offense - player2Card.defense;
-          player1Card.health -= player1HealthDiff;
-          player2Card.health -= player2HealthDiff;
-
-          // ...implement additional battle resolution logic...
-        } else if (player1Card.selection === 'attack' && player2Card.selection === 'defense') {
-          // Player 1's Card attacks while Player 2's Card defends
-          // Update health points accordingly
-
-          // ...implement additional battle resolution logic...
-        }
-
-        // ...implement additional battle resolution logic...
-
-        battleResults.push({
-          player1Card,
-          player2Card,
-          // ...additional battle result details...
-        });
-      }
-    }
-
-    setBattleLog(battleResults);
-    startNextRound();
-  };
 
   useEffect(() => {
     // ...existing code...
-  }, [currentTurn, gameOver, player1Deck, player1Hand, player1Spaces, player2Deck, player2Hand, player2Spaces]);
+  }, [ gameOver, player1Deck, player1Hand, player1Spaces, player2Deck, player2Hand, player2Spaces]);
 
+
+  
   const drawCard = () => {
     if (player1Deck.length > 0) {
       const [drawnCard, ...remainingDeck] = player1Deck;
@@ -356,22 +234,21 @@ const GamePage = () => {
     }
   };
 
+  
+
+
   return (
     <div className="game">
       <div className="deck">
         <div className="card" >
           {<img src={CardBacks} alt={"cardbacks"} className="card"/>}
-          {player2Deck}
         </div>
         <h3>{username}'s Deck</h3>
         <div className="card-deck">
           {player2Hand.map((card, index) => (
             <div key={index} className="card">
-              <img src={CardBacks} alt={card.cardName} className="card"/>
-              <h4>{card.cardName}</h4>
-              <p>Offense: {card.offence}</p>
-              <p>Defense: {card.defence}</p>
-              <p>Health: {card.health}</p>
+              <img src={CardBacks} alt={Cards[index].cardName} className="card"/>
+
             </div>
           ))}
         </div>
@@ -379,7 +256,7 @@ const GamePage = () => {
       <div className="player-area">
         <h2>{username}'s Hand</h2>
         <div className="spaces">
-          {player1Spaces.map((card, index) => (
+          {player2Spaces.map((card, index) => (
             <div key={index} className="space">
               {Cards.image}
             </div>
@@ -388,9 +265,13 @@ const GamePage = () => {
       </div>
       <div className="player-area">
         <div className="spaces">
-          {player2Spaces.map((card, index) => (
-            <div key={index} className="space">
-              {card}
+          {player1Spaces.map((card, index) => (
+            <div
+            key={index}
+            className={`space ${!card && selectedCard ? 'droppable' : ''}`}
+            onClick={() => handleCardPlacement(index)}
+          >
+              <img src={Cards[index].image} alt={Cards[index].cardName} className="card"/>
             </div>
           ))}
         </div>
@@ -399,12 +280,12 @@ const GamePage = () => {
       <div className="deck">
       <div className="card-deck">
           {player1Hand.map((card, index) => (
-            <div key={index} className="card">
+            <div
+            key={index}
+            className={`card ${selectedCard === card ? 'selected' : ''}`}
+            onClick={() => handleCardSelection(card)}
+          >
               <img src={Cards[index].image} alt={Cards[index].cardName} className="card"/>
-              <h4>{Cards[index].cardName}</h4>
-              <p>Offense: {Cards[index].offence}</p>
-              <p>Defense: {Cards[index].defence}</p>
-              <p>Health: {Cards[index].health}</p>
             </div>
           ))}
         </div>
