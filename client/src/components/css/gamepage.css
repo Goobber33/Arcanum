@@ -32,6 +32,8 @@
       }
       
 .card-deck {
+  max-width: 60%;
+  max-height: 60%;
         display: flex;
         gap: 10px;
       }
@@ -45,7 +47,12 @@
         align-items: center;
       }
 
-.space:hover {
+      .space:hover {
         background-color: lightblue;
+        cursor: pointer;
+      }
+      
+      .card:hover {
+        transform: scale(1.1);
         cursor: pointer;
       }

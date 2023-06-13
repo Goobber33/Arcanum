@@ -4,19 +4,19 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Button, Card, Container, Row, Col } from 'react-bootstrap';
 import mainImage from './test.png';
-import character1 from '../images/Aldric.png';
-import character2 from '../images/Calypso.png';
-import character3 from '../images/Celeste.png';
-import cardImage1 from '../images/Elara.png';
-import cardImage2 from '../images/Elysia.png';
-import cardImage3 from '../images/ArachnocrabTreeshell.png';
+import character1 from '../images/Characters/Aldric.png';
+import character2 from '../images/Characters/Calypso.png';
+import character3 from '../images/Characters/Celeste.png';
+import cardImage1 from '../images/Characters/Elara.png';
+import cardImage2 from '../images/Characters/Elysia.png';
+import cardImage3 from '../images/Creatures/ArachnocrabTreeshell.png';
 import './css/App.css'; // Importing fonts
-import HomeButton from '../images/HomeButton.png';
-import ArrowLeft from '../images/ArrowLeft.png';
-import ArrowRight from '../images/ArrowRight.png';
-import ChangeButton from '../images/ChangeButton.png';
-import ConfirmButton from '../images/ConfirmButton.png';
-import NoButton from '../images/NoButton.png';
+import HomeButton from '../images/page elements/HomeButton.png';
+import ArrowLeft from '../images/page elements/ArrowLeft.png';
+import ArrowRight from '../images/page elements/ArrowRight.png';
+import ChangeButton from '../images/page elements/ChangeButton.png';
+import ConfirmButton from '../images/page elements/ConfirmButton.png';
+import NoButton from '../images/page elements/NoButton.png';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
