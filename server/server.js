@@ -35,7 +35,7 @@ io.on('connect', (socket) => {
   });
 });
 
-mongoose.connect('mongodb://127.0.0.1:27017/game', {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
@@ -50,7 +50,7 @@ app.get('/', (req, res) => {
   res.send('Hello, World!');
 });
 
-const port = 4000;
+const port = process.env.PORT || 4000;
 httpServer.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
