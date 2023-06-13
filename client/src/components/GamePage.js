@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
-import { HTMLBackend } from 'react-dnd-html5-backend';
+// import { HTMLBackend } from 'react-dnd-html5-backend';
 import './css/gamepage.css'; // Import the CSS file for styling
 import './css/App.css'; // Importing fonts
 import AbyssalSpellweaver from '../images/Creatures/AbyssalSpellweaver.png';
@@ -32,6 +32,7 @@ const GamePage = () => {
   const style = {
     backgroundImage: `url(${mainImage})`,
     backgroundSize: '100% 100%',
+    minHeight:'100vh',
   };
 
   const Cards = [{
@@ -125,16 +126,7 @@ const GamePage = () => {
     "health": "60",
     "image": Scorchfang
   }]
-  // =============================================================================================================================================================
 
-
-  const style = {
-    backgroundImage: `url(${mainImage})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    minHeight: '100vh',
-
-  };
 
 
   const Deck = ["647fbddef6f5bca74c4f26c7", "647fbddef6f5bca74c4f26c8", "647fbddef6f5bca74c4f26c9", "647fbddef6f5bca74c4f26ca", "647fbddef6f5bca74c4f26cb", "647fbddef6f5bca74c4f26cc", "647fbddef6f5bca74c4f26cd", "647fbddef6f5bca74c4f26ce", "647fbddef6f5bca74c4f26cf", "647fbddef6f5bca74c4f26d0"]
