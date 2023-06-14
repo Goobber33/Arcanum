@@ -196,7 +196,7 @@ const ProfilePage = () => {
           minWidth: '300px',
           minHeight: '400px',
           position: 'relative',
-          marginTop: '7em',
+          marginTop: '22em',
           marginLeft: '6em',
           padding: '20px',
           backgroundColor: 'transparent',

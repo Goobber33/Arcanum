@@ -407,7 +407,7 @@ const GamePage = () => {
         </div>
       </div>
       <div className="player-area">
-        <h2 style={{fontFamily: 'SupernaturalKnight', color: 'white'}}>{username}'s Hand</h2>
+        {/* <h2 style={{fontFamily: 'SupernaturalKnight', color: 'white'}}>{username}'s Hand</h2> */}
         <div className="spaces">
           {player2Spaces.map((card, index) => (
             <div key={index} className="space">
@@ -424,7 +424,7 @@ const GamePage = () => {
             </div>
           ))}
         </div>
-        <h2 style ={{fontFamily: 'SupernaturalKnight', color: 'white'}}>{username}'s Hand</h2>
+        {/* <h2 style ={{fontFamily: 'SupernaturalKnight', color: 'white'}}>{username}'s Hand</h2> */}
       </div>
       <div className="deck">
         <div className="card-deck" >
