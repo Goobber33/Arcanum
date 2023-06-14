@@ -9,6 +9,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin: 30px;
       }
       
 .spaces {
@@ -29,7 +30,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin: 30px;
+        margin: 10px;
       }
       
 .card-deck {
@@ -40,8 +41,8 @@
       }
       
 .card {
-        max-width: 150px;
-        max-height: 200px;
+        max-width: 125px;
+        max-height: 175px;
         border: none;
         background-color: transparent !important;
         display: flex;
@@ -58,3 +59,7 @@
         transform: scale(1.1);
         cursor: pointer;
       }
+
+.h3 {
+  margin:10px;
+}
