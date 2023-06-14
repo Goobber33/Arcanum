@@ -1,0 +1,60 @@
+.game{
+        /* display: flex; */
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+      }
+      
+.player-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+.spaces {
+        display: flex;
+        gap: 10px;
+      }
+      
+.space {
+        width: 100px;
+        height: 120px;
+        /* border: 1px solid #ccc; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+.deck {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 30px;
+      }
+      
+.card-deck {
+  max-width: 50%;
+  max-height: 50%;
+        display: flex;
+        gap: 10px;
+      }
+      
+.card {
+        max-width: 150px;
+        max-height: 200px;
+        border: none;
+        background-color: transparent !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .space:hover {
+        background-color: lightblue;
+        cursor: pointer;
+      }
+      
+      .card:hover {
+        transform: scale(1.1);
+        cursor: pointer;
+      }

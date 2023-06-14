@@ -1,0 +1,235 @@
+
+.full-height {
+  height: 100vh;
+}
+
+.auth-container {
+  background-color: #212529;
+  color: #f8f9fa;
+  border-radius: 15px;
+}
+
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-input {
+  padding-right: 40px;
+  color: 'white'
+}
+
+.password-toggle-button {
+  position: absolute;
+  right: 1px;
+  top: 72%;
+  transform: translateY(-50%);
+  background: none;
+  color: #aaa;
+}
+
+.start-button {
+  position: relative;
+  background: #ff0000;
+  color: #ffffff;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 10px;
+  width: 150px;
+  height: 50px;
+  font-size: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.start-button .tooltip {
+  position: absolute;
+  top: 0;
+  font-size: 14px;
+  background: #ff0000;
+  color: #ff0000;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.start-button .tooltip::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  background: #ff0000;
+  bottom: -3px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.start-button:hover .tooltip {
+  top: -45px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.start-button:hover,
+.start-button:hover .tooltip,
+.start-button:hover .tooltip::before {
+  background: #ffffff;
+  color: black;
+}
+
+.input-field::placeholder {
+  color: #fff;
+}
+
+.bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 1;
+}
+
+.auth-form {
+  position: relative;
+  z-index: 2;
+}
+
+.begin-button {
+ background-color: none;
+}
+
+.modal-content {
+  background-color: transparent !important;
+  border: none;
+  box-shadow: none;
+  color: #000;
+  outline: none !important;
+}
+
+.modal-backdrop {
+  background-color: transparent !important;
+}
+
+.modal-dialog {
+  background-color: transparent;
+  background-size: 50%;
+  position: absolute;
+  width: 500px;
+  height: 500px;
+}
+
+.title {
+  font-family: 'VT323', monospace;
+  font-size: 4em;
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  color: white;
+}
+
+.home-button {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.character-selection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
+.character-button,
+.character-confirmation {
+  display: flex;
+  gap: 1em;
+}
+
+.character-image {
+  width: 20em;
+  height: 20em;
+  right: 10em;
+  object-fit: cover;
+  border-radius: 10%;
+}
+
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.form-control {
+  background-color: transparent !important;
+  border: none;
+}
+
+.custom-modal-dialog {
+  margin: 0;
+  margin-right: auto;
+  margin-left: auto;
+  width: 600px;
+}
+
+.custom-modal-content {
+  background-color: transparent !important;
+  border: none !important;
+  position: relative;
+  transform: translateX(-10%);
+  top: 6rem;
+}
+
+.custom-modal-dialog,
+.custom-modal-dialog .modal-content,
+.custom-modal-dialog .modal-content .modal-header,
+.custom-modal-dialog .modal-content .modal-body,
+.custom-modal-dialog .modal-content .modal-footer {
+  border: none;
+  background: transparent;
+  outline: none;
+  box-shadow: none;
+}
+
+.button-content {
+  background-color: transparent !important;
+}
+
+@keyframes arrow-bounce {
+  0%,
+  100% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(10px);
+  }
+}
