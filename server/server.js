@@ -14,28 +14,20 @@ app.use(express.json());
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: 'http://localhost:3000'
+    origin: 'http://localhost:3000', // Add the allowed origin for socket.io here
+    methods: ['GET', 'POST'], // Add the allowed methods if necessary
+    allowedHeaders: ['Authorization'], // Add the allowed headers if necessary
   },
 });
+
+// Assuming you have a way of storing current games
+let currentGames = [];
 
 // Passing 'io' object to gameRoutes
 gameRoutes.setIo(io);
 
 io.on('connect', async (socket) => {
-  // trying to get socket data
-
-  // for (const socket of sockets) {
-  //   console.log(socket.id);
-  //   console.log(socket.handshake);
-  //   console.log(socket.rooms);
-  //   console.log(socket.data);
-  // }
-  
-  socket.join("room1");
-  console.log(socket.rooms); // Set { <socket.id>, "room1" }
-
   console.log("User connected", socket.id);
-  
 
   socket.on('disconnect', () => {
     console.log("User disconnected", socket.id);
@@ -46,6 +38,51 @@ io.on('connect', async (socket) => {
       socket.broadcast.emit("receive-message", message)
     } else {
       socket.to(room).emit("receive-message", message)
+    }
+  });
+
+  // New game events
+  socket.on("start-game", async (gameId) => {
+    const game = currentGames.find(game => game._id === gameId);
+
+    if (!game) {
+      socket.emit("game-error", "Game not found");
+    } else {
+      const updatedGame = await game.startGame();
+
+      socket.join(gameId); // Join the game room
+      io.in(gameId).emit("game-updated", updatedGame);
+
+      const turn = decideTurn(game); // Implement this function as per your game rules
+      io.in(gameId).emit("turn", turn);
+    }
+  });
+
+  socket.on("draw-card", async ({ gameId, username }) => {
+    const game = currentGames.find(game => game._id === gameId);
+
+    if (!game) {
+      socket.emit("game-error", "Game not found");
+    } else {
+      const updatedGame = await game.drawCard(username);
+      io.in(gameId).emit("game-updated", updatedGame);
+
+      const turn = decideTurn(game); // Implement this function as per your game rules
+      io.in(gameId).emit("turn", turn);
+    }
+  });
+
+  socket.on("play-card", async ({ gameId, username, cardIndex }) => {
+    const game = currentGames.find(game => game._id === gameId);
+
+    if (!game) {
+      socket.emit("game-error", "Game not found");
+    } else {
+      const playedCard = await game.playCard(username, cardIndex);
+      io.in(gameId).emit("card-played", { game, playedCard });
+
+      const turn = decideTurn(game); // Implement this function as per your game rules
+      io.in(gameId).emit("turn", turn);
     }
   });
 });

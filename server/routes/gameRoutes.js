@@ -58,4 +58,44 @@ router.put('/update', async (req, res) => {
   }
 });
 
+// Route to start a game
+router.post('/start', async (req, res) => {
+  try {
+    const { gameId } = req.body;
+    const game = await Game.findById(gameId);
+    await game.startGame();
+    io.emit('gameStarted', game);  // Emitting an event 'gameStarted' to all connected clients
+    res.status(200).json(game);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Route to draw a card
+router.post('/draw', async (req, res) => {
+  try {
+    const { gameId, username } = req.body;
+    const game = await Game.findById(gameId);
+    await game.drawCard(username);
+    io.emit('gameUpdated', game);  // Emitting an event 'gameUpdated' to all connected clients
+    res.status(200).json(game);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Route to play a card
+router.post('/play', async (req, res) => {
+  try {
+    const { gameId, username, cardIndex } = req.body;
+    const game = await Game.findById(gameId);
+    const playedCard = await game.playCard(username, cardIndex);
+    io.emit('cardPlayed', { game, playedCard });  // Emitting an event 'cardPlayed' to all connected clients
+    res.status(200).json(game);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
 module.exports = { router, setIo };  // Export the router and setIo function
