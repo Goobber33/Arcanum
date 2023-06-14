@@ -2,7 +2,7 @@
   "name": "game",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://goobber33.github.io/Arcanum",
+  "homepage": "https://github.com/Goobber33/Arcanum",
   "dependencies": {
     "@apollo/client": "^3.7.15",
     "@auth0/auth0-react": "^2.1.0",
