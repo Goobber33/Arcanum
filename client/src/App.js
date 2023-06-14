@@ -8,7 +8,7 @@ import ProfilePage from './components/ProfilePage';
 import CharacterSelectionPage from './components/characterSelections';
 import {io} from 'socket.io-client';
 
-const socket = io.connect('http://localhost:4000')
+const socket = io.connect('https://arcanum.herokuapp.com')
 
 const RouteAnimations = ({ isLoggedIn, onLogin, onLogout }) => {
   const location = useLocation();

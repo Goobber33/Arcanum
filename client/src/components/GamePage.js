@@ -180,7 +180,24 @@ const GamePage = () => {
       console.error(error);
       // Handle error as needed
     }
-  }, []);  
+  }, []);   
+
+  useEffect(() => {
+    if (socket) {
+      socket.on('cardPlacement', (data) => {
+        const { player, index, card, board, hand } = data;
+  
+        if (player === 1) {
+          setPlayer1Spaces(board);
+          setPlayer1Hand(hand);
+        } else if (player === 2) {
+          setPlayer2Spaces(board);
+          setPlayer2Hand(hand);
+        }
+      });
+    }
+  }, [socket]);
+  
 
   const startNextRound = () => {
     setRound(round + 1);
@@ -218,6 +235,15 @@ const GamePage = () => {
       const updatedHand = player1Hand.filter((_, i) => i !== index);
       setPlayer1Spaces(updatedBoard);
       setPlayer1Hand(updatedHand);
+  
+      // Emit the updated game state to the server
+      socket.emit('cardPlacement', {
+        player: 1,
+        index,
+        card: selectedCard,
+        board: updatedBoard,
+        hand: updatedHand
+      });
     } else if (battleInProgress && player === currentTurn && player === 2 && player2Spaces[index] === null) {
       const selectedCard = player2Hand[index];
       const updatedBoard = [...player2Spaces];
@@ -225,8 +251,18 @@ const GamePage = () => {
       const updatedHand = player2Hand.filter((_, i) => i !== index);
       setPlayer2Spaces(updatedBoard);
       setPlayer2Hand(updatedHand);
+  
+      // Emit the updated game state to the server
+      socket.emit('cardPlacement', {
+        player: 2,
+        index,
+        card: selectedCard,
+        board: updatedBoard,
+        hand: updatedHand
+      });
     }
   };
+  
 
   const handleAttackDefenseSelection = (player, index, selection) => {
     if (battleInProgress && player === currentTurn && player === 1 && player1Spaces[index] !== null) {
@@ -333,7 +369,22 @@ const GamePage = () => {
 
 
 
-
+  useEffect(() => {
+    if (socket) {
+      socket.on('cardPlacement', (data) => {
+        const { player, index, card, board, hand } = data;
+  
+        if (player === 1) {
+          setPlayer1Spaces(board);
+          setPlayer1Hand(hand);
+        } else if (player === 2) {
+          setPlayer2Spaces(board);
+          setPlayer2Hand(hand);
+        }
+      });
+    }
+  }, [socket]);
+  
 
 
 
