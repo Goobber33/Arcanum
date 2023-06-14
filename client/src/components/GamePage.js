@@ -198,12 +198,12 @@ const GamePage = () => {
     }
   }, [socket]);
   
+
   const startNextRound = () => {
     setRound(round + 1);
     setBattleInProgress(false);
     setBattleLog([]);
   };
-
 
   const addCardToHand = (playerDeck, playerHand) => {
     if (playerDeck.length > 0 && playerHand.length < 4) {
@@ -273,22 +273,6 @@ const GamePage = () => {
       const updatedBoard = [...player2Spaces];
       updatedBoard[index].selection = selection;
       setPlayer2Spaces(updatedBoard);
-
-  const displayBattleResult = () => {
-    // Get the current health points of both players from the game state
-    const player1Health = gameState.player1.health;
-    const player2Health = gameState.player2.health;
-  
-    // Display the battle result based on the players' health points
-    if (player1Health <= 0 && player2Health <= 0) {
-      console.log("It's a draw!");
-    } else if (player1Health <= 0) {
-      console.log("Player 2 wins!");
-    } else if (player2Health <= 0) {
-      console.log("Player 1 wins!");
-    } else {
-      console.log("The battle continues...");
-
     }
   };
 
@@ -313,80 +297,52 @@ const GamePage = () => {
     setPlayer2Deck(remainingPlayer2Deck);
     setPlayer2Hand(player2StartingHand);
   };
-      
+
   const resolveBattle = () => {
     // ...implement battle resolution logic...
 
-
-  const gameState = {
-    player1: {
-      health: 100,
-      cards: [],
-      // Other player-specific properties
-    },
-    player2: {
-      health: 100,
-      cards: [],
-      // Other player-specific properties
-    },
-    // Other game state properties
-  };
-  
-  const updateGameState = (player1Health, player2Health, player1Spaces, player2Spaces) => {
-    // Update player health points in the game state
-    gameState.player1.health = player1Health;
-    gameState.player2.health = player2Health;
-  
-    // Update the player's cards in the game state
-    gameState.player1.cards = player1Spaces;
-    gameState.player2.cards = player2Spaces;
-  
-  };
-  
-
-  const resolveBattle = () => {
-    let player1TotalDamage = 0;
-    let player2TotalDamage = 0;
-    const battleResult = [];
-    // Calculate the total damage inflicted by all cards in player1's space
+    // Example: Just logging the battle results
+    const battleResults = [];
     for (let i = 0; i < player1Spaces.length; i++) {
       const player1Card = player1Spaces[i];
-      if (player1Card !== null) {
-        player1TotalDamage += player1Card.attack;
-      }
-    }
-  
-    // Calculate the total damage inflicted by all cards in player2's space
-    for (let i = 0; i < player2Spaces.length; i++) {
       const player2Card = player2Spaces[i];
-      if (player2Card !== null) {
-        player2TotalDamage += player2Card.attack;
+
+      if (player1Card !== null && player2Card !== null) {
+        if (player1Card.selection === 'attack' && player2Card.selection === 'attack') {
+          // Both Cards chose to attack
+          // Update health points accordingly
+          const player1HealthDiff = player2Card.offense - player1Card.defense;
+          const player2HealthDiff = player1Card.offense - player2Card.defense;
+          player1Card.health -= player1HealthDiff;
+          player2Card.health -= player2HealthDiff;
+
+          // ...implement additional battle resolution logic...
+        } else if (player1Card.selection === 'attack' && player2Card.selection === 'defense') {
+          // Player 1's Card attacks while Player 2's Card defends
+          // Update health points accordingly
+
+          // ...implement additional battle resolution logic...
+        }
+
+        // ...implement additional battle resolution logic...
+
+        battleResults.push({
+          player1Card,
+          player2Card,
+          // ...additional battle result details...
+        });
       }
     }
-  
-    // Subtract the total damage from the opponent's health
-    player2Health -= player1TotalDamage;
-    player1Health -= player2TotalDamage;
-  
-    // Check if any player has reached zero health
-    if (player2Health <= 0 && player1Health <= 0) {
-      // It's a draw
-      battleResult = 'Draw';
-    } else if (player2Health <= 0) {
-      // Player 1 wins
-      battleResult = 'Player 1 wins!';
-    } else if (player1Health <= 0) {
-      // Player 2 wins
-      battleResult = 'Player 2 wins!';
-    } else {
-      // The battle continues
-      battleResult = 'The battle continues...';
-    }
-  
-    // Update the game state and display the battle result
-    updateGameState();
-    displayBattleResult(battleResult);
+
+    setBattleLog(battleResults);
+    startNextRound();
   };
+
+
+  useEffect(() => {
+    // ...existing code...
+  }, [currentTurn, gameOver, player1Deck, player1Hand, player1Spaces, player2Deck, player2Hand, player2Spaces]);
+
 
   const drawCard = () => {
     if (player1Deck.length > 0) {
@@ -444,7 +400,7 @@ const GamePage = () => {
         
 
         </div>
-        <h3 style={{fontFamily:'SupernaturalKnight', color:'white'}}>{username}'s Deck</h3>
+        <h3>{username}'s Deck</h3>
         <div className="card-deck">
           {player2Hand.map((card, index) => (
             <div key={index} className="card">
@@ -454,7 +410,7 @@ const GamePage = () => {
         </div>
       </div>
       <div className="player-area">
-        {/* <h2 style={{fontFamily: 'SupernaturalKnight', color: 'white'}}>{username}'s Hand</h2> */}
+        <h2>{username}'s Hand</h2>
         <div className="spaces">
           {player2Spaces.map((card, index) => (
             <div key={index} className="space">
@@ -471,7 +427,7 @@ const GamePage = () => {
             </div>
           ))}
         </div>
-        {/* <h2 style ={{fontFamily: 'SupernaturalKnight', color: 'white'}}>{username}'s Hand</h2> */}
+        <h2>{username}'s Hand</h2>
       </div>
       <div className="deck">
         <div className="card-deck" >
@@ -481,7 +437,7 @@ const GamePage = () => {
             </div>
           ))}
         </div>
-        <h3 style={{fontFamily: 'SupernaturalKnight', color: 'white'}}>{username}'s Deck</h3>
+        <h3>{username}'s Deck</h3>
         <div className="card" onClick={drawCard}>
           {<img src={CardBacks} alt={"back of cards"} className="card" />}
           {setPlayer1Deck}
